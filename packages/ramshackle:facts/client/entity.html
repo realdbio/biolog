@@ -1,0 +1,90 @@
+<template name="formEntityInsert">
+    <form id="formEntityInsert">
+        <label>Name</label><input type="text" name="name"/>
+        <label>Description</label><input type="text" name="description"/>
+        <input type="submit" value="Add"/>
+    </form>
+</template>
+
+
+<!--<template name="listEntities">-->
+    <!--<div class="ui list">-->
+        <!--{{#each entities}}-->
+            <!--<div class="item">-->
+                <!--<p>-->
+                    <!--{{> entityItem}}-->
+                <!--</p>-->
+            <!--</div>-->
+        <!--{{/each}}-->
+    <!--</div>-->
+<!--</template>-->
+
+<!--<template name="entityItem">-->
+    <!--<div class="small blue ui labeled icon buttons">-->
+        <!--<div class="ui button realdb-btn-entity">-->
+            <!--<i class="doc basic icon"></i>-->
+            <!--{{name}}-->
+        <!--</div>-->
+    <!--</div>-->
+    <!--<div class="small blue ui icon buttons">-->
+        <!--<div id="realdb-btn-entity-info-{{_id}}" class="circular ui button realdb-btn-entity-info" data-content="{{description}}">-->
+            <!--<i class="info icon"></i>-->
+            <!--&nbsp;-->
+        <!--</div>-->
+    <!--</div>-->
+    <!--<div class="ui icon buttons">-->
+        <!--<div class="small ui button realdb-btn-entity-plus">-->
+            <!--<i class="plus icon"></i>-->
+            <!--&nbsp;-->
+        <!--</div>-->
+    <!--</div>-->
+<!--</template>-->
+
+<template name="listMyEntities">
+    <div class="list">
+        {{#each entities}}
+        <div class="item">
+            <p>
+                {{> entityItem}}
+            </p>
+        </div>
+        {{/each}}
+    </div>
+</template>
+
+<template name="entityItem">
+    <div class="btn-group-sm">
+        {{> entityButton}}
+        <button type="button" id="realdb-btn-entity-info-{{_id}}" class="btn-sm btn-default" data-container="body" data-toggle="popover" title="{{name}}" data-content="{{_id}}">
+            <span class="glyphicon glyphicon-info-sign"></span>
+        </button>
+        <!--<button type="button" id="realdb-btn-entity-plus-{{_id}}" class="btn btn-primary">-->
+            <!--<span class="glyphicon glyphicon-plus"></span>-->
+        <!--</button>-->
+
+        <button type="button" class="btn-sm btn-default dropdown-toggle" data-toggle="dropdown" title="Add...">
+            <span class="glyphicon glyphicon-plus"></span>
+        </button>
+        <ul class="dropdown-menu" role="menu">
+            <li><a id="realdb-link-add-fact-{{_id}}" href="#">Add a Fact</a></li>
+            <li><a id="realdb-link-add-sib-{{_id}}" href="#">Another action</a></li>
+            <li><a href="#">Something else here</a></li>
+            <li class="divider"></li>
+            <li><a href="#">Separated link</a></li>
+        </ul>
+    </div>
+</template>
+
+<template name="entityButton">
+    <button type="button" class="btn-sm btn-primary realdb-entity-btn">
+        <span class="glyphicon glyphicon-book"></span> {{name}}
+    </button>
+</template>
+
+<template name="entitySearchBox">
+    {{> esInput index="entities" placeholder="Search..." }}
+
+    {{#esEach index="entities"}}
+    {{> entityItem}}
+    {{/esEach}}
+</template>

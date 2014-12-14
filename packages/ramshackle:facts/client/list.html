@@ -1,0 +1,26 @@
+<template name="showList">
+    <div class="ui list">
+        {{#each items}}
+            <div class="item">
+                <p>
+                    {{> listItem}}
+                </p>
+            </div>
+        {{/each}}
+    </div>
+</template>
+
+<template name="listItem">
+    <div class="small gray ui labeled icon buttons">
+        <div class="ui button">
+            <i class="doc basic icon"></i>
+            {{name}}
+        </div>
+    </div>
+    <div class="small blue ui icon buttons">
+        <div class="ui button">
+            <i class="info icon"></i>
+            &nbsp;
+        </div>
+    </div>
+</template>
