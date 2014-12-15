@@ -4,7 +4,13 @@
 # but you can also edit it by hand.
 
 meteor-platform
-autopublish
-insecure
+accounts-ui
+accounts-google
+templating
+iron:router
+tsega:bootstrap3-datetimepicker
+peerlibrary:async
+sergeyt:typeahead
+aldeed:collection2
 ramshackle:smartbio
-
+matteodem:easy-search
