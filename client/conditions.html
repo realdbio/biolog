@@ -1,0 +1,41 @@
+<template name="myConditions">
+    {{> addConditionButton }}
+    <div class="list">
+        {{#each item}}
+        <div class="item">
+            <p>
+                {{> conditionItem}}
+            </p>
+        </div>
+        {{/each}}
+    </div>
+</template>
+
+<template name="addConditionButton">
+    <button type="button" class="btn-sm" id="addConditionButton">
+        <span class="glyphicon glyphicon-plus"></span> Add a condition
+    </button>
+</template>
+
+<template name="conditionItem">
+    <div class="btn-group-sm">
+        {{> entityButton}}
+        <button type="button" id="realdb-btn-entity-info-{{_id}}" class="btn-sm btn-default" data-container="body" data-toggle="popover" title="{{name}}" data-content="{{_id}}">
+            <span class="glyphicon glyphicon-info-sign"></span>
+        </button>
+        <!--<button type="button" id="realdb-btn-entity-plus-{{_id}}" class="btn btn-primary">-->
+        <!--<span class="glyphicon glyphicon-plus"></span>-->
+        <!--</button>-->
+
+        <button type="button" class="btn-sm btn-default dropdown-toggle" data-toggle="dropdown" title="Add...">
+            <span class="glyphicon glyphicon-plus"></span>
+        </button>
+        <!--<ul class="dropdown-menu" role="menu">-->
+            <!--<li><a id="smartbio-link-add-fact-{{_id}}" href="#">Add a Fact</a></li>-->
+            <!--<li><a id="smartbio-link-add-sib-{{_id}}" href="#">Another action</a></li>-->
+            <!--<li><a href="#">Something else here</a></li>-->
+            <!--<li class="divider"></li>-->
+            <!--<li><a href="#">Separated link</a></li>-->
+        <!--</ul>-->
+    </div>
+</template>

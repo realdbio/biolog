@@ -12,5 +12,7 @@ tsega:bootstrap3-datetimepicker
 peerlibrary:async
 sergeyt:typeahead
 aldeed:collection2
-ramshackle:smartbio
-matteodem:easy-search
+matteodem:easy-search@1.4.1
+pahans:reactive-modal@1.0.1
+mizzao:bootstrap-3
+less

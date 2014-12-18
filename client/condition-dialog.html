@@ -1,0 +1,33 @@
+<template name="addConditionDialog">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-7">
+                {{> esInput index="conditions" placeholder="Search..." id="conditionChooser" }}
+            </div>
+            <div class="col-md-4">
+                <!--{{#ifEsHasNoResults index="conditions" id="conditionChooser" }}-->
+                <!--<div class="no-results">Create new type:-->
+                    <!--<button type="button" class="btn-sm {{ conditionButtonClass }} smartbio-condition-btn" id="newCondition">-->
+                        <!--<span class="glyphicon glyphicon-{{ getIconForEtype }}"></span> {{newConditionName}}-->
+                    <!--</button>-->
+                <!--</div>-->
+                <!--{{/ifEsHasNoResults}}-->
+            </div>
+
+        </div>
+
+        <!--<div class="row">-->
+            <!--<div class="col-md-6">-->
+                <!--{{#esEach index="conditions" id="conditionChooser"}}-->
+                <!--<div class="item">-->
+                    <!--<button type="button" class="btn-sm smartbio-condition-btn" id="{{_id}}">-->
+                        <!--<span class="glyphicon glyphicon-books"></span> {{name}}-->
+                    <!--</button>-->
+                <!--</div>-->
+                <!--{{/esEach}}-->
+            <!--</div>-->
+        <!--</div>-->
+
+
+    </div>
+</template>
