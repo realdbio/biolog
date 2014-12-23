@@ -30,37 +30,56 @@ CsvLoader.prototype.convertToJson = function(callback) {
 
 };
 
+CsvLoader.prototype.getEntityIdFromKaiserCode = function(kaiserCode) {
+    var entity = Entities.findOne({local: "kaiser/cmt/" + kaiserCode});
+    if (entity) return entity._id;
+};
 
 CsvLoader.prototype.loadKaiserJson = function(map, json, src, callback) {
     console.log("Loading " + json.length + " Kaiser entities...");
+    var self = this;
     for (var i in json) {
         var item = json[i];
-        var name = item[map.name];
+        var name = String(item[map.name]);
         if (!name) {
-            name = item[map.altName];
+            name = String(item[map.altName]);
         }
         var nameLC = name;
-        if (typeof name == "string") nameLC = name.toLowerCase();
+        nameLC = name.toLowerCase();
+        var id = "health-condition/" + strToId(nameLC);
         var entity = {
+            _id: id,
             name: name,
             nameLC: nameLC,
             src: "kaiser/cmt/" + src,
-            local: item[map.local],
+            local: "kaiser/cmt/" + item[map.local],
             created: new Date(),
             creator: "dave",
-            synonyms: []
+            synonyms: [],
+            etypes: ["health-condition"]
         };
+
+        //add synonyms
         for (var si in map.synonyms) {
             var synonymField = map.synonyms[si];
             var synLC = String(item[synonymField]);
-//            if (typeof synLC == "string")
             synLC = synLC.toLowerCase();
             entity.synonyms.push(synLC);
         }
-        //does it already exist?
 
-        var alreadyExisting = Entities.findOne({nameLC: nameLC});
+        //add parents
+        var parents = [];
+        if (item["parent_sctid"]) parents.push(this.getEntityIdFromKaiserCode(item["parent_sctid"]));
+        if (item["parent_sctid_2"]) parents.push(this.getEntityIdFromKaiserCode(item["parent_sctid_2"]));
+        if (item["parent_sctid_3"]) parents.push(this.getEntityIdFromKaiserCode(item["parent_sctid_3"]));
+        if (parents) entity.parents = parents;
+
+        //does it already exist?  If so just add synonyms and parents to the existing
+        var alreadyExisting = Entities.findOne(id);
         if (alreadyExisting) {
+
+            //todo add parents
+            
             var addedSynonyms = false;
 //            for (var syni in entity.synonyms) {
 //                if (! entity.synonyms[syni]) continue;
@@ -75,7 +94,7 @@ CsvLoader.prototype.loadKaiserJson = function(map, json, src, callback) {
             }
             if (addedSynonyms) {
                 console.log(i + ") ADDED SYNONYMS TO ALREADY EXISTING; now=" + JSON.stringify(alreadyExisting));
-                Entities.update({_id: alreadyExisting._id}, {$set: {synonyms: alreadyExisting.synonyms}});
+                Entities.update({_id: id}, {$set: {synonyms: alreadyExisting.synonyms}});
             } else {
                 console.log(i + ") SKIPPING ALREADY EXISTS: '" + name + "'");
             }

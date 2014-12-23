@@ -18,7 +18,22 @@ Template.addConditionDialog.created = function () {
 Template.addConditionDialog.helpers({
     newConditionName: function () {
         return conditionSearchBoxUserQuery;
+    },
+
+    conditionButtonClass: function() {
+//        console.log("etypeButtonClass(): etypeId=" + Session.get("etypeId") + "; this._id=" + this._id);
+        if (this._id && Session.get("conditionId") == this._id) return "btn-success";
+        if (!this._id && Session.get("conditionId") == "newCondition") return "btn-success";
+        return "";
+    },
+
+    getIconForCondition: function(event) {
+//        console.log("getIconForEtype: etypeId=" + Session.get("etypeId") + "; this._id=" + this._id);
+        if (this._id && Session.get("conditionId") == this._id) return "ok";
+        if (!this._id && Session.get("conditionId") == "newCondition") return "ok";
+        return "unchecked"
     }
+
 });
 
 

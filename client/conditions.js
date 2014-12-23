@@ -1,4 +1,5 @@
 Meteor.subscribe("myConditions");
+//Meteor.subscribe("someConditions");
 
 Template.myConditions.events({'submit form': function (event, template) {
     event.preventDefault();
@@ -29,9 +30,15 @@ Template.myConditions.events({'submit form': function (event, template) {
 
 Template.myConditions.helpers({
     conditions: function(){
-        return Entities.find({ etype: "health-condition" }).fetch();
+        return Entities.find({etypes: "health-condition"}).fetch();
     }
 });
+
+//Template.someConditions.helpers({
+//    conditions: function(){
+//        return Entities.find().fetch();
+//    }
+//});
 
 Template.addConditionButton.events({
     'click #addConditionButton': function(event, template) {
