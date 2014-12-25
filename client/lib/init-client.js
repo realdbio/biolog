@@ -2,6 +2,16 @@
 //addConditionDialog = null;
 
 Meteor.startup(function(){
+    addHealthCondition = function(healthCondition) {
+        var fact = {
+            subj:Meteor.user()._id,
+            pred: "health-condition",
+            obj: healthCondition._id,
+            text: healthCondition.name
+        }
+        Meteor.call("storeFact", fact);
+    };
+
     var addConditionDialogSpec = {
         template: Template.addConditionDialog,
         title: "Add a condition",
@@ -26,11 +36,19 @@ Meteor.startup(function(){
     addConditionDialog = ReactiveModal.initDialog(addConditionDialogSpec);
 
     addConditionDialog.buttons.ok.on('click', function(button){
-        alert('ok then');
+        console.log("Selected condition = " + JSON.stringify(Session.get("selectedHealthCondition")));
+        addHealthCondition(Session.get("selectedHealthCondition"));
+//        alert('ok then');
+//        Session.set("conditionSearchBoxUserQuery", "");
+//        var instance = EasySearch.getComponentInstance(
+//            { index : 'conditions' }
+//        );
+//        instance.clear();
     });
 
     addConditionDialog.buttons.cancel.on('click', function(button){
         alert('cancel then');
+        Session.set("conditionSearchBoxUserQuery", "");
     });
 
 });

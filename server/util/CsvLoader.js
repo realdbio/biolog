@@ -79,7 +79,7 @@ CsvLoader.prototype.loadKaiserJson = function(map, json, src, callback) {
         if (alreadyExisting) {
 
             //todo add parents
-            
+
             var addedSynonyms = false;
 //            for (var syni in entity.synonyms) {
 //                if (! entity.synonyms[syni]) continue;

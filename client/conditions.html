@@ -4,6 +4,32 @@
         {{#each conditions}}
         <div class="item">
             <p>
+                {{> factItem}}
+                <!--{{name}}-->
+            </p>
+        </div>
+        {{/each}}
+    </div>
+</template>
+
+<template name="allFacts">
+    <div class="list">
+        {{#each facts}}
+        <div class="item">
+            <p>
+                {{> factItem}}
+                <!--{{name}}-->
+            </p>
+        </div>
+        {{/each}}
+    </div>
+</template>
+
+<template name="mostUsedConditions">
+    <div class="list">
+        {{#each conditions}}
+        <div class="item">
+            <p>
                 {{> conditionItem}}
                 <!--{{name}}-->
             </p>
@@ -38,5 +64,14 @@
             <!--<li class="divider"></li>-->
             <!--<li><a href="#">Separated link</a></li>-->
         <!--</ul>-->
+    </div>
+</template>
+
+<template name="factItem">
+    <div class="btn-group-sm">
+        <!--{{> entityButton}}-->
+        <button type="button" id="smartbio-fact-{{_id}}" class="btn btn-sm btn-default" title="{{subj}}~{{pred}}~{{obj}},current={{current}}">
+            <span class="fa fa-medkit"></span> {{text}}
+        </button>
     </div>
 </template>

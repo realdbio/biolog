@@ -1,4 +1,8 @@
 Meteor.subscribe("myConditions");
+
+Meteor.subscribe("allFacts");
+
+//Meteor.subscribe("mostUsedConditions");
 //Meteor.subscribe("someConditions");
 
 Template.myConditions.events({'submit form': function (event, template) {
@@ -29,10 +33,24 @@ Template.myConditions.events({'submit form': function (event, template) {
 }});
 
 Template.myConditions.helpers({
-    conditions: function(){
-        return Entities.find({etypes: "health-condition"}).fetch();
+    conditions: function() {
+//        return Entities.find({etypes: "health-condition"}).fetch();
+        return Facts.find({pred: "health-condition", subj: Meteor.userId(), current: 1 }).fetch();
     }
 });
+
+Template.allFacts.helpers({
+    facts: function() {
+//        return Entities.find({etypes: "health-condition"}).fetch();
+        return Facts.find().fetch();
+    }
+});
+
+//Template.mostUsedConditions.helpers({
+//    conditions: function(){
+//        return Entities.find({etypes: "health-condition" }, {sort: [["used","desc"]]}, {limit: 20}).fetch();
+//    }
+//});
 
 //Template.someConditions.helpers({
 //    conditions: function(){

@@ -31,18 +31,18 @@ Template.addConditionDialog.helpers({
 //        console.log("getIconForEtype: etypeId=" + Session.get("etypeId") + "; this._id=" + this._id);
         if (this._id && Session.get("conditionId") == this._id) return "ok";
         if (!this._id && Session.get("conditionId") == "newCondition") return "ok";
-        return "unchecked"
+        return "unchecked";
     }
 
 });
 
 
 
-//Template.addConditionDialog.events({
-//    'click .smartbio-condition-btn': function(event, template) {
-//        event.preventDefault();
-//        this.icon="check";
-////        console.log('click .smartbio-condition-btn: conditionId=' + Session.get("conditionId"));
+Template.addConditionDialog.events({
+    'click .smartbio-condition-btn': function(event, template) {
+        event.preventDefault();
+        this.icon="check";
+//        console.log('click .smartbio-condition-btn: conditionId=' + Session.get("conditionId"));
 //        var newId = this._id;
 //        if (!newId) {
 //            newId = 'newCondition';
@@ -53,7 +53,8 @@ Template.addConditionDialog.helpers({
 //        }
 //        var newName = this.name;
 //        if (!newName) newName = conditionSearchBoxUserQuery;
+        Session.set("selectedHealthCondition", this);
 //        Session.set("conditionId", newId);
 //        Session.set("conditionName", newName);
-//    }
-//});
+    }
+});
