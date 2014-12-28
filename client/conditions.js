@@ -34,6 +34,8 @@ Template.myConditions.events({'submit form': function (event, template) {
 
 Template.myConditions.helpers({
     conditions: function() {
+//        console.log("Meteor.user()=" + JSON.stringify(Meteor.user()));
+
 //        return Entities.find({etypes: "health-condition"}).fetch();
         return Facts.find({pred: "health-condition", subj: Meteor.userId(), current: 1 }).fetch();
     }
@@ -62,5 +64,13 @@ Template.addConditionButton.events({
     'click #addConditionButton': function(event, template) {
         event.preventDefault();
         addConditionDialog.show();
+    }
+});
+
+
+Template.conditionItem.helpers({
+    'click .smartbio-conditionbtn': function(event, template) {
+        event.preventDefault();
+        console.log("smartbio-conditionbtn clicked");
     }
 });

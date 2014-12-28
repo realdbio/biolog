@@ -4,7 +4,7 @@
         {{#each conditions}}
         <div class="item">
             <p>
-                {{> factItem}}
+                {{> conditionItem}}
                 <!--{{name}}-->
             </p>
         </div>
@@ -47,8 +47,8 @@
 <template name="conditionItem">
     <div class="btn-group-sm">
         <!--{{> entityButton}}-->
-        <button type="button" id="smartbio-conditionbtn-{{_id}}" class="btn btn-sm btn-default" title="{{description}}">
-            <span class="fa fa-medkit"></span> {{name}}
+        <button type="button" class="btn btn-sm btn-default smartbio-conditionbtn">
+            <span class="fa fa-medkit"></span> {{objName}}
         </button>
         <!--<button type="button" id="realdb-btn-entity-plus-{{_id}}" class="btn btn-primary">-->
         <!--<span class="glyphicon glyphicon-plus"></span>-->

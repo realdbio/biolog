@@ -10,7 +10,7 @@ Template.addConditionDialog.created = function () {
     });
 
     instance.on('currentValue', function (val) {
-        console.log('The user searches for: ' + val);
+//        console.log('The user searches for: ' + val);
         conditionSearchBoxUserQuery = val;
     });
 };

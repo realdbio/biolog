@@ -2,11 +2,13 @@
 //addConditionDialog = null;
 
 Meteor.startup(function(){
-    addHealthCondition = function(healthCondition) {
+    addHealthCondition = function(healthCondition, user) {
         var fact = {
-            subj:Meteor.user()._id,
+            subj:user.id,
+            subjName:user.name,
             pred: "health-condition",
             obj: healthCondition._id,
+            objName: healthCondition.name,
             text: healthCondition.name
         }
         Meteor.call("storeFact", fact);
@@ -37,7 +39,8 @@ Meteor.startup(function(){
 
     addConditionDialog.buttons.ok.on('click', function(button){
         console.log("Selected condition = " + JSON.stringify(Session.get("selectedHealthCondition")));
-        addHealthCondition(Session.get("selectedHealthCondition"));
+        var patient = Session.get("patient");
+        addHealthCondition(Session.get("selectedHealthCondition"), patient);
 //        alert('ok then');
 //        Session.set("conditionSearchBoxUserQuery", "");
 //        var instance = EasySearch.getComponentInstance(
@@ -51,4 +54,20 @@ Meteor.startup(function(){
         Session.set("conditionSearchBoxUserQuery", "");
     });
 
+});
+
+Handlebars.registerHelper('session',function(input){
+    return Session.get(input);
+});
+
+Handlebars.registerHelper("patient", function() {
+    var patient = Session.get("patient");
+    if ((! patient || ! patient.id) && Meteor.user()) {
+        patient = {
+            id: Meteor.user()._id,
+            name: Meteor.user().profile.name
+        };
+        Session.set("patient", patient);
+    }
+    return patient;
 });
