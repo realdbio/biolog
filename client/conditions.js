@@ -68,9 +68,11 @@ Template.addConditionButton.events({
 });
 
 
-Template.conditionItem.helpers({
+Template.conditionItem.events({
     'click .smartbio-conditionbtn': function(event, template) {
         event.preventDefault();
-        console.log("smartbio-conditionbtn clicked");
+        console.log("Clicked: " + JSON.stringify(this));
+        Session.set("selectedHealthCondition", this);
+        editConditionDialog.show();
     }
 });

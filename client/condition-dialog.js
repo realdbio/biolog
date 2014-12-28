@@ -4,7 +4,6 @@ Template.addConditionDialog.created = function () {
     );
 
     instance.on('searchingDone', function () {
-        console.log('searchingDone');
         Session.set("conditionId", null);
         Session.set("conditionName", null);
     });
@@ -57,4 +56,77 @@ Template.addConditionDialog.events({
 //        Session.set("conditionId", newId);
 //        Session.set("conditionName", newName);
     }
+});
+
+
+Template.editConditionDialog.helpers({
+    "condition" : function() {
+        console.log("selectedHealthCondition=" + JSON.stringify(Session.get("selectedHealthCondition")));
+        return Session.get("selectedHealthCondition");
+    }
+});
+
+Template.editConditionDialog.rendered = function() {
+    $('.datetimepicker').datetimepicker({
+        format: 'YYYY-MM-DD HH:MM:SS'
+    })
+};
+
+Template.editConditionDialog.events({
+    "change": function(event) {
+        var changedElementId = event.currentTarget.id;
+        var condition = Session.get("selectedHealthCondition");
+
+        if ("startDate" == changedElementId) {
+            var val = $('#startDate').data("DateTimePicker").getDate();
+            condition.startDate = new Date(val);
+            condition.startFlag = 0;
+//            Session.set("startDate", new Date(val));
+            Session.set("selectedHealthCondition", condition);
+        }
+
+        if ("endDate" == changedElementId) {
+            var val = $('#endDate').data("DateTimePicker").getDate();
+            condition.endDate = new Date(val);
+            condition.endFlag = 0;
+//            Session.set("endDate", new Date(val));
+            Session.set("selectedHealthCondition", condition);
+        }
+
+        var val = event.currentTarget.checked;
+
+        if ("sinceBirth" == changedElementId) {
+//            Session.set("beginningOfTime", val);
+            if (val) {
+                $('#startDate').data("DateTimePicker").disable();
+            } else {
+                $('#startDate').data("DateTimePicker").enable();
+            }
+            condition.startFlag = 1;
+            condition.startDate = null;
+            Session.set("selectedHealthCondition", condition);
+        }
+
+        if ("ongoing" == changedElementId) {
+//            Session.set("eternity", val);
+            if (val) {
+                $('#endDate').data("DateTimePicker").disable();
+            } else {
+                $('#endDate').data("DateTimePicker").enable();
+            }
+            condition.endFlag = 1;
+            condition.endDate = null;
+            Session.set("selectedHealthCondition", condition);
+        }
+
+//        var startDateSpecified = Session.get("beginningOfTime") || Session.get("startDate");
+//        var endDateSpecified = Session.get("eternity") || Session.get("endDate");
+//        Session.set("datesSpecified", startDateSpecified && endDateSpecified);
+    }
+
+//    "changeDate": function(event) {
+//        var changedElementId = event.currentTarget.id;
+//        console.log("Date changed: " + changedElementId);
+//        console.log(changedElementId + "=" + event.date);
+//    }
 });

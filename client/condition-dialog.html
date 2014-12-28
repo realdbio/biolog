@@ -31,3 +31,89 @@
 
     </div>
 </template>
+
+
+<template name="editConditionDialog">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <h3>{{condition.objName}}</h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="input-group datetimepicker" id="startDate">
+                    <label for="startDatePicker">Start Date</label>
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                    <input class="form-control" type="text" name="startDatePicker" id="startDatePicker"/>
+                </div>
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" name="sinceBirth" id="sinceBirth">Since birth
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="input-group datetimepicker" id="endDate">
+                    <label for="startDatePicker">End Date</label>
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                    <input class="form-control" type="text" name="endDatePicker" id="endDatePicker"/>
+                </div>
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" name="ongoing" id="ongoing">Ongoing
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</template>
+
+
+
+
+
+
+
+<template name="datePickers">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-2">
+                <h2>From</h2>
+            </div>
+            <div class="col-md-4">
+
+                <div class="input-group datetimepicker" id="startDate">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                    <input class="set-due-date form-control" type="text" name="startDatePicker" id="startDatePicker"/>
+                </div>
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" name="beginningOfTime" id="beginningOfTime">the beginning of time
+                    </label>
+                </div>
+            </div>
+            <div class="col-md-1">
+                <h2>to</h2>
+            </div>
+            <div class="col-md-4">
+                <div class="input-group datetimepicker" id="endDate">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                    <input class="set-due-date form-control datepicker" type="text" name="endDatePicker" id="endDatePicker"/>
+                </div>
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" name="eternity" id="eternity">eternity
+                    </label>
+                </div>
+            </div>
+
+            <div class="col-md-1">
+                {{> dataloaderOKButton sessionVariable="datesSpecified" }}
+            </div>
+        </div>
+    </div>
+</template>

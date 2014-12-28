@@ -2,7 +2,7 @@
 //addConditionDialog = null;
 
 Meteor.startup(function(){
-    addHealthCondition = function(healthCondition, user) {
+    insertHealthCondition = function(healthCondition, user) {
         var fact = {
             subj:user.id,
             subjName:user.name,
@@ -11,7 +11,19 @@ Meteor.startup(function(){
             objName: healthCondition.name,
             text: healthCondition.name
         }
-        Meteor.call("storeFact", fact);
+        Meteor.call("insertFact", fact);
+    };
+
+    updateHealthCondition = function(healthCondition, user) {
+        var fact = {
+            subj:user.id,
+            subjName:user.name,
+            pred: "health-condition",
+            obj: healthCondition._id,
+            objName: healthCondition.name,
+            text: healthCondition.name
+        }
+        Meteor.call("updateFact", fact);
     };
 
     var addConditionDialogSpec = {
@@ -22,15 +34,16 @@ Meteor.startup(function(){
         modalFooterClass: "add-condition-footer",//optional
         removeOnHide: false, //optional. If this is true, modal will be removed from DOM upon hiding
         buttons: {
-            "cancel": {
-                class: 'btn-danger',
-                label: 'Cancel'
-            },
             "ok": {
                 closeModalOnClick: true, // if this is false, dialog doesnt close automatically on click
                 class: 'btn-info',
                 label: 'OK'
+            },
+            "cancel": {
+                class: 'btn-danger',
+                label: 'Cancel'
             }
+
 
         }
     };
@@ -40,7 +53,7 @@ Meteor.startup(function(){
     addConditionDialog.buttons.ok.on('click', function(button){
         console.log("Selected condition = " + JSON.stringify(Session.get("selectedHealthCondition")));
         var patient = Session.get("patient");
-        addHealthCondition(Session.get("selectedHealthCondition"), patient);
+        insertHealthCondition(Session.get("selectedHealthCondition"), patient);
 //        alert('ok then');
 //        Session.set("conditionSearchBoxUserQuery", "");
 //        var instance = EasySearch.getComponentInstance(
@@ -50,8 +63,46 @@ Meteor.startup(function(){
     });
 
     addConditionDialog.buttons.cancel.on('click', function(button){
-        alert('cancel then');
         Session.set("conditionSearchBoxUserQuery", "");
+    });
+
+    //Edit Condition Dialog
+    var editConditionDialogSpec = {
+        template: Template.editConditionDialog,
+        title: "Edit a condition",
+        modalDialogClass: "edit-condition-dialog", //optional
+        modalBodyClass: "edit-condition-body", //optional
+        modalFooterClass: "edit-condition-footer",//optional
+        removeOnHide: false, //optional. If this is true, modal will be removed from DOM upon hiding
+        buttons: {
+            "ok": {
+                closeModalOnClick: true, // if this is false, dialog doesnt close automatically on click
+                class: 'btn-info',
+                label: 'OK'
+            },
+            "cancel": {
+                class: 'btn-danger',
+                label: 'Cancel'
+            },
+            "delete": {
+                class: "btn-error",
+                label: "Delete"
+            }
+        }
+    };
+
+    editConditionDialog = ReactiveModal.initDialog(editConditionDialogSpec);
+
+    editConditionDialog.buttons.ok.on('click', function(button){
+        console.log("Selected condition = " + JSON.stringify(Session.get("selectedHealthCondition")));
+        var patient = Session.get("patient");
+        updateHealthCondition(Session.get("selectedHealthCondition"), patient);
+//        alert('ok then');
+//        Session.set("conditionSearchBoxUserQuery", "");
+//        var instance = EasySearch.getComponentInstance(
+//            { index : 'conditions' }
+//        );
+//        instance.clear();
     });
 
 });

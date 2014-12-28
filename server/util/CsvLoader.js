@@ -47,15 +47,19 @@ CsvLoader.prototype.loadKaiserJson = function(map, json, src, callback) {
         var nameLC = name;
         nameLC = name.toLowerCase();
         var id = "health-condition/" + strToId(nameLC);
+        var theDate = new Date();
         var entity = {
             _id: id,
             name: name,
             nameLC: nameLC,
             src: "kaiser/cmt/" + src,
             local: "kaiser/cmt/" + item[map.local],
-            created: new Date(),
+            created: theDate,
             creator: "dave",
+            updated: theDate,
+            updater: "dave",
             synonyms: [],
+            parents: [],
             etypes: ["health-condition"]
         };
 
@@ -68,17 +72,42 @@ CsvLoader.prototype.loadKaiserJson = function(map, json, src, callback) {
         }
 
         //add parents
-        var parents = [];
-        if (item["parent_sctid"]) parents.push(this.getEntityIdFromKaiserCode(item["parent_sctid"]));
-        if (item["parent_sctid_2"]) parents.push(this.getEntityIdFromKaiserCode(item["parent_sctid_2"]));
-        if (item["parent_sctid_3"]) parents.push(this.getEntityIdFromKaiserCode(item["parent_sctid_3"]));
-        if (parents) entity.parents = parents;
+//        var parents = [];
+        if (item["parent_sctid"] && item["parent_sctid"] != null && item["parent_sctid"] != "null") {
+            var parentId = this.getEntityIdFromKaiserCode(item["parent_sctid"]);
+            if (parentId) entity.parents.push(parentId);
+        }
+        if (item["parent_sctid_2"] && item["parent_sctid_2"] != null && item["parent_sctid_2"] != "null") {
+            var parentId = this.getEntityIdFromKaiserCode(item["parent_sctid_2"]);
+            if (parentId) entity.parents.push(parentId);
+        }
+        if (item["parent_sctid_3"] && item["parent_sctid_3"] != null && item["parent_sctid_3"] != "null") {
+            var parentId = this.getEntityIdFromKaiserCode(item["parent_sctid_3"]);
+            if (parentId) entity.parents.push(parentId);
+        }
+//        if (parents) entity.parents = parents;
 
         //does it already exist?  If so just add synonyms and parents to the existing
         var alreadyExisting = Entities.findOne(id);
         if (alreadyExisting) {
 
             //todo add parents
+            var addedParents = false;
+//            for (var syni in entity.synonyms) {
+//                if (! entity.synonyms[syni]) continue;
+//                if (_.contains(alreadyExisting.synonyms, entity.synonyms[syni])) continue;
+//                addedSynonyms = true;
+//                alreadyExisting.synonyms.push(entity.synonyms[syni]);
+//            }
+            var combinedParents = _.union(alreadyExisting.parents, entity.parents);
+            if (alreadyExisting.parents.length != combinedParents.length) {
+                addedParents = true;
+                alreadyExisting.parents = combinedParents;
+            }
+            if (addedParents) {
+                console.log(i + ") ADDED PARENTS TO ALREADY EXISTING; now=" + JSON.stringify(alreadyExisting));
+                Entities.update({_id: id}, {$set: {parents: alreadyExisting.parents}});
+            }
 
             var addedSynonyms = false;
 //            for (var syni in entity.synonyms) {
@@ -95,8 +124,6 @@ CsvLoader.prototype.loadKaiserJson = function(map, json, src, callback) {
             if (addedSynonyms) {
                 console.log(i + ") ADDED SYNONYMS TO ALREADY EXISTING; now=" + JSON.stringify(alreadyExisting));
                 Entities.update({_id: id}, {$set: {synonyms: alreadyExisting.synonyms}});
-            } else {
-                console.log(i + ") SKIPPING ALREADY EXISTS: '" + name + "'");
             }
 
             continue;
