@@ -1,0 +1,38 @@
+<template name="startedResolved">
+    <div class="row">
+        <div class="col-md-4">
+            <h3>When did it start?</h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="input-group datetimepicker startDatePicker" id="startDate-{{templateId}}">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                <input class="form-control datepicker" type="text"/>
+            </div>
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" name="sinceBirth" id="sinceBirth-{{templateId}}" class="sinceBirthCheckbox">Since birth
+                </label>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <h3>Has it resolved?</h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" name="ongoing" id="ongoing-{{templateId}}" class="ongoingCheckbox">Ongoing
+                </label>
+            </div>
+            <div class="input-group datetimepicker endDatePicker" id="endDate-{{templateId}}">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                <input class="form-control datepicker" type="text"/>
+            </div>
+        </div>
+    </div>
+</template>

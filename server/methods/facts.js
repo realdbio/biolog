@@ -22,7 +22,7 @@ Meteor.methods({
             throw new Meteor.Error("not-authorized");
         }
         console.log("Updating fact: " + JSON.stringify(fact));
-        Facts.update({_id: fact._id},
+        Facts.update( fact._id,
             {$set: {
                 updated: new Date(),
                 updater: Meteor.userId(),

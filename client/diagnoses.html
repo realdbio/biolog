@@ -1,10 +1,10 @@
-<template name="myConditions">
-    {{> addConditionButton }}
+<template name="myDiagnoses">
+    {{> addDiagnosisButton }}
     <div class="list">
-        {{#each conditions}}
+        {{#each diagnoses}}
         <div class="item">
             <p>
-                {{> conditionItem}}
+                {{> diagnosisItem}}
                 <!--{{name}}-->
             </p>
         </div>
@@ -25,29 +25,29 @@
     </div>
 </template>
 
-<template name="mostUsedConditions">
-    <div class="list">
-        {{#each conditions}}
-        <div class="item">
-            <p>
-                {{> conditionItem}}
-                <!--{{name}}-->
-            </p>
-        </div>
-        {{/each}}
-    </div>
-</template>
+<!--<template name="mostUsedDiagnosiss">-->
+    <!--<div class="list">-->
+        <!--{{#each conditions}}-->
+        <!--<div class="item">-->
+            <!--<p>-->
+                <!--{{> conditionItem}}-->
+                <!--&lt;!&ndash;{{name}}&ndash;&gt;-->
+            <!--</p>-->
+        <!--</div>-->
+        <!--{{/each}}-->
+    <!--</div>-->
+<!--</template>-->
 
-<template name="addConditionButton">
-    <button type="button" class="btn-sm" id="addConditionButton">
+<template name="addDiagnosisButton">
+    <button type="button" class="btn-sm" id="addDiagnosisButton">
         <span class="glyphicon glyphicon-plus"></span> Add a condition
     </button>
 </template>
 
-<template name="conditionItem">
+<template name="diagnosisItem">
     <div class="btn-group-sm">
         <!--{{> entityButton}}-->
-        <button type="button" class="btn btn-sm btn-default smartbio-conditionbtn">
+        <button type="button" class="btn btn-sm btn-default smartbio-diagnosisbtn">
             <span class="fa fa-medkit"></span> {{objName}}
         </button>
         <!--<button type="button" id="realdb-btn-entity-plus-{{_id}}" class="btn btn-primary">-->
@@ -70,7 +70,7 @@
 <template name="factItem">
     <div class="btn-group-sm">
         <!--{{> entityButton}}-->
-        <button type="button" id="smartbio-fact-{{_id}}" class="btn btn-sm btn-default" title="{{subj}}~{{pred}}~{{obj}},current={{current}}">
+        <button type="button" id="smartbio-fact-{{_id}}" class="btn btn-sm btn-default" title="{{subj}}~{{pred}}~{{obj}},current={{current}},startDate={{startDate}},endDate={{endDate}},startFlag={{startFlag}},endFlag={{endFlag}}">
             <span class="fa fa-medkit"></span> {{text}}
         </button>
     </div>

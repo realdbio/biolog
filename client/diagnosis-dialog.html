@@ -1,0 +1,47 @@
+<template name="addDiagnosisDialog">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-7">
+                {{> esInput index="conditions" placeholder="Search..." id="conditionChooser" }}
+            </div>
+            <div class="col-md-4">
+                <!--{{#ifEsHasNoResults index="conditions" id="conditionChooser" }}-->
+                <!--<div class="no-results">Create new condition:-->
+                    <!--<button type="button" class="btn-sm {{ conditionButtonClass }} smartbio-condition-btn" id="newDiagnosis">-->
+                        <!--<span class="glyphicon glyphicon-"></span> {{newDiagnosisName}}-->
+                    <!--</button>-->
+                <!--</div>-->
+                <!--{{/ifEsHasNoResults}}-->
+            </div>
+
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                {{#esEach index="conditions" id="conditionChooser"}}
+                <div class="item">
+                    <button type="button" class="btn btn-default btn-sm smartbio-diagnosisbtn">
+                        <span class="glyphicon glyphicon-books"></span> {{name}}
+                    </button>
+                </div>
+                {{/esEach}}
+            </div>
+        </div>
+
+        {{> startedResolved templateId="addDiagnosisDialog"}}
+    </div>
+</template>
+
+
+<template name="editDiagnosisDialog">
+    <div class="container">
+        <div class="row">
+            <h2>{{diagnosis.objName}}</h2>
+        </div>
+        {{> startedResolved templateId="editDiagnosisDialog"}}
+    </div>
+
+</template>
+
+
+
