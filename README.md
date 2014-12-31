@@ -7,15 +7,28 @@ To delete a collection
 ----------------------
 db.entities.remove({})
 
-References
+Meteor References
 ----------
 https://github.com/pahans/reactive-modal
 https://github.com/matteodem/meteor-easy-search/wiki/Javascript-API
-http://www.nlm.nih.gov/research/umls/Snomed/cmt.html
 https://www.npmjs.com/package/csvtojson
+
+Elasticsearch References
+------------------------
+http://www.elasticsearch.org/guide/en/elasticsearch/reference/current/search-percolate.html
+http://www.elasticsearch.org/guide/en/elasticsearch/reference/current/mapping-nested-type.html
+
+Health Info References
+----------------------
+http://www.nlm.nih.gov/research/umls/Snomed/cmt.html
+http://wwwcf2.nlm.nih.gov/nlm_eresources/eresources/search_database.cfm
+http://healthhotlines.nlm.nih.gov/subserch.html
 
 To Do
 -----
 Add file upload support, images
 https://github.com/CollectionFS/Meteor-CollectionFS
 
+Add/update/delete current facts to patient entity
+Rules schema, using Percolator syntax
+Rules tooling

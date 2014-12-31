@@ -21,6 +21,9 @@ Meteor.methods({
         if (!Meteor.userId()) {
             throw new Meteor.Error("not-authorized");
         }
+
+        var existingFact = Facts.findOne(fact._id);
+        if (existingFact.useCount > 0)
         console.log("Updating fact: " + JSON.stringify(fact));
         Facts.update( fact._id,
             {$set: {

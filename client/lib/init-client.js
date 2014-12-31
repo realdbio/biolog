@@ -74,7 +74,12 @@ Meteor.startup(function(){
     //Edit Diagnosis Dialog
     var editDiagnosisDialogSpec = {
         template: Template.editDiagnosisDialog,
-        title: "Edit a condition",
+        title: function() {
+//            var patient = Session.get("patient");
+            var diagnosis = Session.get("selectedDiagnosis")
+            if (! diagnosis) return "Edit a Condition";
+            return diagnosis.objName;
+        },
         modalDialogClass: "edit-condition-dialog", //optional
         modalBodyClass: "edit-condition-body", //optional
         modalFooterClass: "edit-condition-footer",//optional
