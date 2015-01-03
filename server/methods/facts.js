@@ -3,6 +3,10 @@ Meteor.methods({
 
     /**
      * Add a fact.  No special permissions needed.  Return true if successful.
+     *
+     * Use this if you want to add a new fact, with no special permissions and no need to invalidate past values
+     * for the same subject and the same predicate (SP)
+     *
      * Increment use count for the S & O entities referenced.
      * @param fact
      * @param mode
@@ -59,6 +63,9 @@ Meteor.methods({
     },
 
     /**
+     * Use this if you want to add a new fact (that is also a property), with no special permissions and no need to invalidate past values
+     * for the same subject and the same predicate (SP)
+     *
      * Store a fact and also update a property of the subject.
      * When can properties be added?  These things must be true:
      * 1. The entity is not private, or the user is a trustee.
@@ -102,10 +109,13 @@ Meteor.methods({
         Entities.update(fact.subj,
             { $set: newProperty }
         );
+
         return {success: true};
     },
 
     /**
+     * Use this method if you have a recently-created fact, and you wish to change a date or value
+     *
      * Update an existing fact of the same id.  First check permissions and use count.
      * If use count > 0, then fail.  Return true if successful
      */
@@ -174,12 +184,6 @@ Meteor.methods({
                 endFlag: fact.endFlag
             }});
 
-        //next update the current data for the subject
-        var newFact = {};
-        newFact['data.' + fact.pred] = fact;
-        Entities.update(subjId,
-            { $set: newFact }
-        );
 
         //next update the used count for the object, if warranted
         if (fact.obj && fact.obj != existingFact.obj) {
@@ -193,6 +197,8 @@ Meteor.methods({
 
 
     /**
+     * Use this method if you have a recently-created fact (that is also a property), and you wish to change a date or value
+     *
      * First call updateFact.  If this returns true, then update the property if these conditions are met.
      * 1. The entity is not private, or the user is a trustee.
      * 2. The fact is current
@@ -215,6 +221,9 @@ Meteor.methods({
 
 
     /**
+     * Use this if you want to add a new fact, and override/ invalidate past values for the same Subject+Predicate (SP)
+     * Requires special editor permission over the subject entity
+     *
      * If fact with same SP does not exist, then return addFact().
      * If the the user is permitted (owner of the subject entity) then invalidate past facts with that SP and then call addFact.
      * Return true if the fact was added.
@@ -236,8 +245,20 @@ Meteor.methods({
             return { success: false, message: message};
         }
 
+        //make sure this user is an editor
+        if (! _.contains(subj.editors, Meteor.userId())) {
+            var message = "User: " + Meteor.userId() + " not authorized to set property on entity: " + fact.subj;
+            console.error(message);
+            return { success: false, message: message};
+        }
+
         //find other existing valid facts with the same SP and invalidate them
-        //TODO
+        Entities.update(
+            { subj: fact.subj, pred: fact.pred, valid: 1 },
+            { $set: {
+                valid: 0
+            }}
+        );
 
         fact.creator = Meteor.userId();
         fact.updater = Meteor.userId();
@@ -271,6 +292,64 @@ Meteor.methods({
         }
 
         return {success: true};
+    },
+
+
+
+    /**
+     * First call setFact.  If this returns true, then update the property if these conditions are met.
+     * 1. The entity is not private, or the user is a trustee.
+     * 2. The fact is current
+     * 3. There is not already a property with the same signature (SPO or SP).
+     *
+     * Return true if the property was updated.
+     * @param fact
+     * @param skipFact if true, do not update the fact, only update the property
+     */
+    setProperty: function(fact, skipFact) {
+        if (! skipFact) {
+            var result = this.setFact(fact);
+            if (! result.success) {
+                return result;
+            }
+        }
+
+        if (fact.current <= 0) {
+            var message = "Fact is not current: " + JSON.stringify(fact);
+            console.error(message);
+            return { success: false, message: message};
+        }
+
+        var subj = Entities.findOne(fact.subj);
+        if (! _.contains(subj.editors, Meteor.userId())) {
+            var message = "User: " + Meteor.userId() + " not authorized to add property to entity: " + fact.subj;
+            console.error(message);
+            return { success: false, message: message};
+        }
+
+        var predSignature = "data." + fact.pred;
+
+//        if (subj[signature]) {
+//            var message = "Entity: " + fact.subj + " already has property: " + signature;
+//            console.error(message);
+//            return { success: false, message: message};
+//        }
+
+        //overwrite value with the new value
+        var newProperty = {};
+        var newObj = fact;
+        if (fact.obj) {
+            newObj = {};
+            newObj[fact.obj] = fact;
+        }
+
+        newProperty[predSignature] = newObj;
+        Entities.update(fact.subj,
+            { $set: newProperty }
+        );
+
+        return {success: true};
     }
 });
+
 

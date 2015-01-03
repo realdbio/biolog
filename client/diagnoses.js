@@ -2,6 +2,8 @@ Meteor.subscribe("myDiagnoses");
 
 Meteor.subscribe("allFacts");
 
+Meteor.subscribe("currentPatient");
+
 //Meteor.subscribe("mostUsedDiagnoses");
 //Meteor.subscribe("someDiagnoses");
 
@@ -66,7 +68,7 @@ Template.addDiagnosisButton.events({
 //        var healthCondition = this;
         var patient = Session.get("patient");
         var diagnosis = {
-            subj: patient.id,
+            subj: patient._id,
             subjName: patient.name,
             pred: "diagnosis",
 //            obj: healthCondition._id,

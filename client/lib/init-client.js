@@ -2,11 +2,11 @@
 //addDiagnosisDialog = null;
 
 Meteor.startup(function(){
-    insertDiagnosis = function(diagnosis) {
-        console.log("insertDiagnosis: " + JSON.stringify(diagnosis));
+    addDiagnosis = function(diagnosis) {
+        console.log("addDiagnosis: " + JSON.stringify(diagnosis));
 //        var diagnosis = Session.get("selectedDiagnosis");
 
-        Meteor.call("insertFact", diagnosis);
+        Meteor.call("addFact", diagnosis);
     };
 
     updateDiagnosis = function(diagnosis) {
@@ -58,7 +58,7 @@ Meteor.startup(function(){
     addDiagnosisDialog.buttons.ok.on('click', function(button){
         console.log("Selected condition = " + JSON.stringify(Session.get("selectedDiagnosis")));
 //        var patient = Session.get("patient");
-        insertDiagnosis(Session.get("selectedDiagnosis"));
+        addDiagnosis(Session.get("selectedDiagnosis"));
 //        alert('ok then');
 //        Session.set("conditionSearchBoxUserQuery", "");
 //        var instance = EasySearch.getComponentInstance(
@@ -119,12 +119,24 @@ Handlebars.registerHelper('session',function(input){
 
 Handlebars.registerHelper("patient", function() {
     var patient = Session.get("patient");
-    if ((! patient || ! patient.id) && Meteor.user()) {
-        patient = {
-            id: Meteor.user()._id,
-            name: Meteor.user().profile.name
-        };
-        Session.set("patient", patient);
+    if (patient) return patient;
+    if (Meteor.user()) {
+        var patientId = "patient/" + Meteor.user()._id;
+        Meteor.call("getEntity", patientId, function(err, foundPatient) {
+            if (foundPatient) {
+                patient = foundPatient;
+                Session.set("patient", patient);
+                return callback(patient);
+            }
+            patient = {
+                _id: patientId,
+                name: Meteor.user().profile.name,
+                nameLC: Meteor.user().profile.name.toLowerCase(),
+                etypes: ["patient"]
+            };
+            Session.set("patient", patient);
+            Meteor.call("addEntity", patient);
+            return patient;
+        });
     }
-    return patient;
 });
