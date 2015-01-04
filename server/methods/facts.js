@@ -110,10 +110,12 @@ Meteor.methods(FactMethods = {
         }
 
         var newProperty = {};
-        newProperty[signature] = storedFact;
+        var slimmedFact = slimFact(fact);
+        newProperty[signature] = slimmedFact;
         console.log("Saving newProperty for entity: " + fact.subj + " = " + JSON.stringify(newProperty));
         Entities.upsert({_id: fact.subj},
             { $set: newProperty },
+            { validate: false },
             function(err, count) {
                 if (err) {
                     console.error("Error saving new property for entity: " + fact.subj + ": " + err);
@@ -367,3 +369,10 @@ Meteor.methods(FactMethods = {
 });
 
 
+var slimFact = function(fact) {
+    var slimmed = fact;
+    delete slimmed._id;
+    delete slimmed.subj;
+    delete slimmed.subjName;
+    return slimmed;
+}
