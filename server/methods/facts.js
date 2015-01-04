@@ -1,4 +1,5 @@
-Meteor.methods({
+var FactMethods;
+Meteor.methods(FactMethods = {
     /* save a fact and associated properties */
 
     /**
@@ -16,7 +17,7 @@ Meteor.methods({
         if (!Meteor.userId()) {
             var message = "User not authenticated";
             console.error(message);
-            return { success: false, message: message};
+            return { success: false, error: message};
         }
 
         //make sure the subject exists
@@ -25,7 +26,7 @@ Meteor.methods({
         if (! subj || subj.valid < 0) {
             var message = "Subject does not exist or is no longer valid";
             console.error(message);
-            return { success: false, message: message};
+            return { success: false, error: message};
         }
 
         fact.creator = Meteor.userId();
@@ -40,12 +41,12 @@ Meteor.methods({
 
         //next update the current data for the subject entity
         var newEntityVals = {};
-        var key = 'data.' + fact.pred;
-        if (fact.obj) key += "." + fact.obj;
-        newEntityVals[key] = fact;
+//        var key = 'data.' + fact.pred;
+//        if (fact.obj) key += "." + fact.obj;
+//        newEntityVals[key] = fact;
         Entities.update(subjId,
             {
-                $set: newEntityVals,
+//                $set: newEntityVals,
                 $inc: { used: 1 }
             }
         );
@@ -59,7 +60,7 @@ Meteor.methods({
             );
         }
 
-        return {success: true};
+        return {success: true, fact: fact};
     },
 
     /**
@@ -76,41 +77,54 @@ Meteor.methods({
      * @param fact
      */
     addProperty: function(fact, skipFact) {
+        var storedFact = {};
         if (! skipFact) {
-            var result = this.addFact(fact);
+            var result = FactMethods.addFact(fact);
+            console.log("called addFact(): result=" + JSON.stringify(result));
             if (! result.success) {
                 return result;
             }
+            storedFact = result.fact;
+            console.log("storedFact=" + JSON.stringify(storedFact));
         }
 
-        if (fact.current <= 0) {
-            var message = "Fact is not current: " + JSON.stringify(fact);
+        if (fact.valid <= 0) {
+            var message = "Fact is not valid: " + JSON.stringify(fact);
             console.error(message);
-            return { success: false, message: message};
+            return { success: false, error: message};
         }
 
         var subj = Entities.findOne(fact.subj);
-        if (subj.editors && ! _.contains(subj.editors, Meteor.userId())) {
+        if (subj.creator != Meteor.userId() && subj.editors && ! _.contains(subj.editors, Meteor.userId())) {
             var message = "User: " + Meteor.userId() + " not authorized to add property to entity: " + fact.subj;
             console.error(message);
-            return { success: false, message: message};
+            return { success: false, error: message};
         }
 
-        var signature = "data." + fact.pred;
-        if (fact.obj) signature += "." + fact.obj;
+        var signature = "data['" + fact.pred + "']";
+        if (fact.obj) signature += "['" + fact.obj + "']";
         if (subj[signature]) {
             var message = "Entity: " + fact.subj + " already has property: " + signature;
             console.error(message);
-            return { success: false, message: message};
+            return { success: false, error: message};
         }
 
         var newProperty = {};
-        newProperty[signature] = fact;
-        Entities.update(fact.subj,
-            { $set: newProperty }
+        newProperty[signature] = storedFact;
+        console.log("Saving newProperty for entity: " + fact.subj + " = " + JSON.stringify(newProperty));
+        Entities.upsert({_id: fact.subj},
+            { $set: newProperty },
+            function(err, count) {
+                if (err) {
+                    console.error("Error saving new property for entity: " + fact.subj + ": " + err);
+                    return { success: false, error: err};
+                }
+                console.log("Saved " + count + " new property for entity: " + fact.subj);
+                return {success: true};
+            }
         );
 
-        return {success: true};
+
     },
 
     /**
@@ -124,7 +138,7 @@ Meteor.methods({
         if (!Meteor.userId()) {
             var message = "User not authenticated";
             console.error(message);
-            return { success: false, message: message};
+            return { success: false, error: message};
         }
 
         var existingFact = Facts.findOne(fact._id);
@@ -133,26 +147,26 @@ Meteor.methods({
         if (existingFact) {
             var message = "No such fact to update";
             console.error(message);
-            return { success: false, message: message};
+            return { success: false, error: message};
         }
 
         //if not permitted, abort
-        if (existingFact.editors && ! _.contains(existingFact.editors, Meteor.userId())) {
+        if (existingFact.creator != Meteor.userId() && existingFact.editors && ! _.contains(existingFact.editors, Meteor.userId())) {
             var message = "User: " + Meteor.userId() + " not authorized to update fact: " + JSON.stringify(fact);
             console.error(message);
-            return { success: false, message: message};
+            return { success: false, error: message};
         }
 
         //if new fact has different subject or predicate than previous, abort
         if (existingFact.subj != fact.subj) {
             var message = "Subjects do not match";
             console.error(message);
-            return { success: false, message: message};
+            return { success: false, error: message};
         }
         if (existingFact.pred != fact.pred) {
             var message = "Predicates do not match";
             console.error(message);
-            return { success: false, message: message};
+            return { success: false, error: message};
         }
 
         //if the fact is already used, then mark it as not current and create a new fact
@@ -210,13 +224,13 @@ Meteor.methods({
      */
     updateProperty: function(fact, skipFact) {
         if (! skipFact) {
-            var result = this.updateFact(fact);
+            var result = FactMethods.updateFact(fact);
             if (! result.success) {
                 return result;
             }
         }
 
-        return this.addProperty(fact, true);
+        return FactMethods.addProperty(fact, true);
     },
 
 
@@ -233,7 +247,7 @@ Meteor.methods({
         if (!Meteor.userId()) {
             var message = "User not authenticated";
             console.error(message);
-            return { success: false, message: message};
+            return { success: false, error: message};
         }
 
         //make sure the subject exists
@@ -242,14 +256,14 @@ Meteor.methods({
         if (! subj || subj.valid < 0) {
             var message = "Subject does not exist or is no longer valid";
             console.error(message);
-            return { success: false, message: message};
+            return { success: false, error: message};
         }
 
-        //make sure this user is an editor
-        if (! _.contains(subj.editors, Meteor.userId())) {
+        //make sure this user is an editor or creator
+        if (subj.creator != Meteor.userId() && subj.creator != Meteor.userId() && ! _.contains(subj.editors, Meteor.userId())) {
             var message = "User: " + Meteor.userId() + " not authorized to set property on entity: " + fact.subj;
             console.error(message);
-            return { success: false, message: message};
+            return { success: false, error: message};
         }
 
         //find other existing valid facts with the same SP and invalidate them
@@ -308,7 +322,7 @@ Meteor.methods({
      */
     setProperty: function(fact, skipFact) {
         if (! skipFact) {
-            var result = this.setFact(fact);
+            var result = FactMethods.setFact(fact);
             if (! result.success) {
                 return result;
             }
@@ -317,14 +331,14 @@ Meteor.methods({
         if (fact.current <= 0) {
             var message = "Fact is not current: " + JSON.stringify(fact);
             console.error(message);
-            return { success: false, message: message};
+            return { success: false, error: message};
         }
 
         var subj = Entities.findOne(fact.subj);
-        if (! _.contains(subj.editors, Meteor.userId())) {
+        if (subj.creator != Meteor.userId() && ! _.contains(subj.editors, Meteor.userId())) {
             var message = "User: " + Meteor.userId() + " not authorized to add property to entity: " + fact.subj;
             console.error(message);
-            return { success: false, message: message};
+            return { success: false, error: message};
         }
 
         var predSignature = "data." + fact.pred;
@@ -332,7 +346,7 @@ Meteor.methods({
 //        if (subj[signature]) {
 //            var message = "Entity: " + fact.subj + " already has property: " + signature;
 //            console.error(message);
-//            return { success: false, message: message};
+//            return { success: false, error: message};
 //        }
 
         //overwrite value with the new value

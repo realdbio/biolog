@@ -1,7 +1,7 @@
 
 setStartEndDateControls = function(templateId) {
     var diagnosis = Session.get("selectedDiagnosis");
-    console.log("setStartEndDateControls for diagnosis=" + JSON.stringify(diagnosis));
+//    console.log("setStartEndDateControls for diagnosis=" + JSON.stringify(diagnosis));
     $('#startDate-' + templateId).data("DateTimePicker").setDate(diagnosis.startDate);
     $('#endDate-' + templateId).data("DateTimePicker").setDate(diagnosis.endDate);
     $('#sinceBirth-' + templateId).prop("checked", (diagnosis.startFlag==1));

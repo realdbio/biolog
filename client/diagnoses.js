@@ -1,4 +1,8 @@
-Meteor.subscribe("myDiagnoses");
+Deps.autorun(function () {
+    if (Session.get("patient") && Session.get("patient")._id) {
+        Meteor.subscribe("patientDiagnoses", Session.get("patient")._id);
+    }
+});
 
 Meteor.subscribe("allFacts");
 
@@ -39,7 +43,9 @@ Template.myDiagnoses.helpers({
 //        console.log("Meteor.user()=" + JSON.stringify(Meteor.user()));
 
 //        return Entities.find({etypes: "diagnosis"}).fetch();
-        return Facts.find({pred: "diagnosis", subj: Meteor.userId(), current: 1 }).fetch();
+//        return Facts.find({pred: "diagnosis", subj: Meteor.userId(), valid: 1 }).fetch();
+        if (! Session.get("patient") || ! Session.get("patient")._id) return;
+        return getPatientDiagnoses(Session.get("patient")._id).fetch();
     }
 });
 

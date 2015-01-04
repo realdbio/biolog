@@ -6,7 +6,15 @@ Meteor.startup(function(){
         console.log("addDiagnosis: " + JSON.stringify(diagnosis));
 //        var diagnosis = Session.get("selectedDiagnosis");
 
-        Meteor.call("addFact", diagnosis);
+        Meteor.call("addProperty", diagnosis, function(response) {
+            if (response) {
+                if (response.success) {
+                    console.log("Successfully added fact and property.")
+                } else {
+                    console.log("Error adding property: " + response.error);
+                }
+            }
+        });
     };
 
     updateDiagnosis = function(diagnosis) {
@@ -28,7 +36,15 @@ Meteor.startup(function(){
 //        diagnosis.subj = user.id;
 //        diagnosis.subjName = user.name;
 
-        Meteor.call("updateFact", diagnosis);
+        Meteor.call("updateProperty", diagnosis, function(response) {
+            if (response) {
+                if (response.success) {
+                    console.log("Successfully inserted fact and updated property.")
+                } else {
+                    console.log("Error updating property: " + response.error);
+                }
+            }
+        });
     };
 
     var addDiagnosisDialogSpec = {
@@ -56,7 +72,7 @@ Meteor.startup(function(){
     addDiagnosisDialog = ReactiveModal.initDialog(addDiagnosisDialogSpec);
 
     addDiagnosisDialog.buttons.ok.on('click', function(button){
-        console.log("Selected condition = " + JSON.stringify(Session.get("selectedDiagnosis")));
+//        console.log("Selected condition = " + JSON.stringify(Session.get("selectedDiagnosis")));
 //        var patient = Session.get("patient");
         addDiagnosis(Session.get("selectedDiagnosis"));
 //        alert('ok then');

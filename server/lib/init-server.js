@@ -2,10 +2,8 @@
  * Created by dd on 12/15/14.
  */
 
-Meteor.publish("myDiagnoses", function () {
-    if (! this.userId) return;
-//    return Entities.find({ creator: this.userId, etype: "health-condition" });
-    return Facts.find({pred: "diagnosis", subj: this.userId, current: 1, valid: 1 });
+Meteor.publish("patientDiagnoses", function (patientId) {
+    return getPatientDiagnoses(patientId);
 });
 
 //Meteor.publish("mostUsedConditions", function (count) {
