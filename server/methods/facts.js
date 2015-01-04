@@ -1,3 +1,14 @@
+
+
+var slimFact = function(fact) {
+    var slimmed = _.clone(fact);
+    delete slimmed._id;
+    delete slimmed.subj;
+    delete slimmed.subjName;
+    return slimmed;
+};
+
+
 var FactMethods;
 Meteor.methods(FactMethods = {
     /* save a fact and associated properties */
@@ -368,11 +379,3 @@ Meteor.methods(FactMethods = {
     }
 });
 
-
-var slimFact = function(fact) {
-    var slimmed = fact;
-    delete slimmed._id;
-    delete slimmed.subj;
-    delete slimmed.subjName;
-    return slimmed;
-}
