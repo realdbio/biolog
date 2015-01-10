@@ -1,0 +1,87 @@
+<template name="addRuleDialog">
+    <div class="container">
+        <form class="new-rule">
+            <input type="hidden" name="etype" value="{{etype}}"/>
+            <div class="row">
+                <div class="col-sm-4 col-md-1">
+                    Name
+                </div>
+                <div class="col-sm-8 col-md-5">
+                    <input type="text" name="ruleName" placeholder="Enter a name for your rule" size="30"/>
+                </div>
+
+                <div class="col-sm-4 col-md-1">
+                    Description
+                </div>
+                <div class="col-sm-8 col-md-5">
+                    <input type="text" name="ruleName" placeholder="Description: what does this rule do?" size="30"/>
+                </div>
+            </div>
+
+            <h2>IF...</h2>
+            <div class="row">
+                <div class="col-sm-4">
+                    <h4>Any<br>
+                    <b>{{etypeName}}</b></h4>
+                </div>
+                <div class="col-sm-4">
+                    <h4>...has:</h4><br>
+                    {{> predicateSelector}}
+                </div>
+                <div class="col-sm-4">
+                    <h4>...with value:<br>
+                    <b>{{etypeName}}</b></h4>
+                    {{> valueSelector}}
+                </div>
+            </div>
+        </form>
+    </div>
+</template>
+
+
+<template name="editRuleDialog">
+    <div class="container">
+        <div class="row">
+            <h2>{{rule.name}}</h2>
+        </div>
+
+    </div>
+
+</template>
+
+
+<template name="predicateSelector">
+    <div class="row">
+        <div class="col">
+            {{> esInput index="predicates" placeholder="Select a property..." id="predicateChooser" }}
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            {{#esEach index="predicates" id="predicateChooser"}}
+            <div class="item">
+                <button type="button" class="btn btn-default btn-sm smartbio-predicatebtn">
+                    <span class="glyphicon glyphicon-books"></span> {{name}}
+                </button>
+            </div>
+            {{/esEach}}
+        </div>
+    </div>
+</template>
+
+
+<template name="valueSelector">
+    <div class="row">
+        <div class="col">
+
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            
+        </div>
+    </div>
+</template>
+

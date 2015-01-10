@@ -3,9 +3,6 @@
 
 Meteor.startup(function(){
     addDiagnosis = function(diagnosis) {
-        console.log("addDiagnosis: " + JSON.stringify(diagnosis));
-//        var diagnosis = Session.get("selectedDiagnosis");
-
         Meteor.call("addProperty", diagnosis, function(response) {
             if (response) {
                 if (response.success) {
@@ -18,24 +15,6 @@ Meteor.startup(function(){
     };
 
     updateDiagnosis = function(diagnosis) {
-        console.log("updateDiagnosis: " + JSON.stringify(diagnosis));
-//        var fact = {
-//            _id: diagnosis._id,
-//            subj:user.id,
-//            subjName:user.name,
-//            pred: "health-condition",
-//            obj: diagnosis.obj,
-//            objName: diagnosis.name,
-//            text: diagnosis.name,
-//            startFlag: diagnosis.startFlag,
-//            endFlag: diagnosis.endFlag,
-//            startDate: diagnosis.startDate,
-//            endDate: diagnosis.endDate
-//        }
-        //update the fact in the ui
-//        diagnosis.subj = user.id;
-//        diagnosis.subjName = user.name;
-
         Meteor.call("updateProperty", diagnosis, function(response) {
             if (response) {
                 if (response.success) {
@@ -64,23 +43,13 @@ Meteor.startup(function(){
                 class: 'btn-danger',
                 label: 'Cancel'
             }
-
-
         }
     };
 
     addDiagnosisDialog = ReactiveModal.initDialog(addDiagnosisDialogSpec);
 
     addDiagnosisDialog.buttons.ok.on('click', function(button){
-//        console.log("Selected condition = " + JSON.stringify(Session.get("selectedDiagnosis")));
-//        var patient = Session.get("patient");
         addDiagnosis(Session.get("selectedDiagnosis"));
-//        alert('ok then');
-//        Session.set("conditionSearchBoxUserQuery", "");
-//        var instance = EasySearch.getComponentInstance(
-//            { index : 'conditions' }
-//        );
-//        instance.clear();
     });
 
     addDiagnosisDialog.buttons.cancel.on('click', function(button){
@@ -117,42 +86,7 @@ Meteor.startup(function(){
 
     editDiagnosisDialog.buttons.ok.on('click', function(button){
         console.log("Save condition = " + JSON.stringify(Session.get("selectedDiagnosis")));
-//        var patient = Session.get("patient");
         updateDiagnosis(Session.get("selectedDiagnosis"));
-//        alert('ok then');
-//        Session.set("conditionSearchBoxUserQuery", "");
-//        var instance = EasySearch.getComponentInstance(
-//            { index : 'conditions' }
-//        );
-//        instance.clear();
     });
-
 });
 
-Handlebars.registerHelper('session',function(input){
-    return Session.get(input);
-});
-
-Handlebars.registerHelper("patient", function() {
-    var patient = Session.get("patient");
-    if (patient) return patient;
-    if (Meteor.user()) {
-        var patientId = "patient/" + Meteor.user()._id;
-        Meteor.call("getEntity", patientId, function(err, foundPatient) {
-            if (foundPatient) {
-                patient = foundPatient;
-                Session.set("patient", patient);
-                return callback(patient);
-            }
-            patient = {
-                _id: patientId,
-                name: Meteor.user().profile.name,
-                nameLC: Meteor.user().profile.name.toLowerCase(),
-                etypes: ["patient"]
-            };
-            Session.set("patient", patient);
-            Meteor.call("addEntity", patient);
-            return patient;
-        });
-    }
-});

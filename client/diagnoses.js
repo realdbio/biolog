@@ -4,7 +4,7 @@ Deps.autorun(function () {
     }
 });
 
-Meteor.subscribe("allFacts");
+//Meteor.subscribe("allFacts");
 
 Meteor.subscribe("currentPatient");
 
@@ -71,15 +71,11 @@ Template.allFacts.helpers({
 Template.addDiagnosisButton.events({
     'click #addDiagnosisButton': function(event, template) {
         event.preventDefault();
-//        var healthCondition = this;
         var patient = Session.get("patient");
         var diagnosis = {
             subj: patient._id,
             subjName: patient.name,
             pred: "diagnosis",
-//            obj: healthCondition._id,
-//            objName: healthCondition.name,
-//            text: healthCondition.name,
             startDate: new Date(),
             startFlag: 0,
             endDate: null,

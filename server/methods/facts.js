@@ -1,7 +1,8 @@
 
-
+//TODO deep copy, when we have sub-facts
 var slimFact = function(fact) {
     var slimmed = _.clone(fact);
+//    var slimmed = jQuery.extend(true, {}, fact);
     delete slimmed._id;
     delete slimmed.subj;
     delete slimmed.subjName;
