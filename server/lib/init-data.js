@@ -4,7 +4,8 @@ Meteor.startup(function () {
         name: "diagnosis",
         nameLC: "diagnosis",
         description: "a health condition that a person (patient) has or had in the past",
-        etypes: ["patient"],
+        subjectEtypes: ["patient"],
+        objectEtypes: ["health-condition"],
         creator: "dave"
     };
     Predicates.insert(p1);

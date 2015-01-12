@@ -1,5 +1,5 @@
 <template name="addRuleDialog">
-    <div class="container">
+    <div class="container-fluid">
         <form class="new-rule">
             <input type="hidden" name="etype" value="{{etype}}"/>
             <div class="row">
@@ -9,7 +9,9 @@
                 <div class="col-sm-8 col-md-5">
                     <input type="text" name="ruleName" placeholder="Enter a name for your rule" size="30"/>
                 </div>
+            </div>
 
+            <div class="row">
                 <div class="col-sm-4 col-md-1">
                     Description
                 </div>
@@ -18,19 +20,18 @@
                 </div>
             </div>
 
-            <h2>IF...</h2>
+
             <div class="row">
                 <div class="col-sm-4">
-                    <h4>Any<br>
-                    <b>{{etypeName}}</b></h4>
+                    <h2>If any<br>
+                    <b>{{etypeName}}</b></h2>
                 </div>
                 <div class="col-sm-4">
-                    <h4>...has:</h4><br>
+                    <h2>...has:</h2>
                     {{> predicateSelector}}
                 </div>
                 <div class="col-sm-4">
-                    <h4>...with value:<br>
-                    <b>{{etypeName}}</b></h4>
+                    <h2>...with value:</h2><br>
                     {{> valueSelector}}
                 </div>
             </div>
@@ -61,7 +62,7 @@
         <div class="col-md-6">
             {{#esEach index="predicates" id="predicateChooser"}}
             <div class="item">
-                <button type="button" class="btn btn-default btn-sm smartbio-predicatebtn">
+                <button type="button" class="btn btn-default btn-sm smartbio-rulePredBtn">
                     <span class="glyphicon glyphicon-books"></span> {{name}}
                 </button>
             </div>
@@ -74,13 +75,19 @@
 <template name="valueSelector">
     <div class="row">
         <div class="col">
-
+            {{> esInput index="entities" placeholder="Select..." id="objectChooser" }}
         </div>
     </div>
 
     <div class="row">
         <div class="col-md-6">
-            
+            {{#esEach index="entities" id="objectChooser"}}
+            <div class="item">
+                <button type="button" class="btn btn-default btn-sm smartbio-ruleObjBtn">
+                    <span class="glyphicon glyphicon-books"></span> {{name}}
+                </button>
+            </div>
+            {{/esEach}}
         </div>
     </div>
 </template>
