@@ -11,7 +11,8 @@ Template.adminOptions.events({
         var rule = {
             etypes: ["patient"]
         };
-        Session.set("selectedRule", rule);
+        var ruleTool = new RuleTool(rule);
+        Session.set("roolTool", ruleTool);
 //        console.log("addRuleOption: rule=" + JSON.stringify(rule));
 //        setStartEndDateControls("addDiagnosisDialog");
         addRuleDialog.show();

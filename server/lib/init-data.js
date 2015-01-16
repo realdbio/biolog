@@ -8,5 +8,10 @@ Meteor.startup(function () {
         objectEtypes: ["health-condition"],
         creator: "dave"
     };
-    Predicates.insert(p1);
+    try {
+        Predicates.insert(p1);
+    } catch (e) {
+        //unable
+    }
+
 });

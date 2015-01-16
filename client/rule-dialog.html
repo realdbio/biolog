@@ -4,19 +4,19 @@
             <input type="hidden" name="etype" value="{{etype}}"/>
             <div class="row">
                 <div class="col-sm-4 col-md-1">
-                    Name
+                    Title
                 </div>
                 <div class="col-sm-8 col-md-5">
-                    <input type="text" name="ruleName" placeholder="Enter a name for your rule" size="30"/>
+                    <input type="text" name="ruleName" placeholder="Enter the title" size="30"/>
                 </div>
             </div>
 
             <div class="row">
                 <div class="col-sm-4 col-md-1">
-                    Description
+                    Message
                 </div>
-                <div class="col-sm-8 col-md-5">
-                    <input type="text" name="ruleName" placeholder="Description: what does this rule do?" size="30"/>
+                <div class="col col-sm-8 col-md-5">
+                    <input type="text" name="ruleName" placeholder="What is the message?" size="30"/>
                 </div>
             </div>
 
@@ -31,8 +31,14 @@
                     {{> predicateSelector}}
                 </div>
                 <div class="col-sm-4">
-                    <h2>...with value:</h2><br>
+                    <h3>...with value:</h3>
                     {{> valueSelector}}
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col col-lg-12">
+                    <input type="button" name="smartbio-AddConditionBtn">
                 </div>
             </div>
         </form>
@@ -63,7 +69,7 @@
             {{#esEach index="predicates" id="predicateChooser"}}
             <div class="item">
                 <button type="button" class="btn btn-default btn-sm smartbio-rulePredBtn">
-                    <span class="glyphicon glyphicon-books"></span> {{name}}
+                    <span class="fa fa-square-o"></span> {{name}}
                 </button>
             </div>
             {{/esEach}}

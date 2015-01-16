@@ -1,10 +1,10 @@
 
 Template.addRuleDialog.created = function() {
-    var predicateChooser = EasySearch.getComponentInstance(
+    predicateChooser = EasySearch.getComponentInstance(
         { index : 'predicates', id: 'predicateChooser' }
     );
 
-    var objectChooser = EasySearch.getComponentInstance(
+    objectChooser = EasySearch.getComponentInstance(
         { index : 'entities', id: 'objectChooser' }
     );
 
@@ -38,8 +38,10 @@ Template.addRuleDialog.events({
 
     'click .smartbio-rulePredBtn': function(event, template) {
         event.preventDefault();
-        this.icon="check";
+//        this.icon="check";
+        predicateChooser.clear();
         var rule = Session.get("selectedRule");
+        if (!rule.if) rule.if = getBaseRuleIf();
         rule.pred = this._id;
         rule.predicate = this;
         Session.set("selectedRule", rule);
@@ -50,7 +52,8 @@ Template.addRuleDialog.events({
 
     'click .smartbio-ruleObjBtn': function(event, template) {
         event.preventDefault();
-        this.icon="check";
+//        this.icon="check";
+        objectChooser.clear();
         var rule = Session.get("selectedRule");
         rule.obj = this._id;
         rule.object = this;
