@@ -68,7 +68,7 @@ Template.addRuleDialog.events({
     'click #smartbio-addBtn': function(event, template) {
         console.log('click #smartbio-addBtn');
         event.preventDefault();
-        var ruleTool = Session.get("ruleTool");
+
         //TODO support negation by checking a box
         var pred = Session.get("selectedPredicate");
         var objs = Session.get("selectedObjects");
@@ -80,18 +80,17 @@ Template.addRuleDialog.events({
         };
 //        console.log("adding clause to ruleTool=" + JSON.stringify(ruleTool));
         ruleTool.addClause(clause);
+        console.log("Rule now = " + JSON.stringify(ruleTool.prepareRule()));
         Session.set("selectedPredicate", null);
         Session.set("selectedObjects", []);
-        Session.set("ruleTool", ruleTool);
-        console.log("Rule now = " + JSON.stringify(ruleTool.prepareRule));
+
     }
 });
 
 Template.addRuleDialog.helpers({
     etypeName: function() {
-        var ruleTool = Session.get("ruleTool");
         if (!ruleTool || !ruleTool.rule) return "";
-        console.log("ruleTool=" + JSON.stringify(ruleTool.rule));
+//        console.log("ruleTool=" + JSON.stringify(ruleTool.rule));
 
         return String(ruleTool.rule.etypes);
     },

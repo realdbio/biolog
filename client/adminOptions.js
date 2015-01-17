@@ -2,6 +2,8 @@
  * Created by dd on 1/4/15.
  */
 
+ruleTool = {};
+
 Template.adminOptions.events({
 
 
@@ -11,8 +13,8 @@ Template.adminOptions.events({
         var rule = {
             etypes: ["patient"]
         };
-        var ruleTool = new RuleTool(rule);
-        Session.set("ruleTool", ruleTool);
+        ruleTool = new RuleTool(rule);
+//        Session.set("ruleTool", ruleTool);
 //        console.log("addRuleOption: rule=" + JSON.stringify(rule));
 //        setStartEndDateControls("addDiagnosisDialog");
         addRuleDialog.show();
