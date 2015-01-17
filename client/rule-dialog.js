@@ -19,18 +19,19 @@ Template.addRuleDialog.created = function() {
 
 
 Template.addRuleDialog.events({
-    "submit .new-rule": function (event) {
+    "submit .smartbio-new-rule": function (event) {
         // This function is called when the new task form is submitted
 
-        var name = event.target.ruleName.value;
+//        var name = event.target.ruleName.value;
 
-        var subjectEtype = {
-
-        };
-
-
-        // Clear form
-        event.target.ruleName.value = "";
+//        var subjectEtype = {
+//
+//        };
+//
+//
+//        // Clear form
+//        event.target.ruleName.value = "";
+//        event.target.ruleName.value = "";
 
         // Prevent default form submit
         return false;
@@ -39,35 +40,66 @@ Template.addRuleDialog.events({
     'click .smartbio-rulePredBtn': function(event, template) {
         event.preventDefault();
 //        this.icon="check";
-        predicateChooser.clear();
-        var rule = Session.get("selectedRule");
-        if (!rule.if) rule.if = getBaseRuleIf();
-        rule.pred = this._id;
-        rule.predicate = this;
-        Session.set("selectedRule", rule);
+//        predicateChooser.clear();
+//        var ruleTool = Session.get("ruleTool");
+//        if (!rule.if) rule.if = getBaseRuleIf();
+//        rule.pred = this._id;
+//        rule.predicate = this;
+//        Session.set("ruleTool", rule);
+        Session.set("selectedPredicate", this);
 
         //set easy search to search for entities of the predicate's objectEtypes
-        EasySearch.changeProperty('entities', 'etypes', rule.predicate.objectEtypes);
+        EasySearch.changeProperty('entities', 'etypes', this.objectEtypes);
     },
 
     'click .smartbio-ruleObjBtn': function(event, template) {
         event.preventDefault();
 //        this.icon="check";
-        objectChooser.clear();
-        var rule = Session.get("selectedRule");
-        rule.obj = this._id;
-        rule.object = this;
-        Session.set("selectedRule", rule);
+//        objectChooser.clear();
+//        var ruleTool = Session.get("ruleTool");
+//        rule.obj = this._id;
+//        rule.object = this;
+        var selectedObjects = Session.get("selectedObjects");
+        if (!selectedObjects) selectedObjects = [];
+        selectedObjects.push(this);
+        Session.set("selectedObjects", selectedObjects);
+    },
+
+    'click #smartbio-addBtn': function(event, template) {
+        console.log('click #smartbio-addBtn');
+        event.preventDefault();
+        var ruleTool = Session.get("ruleTool");
+        //TODO support negation by checking a box
+        var pred = Session.get("selectedPredicate");
+        var objs = Session.get("selectedObjects");
+        var negated = false;
+        var clause = {
+            pred: pred,
+            objs: objs,
+            negated: negated
+        };
+//        console.log("adding clause to ruleTool=" + JSON.stringify(ruleTool));
+        ruleTool.addClause(clause);
+        Session.set("selectedPredicate", null);
+        Session.set("selectedObjects", []);
+        Session.set("ruleTool", ruleTool);
+        console.log("Rule now = " + JSON.stringify(ruleTool.prepareRule));
     }
 });
 
 Template.addRuleDialog.helpers({
     etypeName: function() {
-        console.log("selectedRule=" + JSON.stringify(Session.get("selectedRule")));
-        if (! Session.get("selectedRule") || ! Session.get("selectedRule").etypes || ! Session.get("selectedRule").etypes.length) {
+        var ruleTool = Session.get("ruleTool");
+        if (!ruleTool || !ruleTool.rule) return "";
+        console.log("ruleTool=" + JSON.stringify(ruleTool.rule));
+
+        return String(ruleTool.rule.etypes);
+    },
+
+    addButtonEnabled: function() {
+        if (Session.get("selectedPredicate") && Session.get("selectedObjects")) {
             return "";
         }
-        var etype = Session.get("selectedRule").etypes[0] || "";
-        return etype;
+        return "disabled";
     }
-})
+});

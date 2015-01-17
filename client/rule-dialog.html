@@ -1,44 +1,45 @@
 <template name="addRuleDialog">
     <div class="container-fluid">
-        <form class="new-rule">
-            <input type="hidden" name="etype" value="{{etype}}"/>
-            <div class="row">
-                <div class="col-sm-4 col-md-1">
-                    Title
-                </div>
-                <div class="col-sm-8 col-md-5">
-                    <input type="text" name="ruleName" placeholder="Enter the title" size="30"/>
-                </div>
-            </div>
+        <form class="form-horizontal smartbio-new-rule">
 
-            <div class="row">
-                <div class="col-sm-4 col-md-1">
-                    Message
-                </div>
-                <div class="col col-sm-8 col-md-5">
-                    <input type="text" name="ruleName" placeholder="What is the message?" size="30"/>
+
+            <div class="form-group">
+                <label for="ruleName" class="col-sm-2 control-label">Title</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" name="ruleName" id="ruleName" placeholder="Rule Title" size="30"/>
                 </div>
             </div>
 
 
+            <div class="form-group">
+                <label for="ruleDescription" class="col-sm-2 control-label">Message</label>
+                <div class="col-sm-10">
+                    <textarea class="form-control" rows="3" name="ruleDescription" id="ruleDescription"
+                            placeholder="Text to display when the rule applies"></textarea>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-sm-12">
+                    <h3>If any <b>{{etypeName}}</b></h3>
+                </div>
+            </div>
             <div class="row">
                 <div class="col-sm-4">
-                    <h2>If any<br>
-                    <b>{{etypeName}}</b></h2>
-                </div>
-                <div class="col-sm-4">
-                    <h2>...has:</h2>
+                    <h3>...has</h3>
                     {{> predicateSelector}}
                 </div>
                 <div class="col-sm-4">
-                    <h3>...with value:</h3>
+                    <h3>...of</h3>
                     {{> valueSelector}}
                 </div>
             </div>
-
             <div class="row">
                 <div class="col col-lg-12">
-                    <input type="button" name="smartbio-AddConditionBtn">
+                    <div class="text-center">
+                        <button class="btn btn-primary" id="smartbio-addBtn" {{addButtonEnabled}}><span class="fa fa-plus">  Add this line</span></button>
+                    </div>
                 </div>
             </div>
         </form>
@@ -51,9 +52,7 @@
         <div class="row">
             <h2>{{rule.name}}</h2>
         </div>
-
     </div>
-
 </template>
 
 
