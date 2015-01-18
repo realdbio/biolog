@@ -80,7 +80,9 @@ Template.addRuleDialog.events({
         };
 //        console.log("adding clause to ruleTool=" + JSON.stringify(ruleTool));
         ruleTool.addClause(clause);
-        console.log("Rule now = " + JSON.stringify(ruleTool.prepareRule(), null, "  "));
+        var rule = ruleTool.prepareRule();
+        Session.set("rule", rule);
+        console.log("Rule now = " + JSON.stringify(rule, null, "  "));
         Session.set("selectedPredicate", null);
         Session.set("selectedObjects", []);
 
@@ -89,13 +91,14 @@ Template.addRuleDialog.events({
 
 Template.addRuleDialog.helpers({
     etypeName: function() {
-        if (!ruleTool || !ruleTool.rule) return "";
-        console.log("ruleTool=" + JSON.stringify(ruleTool.rule));
+        var rule = Session.get("rule");
+        if (! rule) return "";
+//        console.log("etypeName: rule=" + JSON.stringify(rule));
 
         var typesStr = "";
-        for (var i in ruleTool.rule.etypes) {
-            var etype = ruleTool.rule.etypes[i];
-            if (typesStr.length > 0) typeStr += " or ";
+        for (var i in rule.etypes) {
+            var etype = rule.etypes[i];
+            if (typesStr.length > 0) typesStr += " or ";
             typesStr += etype;
         }
         return typesStr;
@@ -106,5 +109,14 @@ Template.addRuleDialog.helpers({
             return "";
         }
         return "disabled";
+    }
+});
+
+
+Template.clauseLister.helpers({
+    clauses: function() {
+        var rule = Session.get("rule");
+        if (!rule) return;
+        return rule.clauses;
     }
 });

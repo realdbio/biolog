@@ -14,9 +14,11 @@ Template.adminOptions.events({
             etypes: ["patient"]
         };
         ruleTool = new RuleTool(rule);
+        Session.set("rule", rule);
 //        Session.set("ruleTool", ruleTool);
 //        console.log("addRuleOption: rule=" + JSON.stringify(rule));
 //        setStartEndDateControls("addDiagnosisDialog");
+        console.log("adminOptions: ruleTool=" + JSON.stringify(ruleTool));
         addRuleDialog.show();
     }
 });
