@@ -80,7 +80,7 @@ Template.addRuleDialog.events({
         };
 //        console.log("adding clause to ruleTool=" + JSON.stringify(ruleTool));
         ruleTool.addClause(clause);
-        console.log("Rule now = " + JSON.stringify(ruleTool.prepareRule()));
+        console.log("Rule now = " + JSON.stringify(ruleTool.prepareRule(), null, "  "));
         Session.set("selectedPredicate", null);
         Session.set("selectedObjects", []);
 
@@ -90,9 +90,15 @@ Template.addRuleDialog.events({
 Template.addRuleDialog.helpers({
     etypeName: function() {
         if (!ruleTool || !ruleTool.rule) return "";
-//        console.log("ruleTool=" + JSON.stringify(ruleTool.rule));
+        console.log("ruleTool=" + JSON.stringify(ruleTool.rule));
 
-        return String(ruleTool.rule.etypes);
+        var typesStr = "";
+        for (var i in ruleTool.rule.etypes) {
+            var etype = ruleTool.rule.etypes[i];
+            if (typesStr.length > 0) typeStr += " or ";
+            typesStr += etype;
+        }
+        return typesStr;
     },
 
     addButtonEnabled: function() {
