@@ -37,54 +37,29 @@ Template.addRuleDialog.events({
         return false;
     },
 
-    'click .smartbio-rulePredBtn': function(event, template) {
-        event.preventDefault();
-//        this.icon="check";
-//        predicateChooser.clear();
-//        var ruleTool = Session.get("ruleTool");
-//        if (!rule.if) rule.if = getBaseRuleIf();
-//        rule.pred = this._id;
-//        rule.predicate = this;
-//        Session.set("ruleTool", rule);
-        Session.set("selectedPredicate", this);
+    'click #smartbio-addClauseBtn': function(event, template) {
 
-        //set easy search to search for entities of the predicate's objectEtypes
-        EasySearch.changeProperty('entities', 'etypes', this.objectEtypes);
-    },
+        addClauseDialog.show();
 
-    'click .smartbio-ruleObjBtn': function(event, template) {
-        event.preventDefault();
-//        this.icon="check";
-//        objectChooser.clear();
-//        var ruleTool = Session.get("ruleTool");
-//        rule.obj = this._id;
-//        rule.object = this;
-        var selectedObjects = Session.get("selectedObjects");
-        if (!selectedObjects) selectedObjects = [];
-        selectedObjects.push(this);
-        Session.set("selectedObjects", selectedObjects);
-    },
-
-    'click #smartbio-addBtn': function(event, template) {
-        console.log('click #smartbio-addBtn');
-        event.preventDefault();
-
-        //TODO support negation by checking a box
-        var pred = Session.get("selectedPredicate");
-        var objs = Session.get("selectedObjects");
-        var negated = false;
-        var clause = {
-            pred: pred,
-            objs: objs,
-            negated: negated
-        };
-//        console.log("adding clause to ruleTool=" + JSON.stringify(ruleTool));
-        ruleTool.addClause(clause);
-        var rule = ruleTool.prepareRule();
-        Session.set("rule", rule);
-        console.log("Rule now = " + JSON.stringify(rule, null, "  "));
-        Session.set("selectedPredicate", null);
-        Session.set("selectedObjects", []);
+//        console.log('click #smartbio-addBtn');
+//        event.preventDefault();
+//
+//        //TODO support negation by checking a box
+//        var pred = Session.get("selectedPredicate");
+//        var objs = Session.get("selectedObjects");
+//        var negated = false;
+//        var clause = {
+//            pred: pred,
+//            objs: objs,
+//            negated: negated
+//        };
+////        console.log("adding clause to ruleTool=" + JSON.stringify(ruleTool));
+//        ruleTool.addClause(clause);
+//        var rule = ruleTool.prepareRule();
+//        Session.set("rule", rule);
+//        console.log("Rule now = " + JSON.stringify(rule, null, "  "));
+//        Session.set("selectedPredicate", null);
+//        Session.set("selectedObjects", []);
 
     }
 });

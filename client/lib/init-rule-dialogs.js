@@ -26,6 +26,25 @@ Meteor.startup(function(){
         });
     };
 
+    addClause = function() {
+        //TODO support negation by checking a box
+        var pred = Session.get("selectedPredicate");
+        var objs = Session.get("selectedObjects");
+        var negated = false;
+        var clause = {
+            pred: pred,
+            objs: objs,
+            negated: negated
+        };
+//        console.log("adding clause to ruleTool=" + JSON.stringify(ruleTool));
+        ruleTool.addClause(clause);
+        var rule = ruleTool.prepareRule();
+        Session.set("rule", rule);
+        console.log("Rule now = " + JSON.stringify(rule, null, "  "));
+        Session.set("selectedPredicate", null);
+        Session.set("selectedObjects", []);
+    };
+
     var addRuleDialogSpec = {
         template: Template.addRuleDialog,
         title: "Add a Rule",
@@ -54,6 +73,37 @@ Meteor.startup(function(){
 
     addRuleDialog.buttons.cancel.on('click', function(button){
         Session.set("ruleSearchBoxUserQuery", "");
+    });
+
+    var addClauseDialogSpec = {
+        template: Template.addClauseDialog,
+        title: "Add a Clause",
+        modalDialogClass: "add-clause-dialog", //optional
+        modalBodyClass: "add-clause-body", //optional
+        modalFooterClass: "add-clause-footer",//optional
+        removeOnHide: false, //optional. If this is true, modal will be removed from DOM upon hiding
+        buttons: {
+            "ok": {
+                closeModalOnClick: true, // if this is false, dialog doesnt close automatically on click
+                class: 'btn-info',
+                label: 'Save'
+            },
+            "cancel": {
+                class: 'btn-danger',
+                label: 'Cancel'
+            }
+        }
+    };
+
+    addClauseDialog = ReactiveModal.initDialog(addClauseDialogSpec);
+
+    addClauseDialog.buttons.ok.on('click', function(button){
+        //TODO check to see if rule is complete
+        addClause();
+    });
+
+    addClauseDialog.buttons.cancel.on('click', function(button){
+//        Session.set("clauseSearchBoxUserQuery", "");
     });
 
     //Edit Rule Dialog
