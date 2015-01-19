@@ -2,7 +2,7 @@
  * Created by dd on 1/4/15.
  */
 
-ruleTool = {};
+//ruleTool = {};
 
 Template.adminOptions.events({
 
@@ -13,7 +13,8 @@ Template.adminOptions.events({
         var rule = {
             etypes: ["patient"]
         };
-        ruleTool = new RuleTool(rule);
+        var ruleTool = new RuleTool(rule);
+        rule = ruleTool.getInitializedRule();
         Session.set("rule", rule);
 //        Session.set("ruleTool", ruleTool);
 //        console.log("addRuleOption: rule=" + JSON.stringify(rule));

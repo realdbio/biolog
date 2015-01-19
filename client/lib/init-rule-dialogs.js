@@ -3,6 +3,7 @@
 
 Meteor.startup(function(){
     addRule = function(rule) {
+        console.log("saving rule: " + JSON.stringify(rule, null, "  "));
         Meteor.call("addRule", rule, function(response) {
             if (response) {
                 if (response.success) {
@@ -26,23 +27,38 @@ Meteor.startup(function(){
         });
     };
 
-    addClause = function() {
-        //TODO support negation by checking a box
-        var pred = Session.get("selectedPredicate");
-        var objs = Session.get("selectedObjects");
-        var negated = false;
-        var clause = {
-            pred: pred,
-            objs: objs,
-            negated: negated
-        };
-//        console.log("adding clause to ruleTool=" + JSON.stringify(ruleTool));
-        ruleTool.addClause(clause);
-        var rule = ruleTool.prepareRule();
+//    addClause = function() {
+//        //TODO support negation by checking a box
+//        var pred = Session.get("selectedPredicate");
+//        var objs = Session.get("selectedObjects");
+//        var negated = false;
+//        var ruleBefore = Session.get("rule");
+//        var idx = ruleBefore.clauses.length;
+//        var clause = {
+//            pred: pred,
+//            objs: objs,
+//            negated: negated,
+//            idx: idx
+//        };
+////        console.log("adding clause to ruleTool=" + JSON.stringify(ruleTool));
+//
+//        ruleTool.addClause(clause);
+//        var rule = ruleTool.prepareRule();
+//        Session.set("rule", rule);
+//        console.log("Rule now = " + JSON.stringify(rule, null, "  "));
+//        Session.set("selectedPredicate", null);
+//        Session.set("selectedObjects", []);
+//    };
+
+    var saveClause = function(clause) {
+        var rule = Session.get("rule");
+        var clauses = rule.clauses;
+        clauses[clause.idx] = clause;
         Session.set("rule", rule);
-        console.log("Rule now = " + JSON.stringify(rule, null, "  "));
+//        console.log("Rule now = " + JSON.stringify(rule, null, "  "));
         Session.set("selectedPredicate", null);
         Session.set("selectedObjects", []);
+        Session.set("editClauseIndex", null);
     };
 
     var addRuleDialogSpec = {
@@ -68,7 +84,14 @@ Meteor.startup(function(){
     addRuleDialog = ReactiveModal.initDialog(addRuleDialogSpec);
 
     addRuleDialog.buttons.ok.on('click', function(button){
-        addRule(Session.get("selectedRule"));
+        var rule = Session.get("rule");
+        var ruleName = document.getElementById("ruleName").value;
+        var ruleDescription = document.getElementById("ruleDescription").value;
+        rule.name = ruleName;
+        rule.nameLC = ruleName.toLowerCase();
+        rule.description = ruleDescription;
+        var ruleTool = new RuleTool(rule);
+        addRule(ruleTool.prepareRule());
     });
 
     addRuleDialog.buttons.cancel.on('click', function(button){
@@ -97,9 +120,29 @@ Meteor.startup(function(){
 
     addClauseDialog = ReactiveModal.initDialog(addClauseDialogSpec);
 
+
     addClauseDialog.buttons.ok.on('click', function(button){
-        //TODO check to see if rule is complete
-        addClause();
+        var idx = Session.get("editClauseIndex");
+        var pred = Session.get("selectedPredicate");
+        var objs = Session.get("selectedObjects");
+
+        if (!pred || !objs || objs.length===0) {
+            alert("You must select a property and at least 1 object/value");
+            return false;
+        }
+
+        var ruleBefore = Session.get("rule");
+        if (idx == null) idx = ruleBefore.clauses.length;
+        var negated = false;
+
+        var clause = {
+            pred: pred,
+            objs: objs,
+            negated: negated,
+            idx: idx
+        };
+
+        saveClause(clause);
     });
 
     addClauseDialog.buttons.cancel.on('click', function(button){

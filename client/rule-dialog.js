@@ -39,6 +39,7 @@ Template.addRuleDialog.events({
 
     'click #smartbio-addClauseBtn': function(event, template) {
 
+        Session.set("editClauseIndex", null);
         addClauseDialog.show();
 
 //        console.log('click #smartbio-addBtn');
@@ -62,6 +63,8 @@ Template.addRuleDialog.events({
 //        Session.set("selectedObjects", []);
 
     }
+
+
 });
 
 Template.addRuleDialog.helpers({
@@ -85,13 +88,47 @@ Template.addRuleDialog.helpers({
         }
         return "disabled";
     }
+
+
 });
 
+Template.clauseLister.events({
+    'click .smartbio-clauseLister-deleteBtn': function(event) {
+        var rule = Session.get("rule");
+        var clauses = rule.clauses;
+        for (var i=this.idx; i<clauses.length; i++) {
+            var clause = clauses[i];
+            clause.idx = clause.idx -1;
+        }
+        clauses.splice(this.idx, 1);
+        Session.set("rule", rule);
+    },
+
+    'click .smartbio-clauseLister-editBtn': function(event, template) {
+        console.log('click .smartbio-editClauseBtn: this.pred=' + this.pred + '; this.idx=' + this.idx);
+
+        Session.set("editClauseIndex", this.idx);
+        Session.set("selectedPredicate", this.pred);
+        Session.set("selectedObjects", this.objs);
+        addClauseDialog.show();
+
+    }
+})
 
 Template.clauseLister.helpers({
     clauses: function() {
         var rule = Session.get("rule");
         if (!rule) return;
         return rule.clauses;
+    },
+
+    showAnd: function() {
+        if (this.idx === 0) return "";
+        return "AND";
+    },
+
+    showOr: function() {
+        if (this.idx ===0) return "";
+        return " or ";
     }
 });

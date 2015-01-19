@@ -26,3 +26,16 @@ UI.registerHelper("patient", function() {
         });
     }
 });
+
+//UI.registerHelper('each_with_index', function(cursor) {
+////    var fn = options.fn, inverse = options.inverse;
+//    if(!cursor) return;
+//    var ret = "";
+//    var idx = 0;
+//    cursor.forEach(function(item){
+//        idx++;
+//        item.index = idx;
+//        ret+=fn(item);
+//    });
+//    return ret;
+//});

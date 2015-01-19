@@ -1,20 +1,47 @@
 <template name="addClauseDialog">
     <div class="container-fluid">
-        <div class="row">
-            <div class="col-sm-12">
-                <h4>If any <b>{{etypeName}}</b></h4>
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <h3 class="panel-title">If any <b>{{etypeName}}</b></h3>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col col-sm-4">
+                        <p>has</p>
+                        <p><b>{{displayPredicate}}</b></p>
+                    </div>
+                    <div class="col col-sm-8">
+                        <p>
+                            {{> objectButtons}}
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="panel-footer">
+                <div class="row">
+                    <div class="col col-sm-4">
+                        {{> predicateSelector}}
+                    </div>
+                    <div class="col col-sm-8">
+                        {{> valueSelector}}
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-sm-4">
-                <h4>...has</h4>
-                {{> predicateSelector}}
-            </div>
-            <div class="col-sm-4">
-                <h4>...of</h4>
-                {{> valueSelector}}
-            </div>
-        </div>
+
+        <!--<div class="row">-->
+            <!--<div class="col-sm-4">-->
+                <!--<h4>...has <b>{{displayPredicate}}</b></h4>-->
+                <!--{{> predicateSelector}}-->
+            <!--</div>-->
+            <!--<div class="col-sm-8">-->
+                <!--<h4>...of</h4>-->
+                <!--<p>-->
+                    <!--{{> objectButtons}}-->
+                <!--</p>-->
+                <!--{{> valueSelector}}-->
+            <!--</div>-->
+        <!--</div>-->
     </div>
 </template>
 
@@ -61,3 +88,12 @@
     </div>
 </template>
 
+
+<template name="objectButtons">
+    {{#each clauseObjects}}
+        {{showOr}}
+        <button class="btn btn-default btn-sm smartbio-objectButtons-deleteObjBtn" title="remove">
+            {{name}}  <span class="fa fa-close"></span>
+        </button>
+    {{/each}}
+</template>

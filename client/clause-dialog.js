@@ -20,6 +20,8 @@ Template.addClauseDialog.events({
         event.preventDefault();
         var selectedObjects = Session.get("selectedObjects");
         if (!selectedObjects) selectedObjects = [];
+        var idx = selectedObjects.length;
+        this.idx = idx;
         selectedObjects.push(this);
         Session.set("selectedObjects", selectedObjects);
     }
@@ -45,5 +47,38 @@ Template.addClauseDialog.helpers({
             return "";
         }
         return "disabled";
+    },
+
+    displayPredicate: function() {
+        var selectedPredicate = Session.get("selectedPredicate");
+        if (selectedPredicate) return selectedPredicate.name;
+        return "";
+    }
+});
+
+
+Template.objectButtons.events({
+    'click .smartbio-objectButtons-deleteObjBtn': function(event) {
+        console.log('click .smartbio-objectButtons-deleteObjBtn');
+        var objects = Session.get("selectedObjects");
+        for (var i=this.idx; i<objects.length; i++) {
+            var object = objects[i];
+            object.idx = object.idx -1;
+        }
+        objects.splice(this.idx, 1);
+        Session.set("selectedObjects", objects);
+    }
+})
+
+Template.objectButtons.helpers({
+
+    clauseObjects: function() {
+        var selectedObjects = Session.get("selectedObjects");
+        return selectedObjects;
+    },
+
+    showOr: function() {
+        if (this.idx ===0) return "";
+        return " or ";
     }
 });

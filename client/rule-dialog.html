@@ -10,7 +10,6 @@
                 </div>
             </div>
 
-
             <div class="form-group">
                 <label for="ruleDescription" class="col-sm-2 control-label">Message</label>
                 <div class="col-sm-10">
@@ -33,7 +32,15 @@
                 </div>
                 <div class="panel-body">
                     {{> clauseLister}}
+
+                    <div class="text-center">
+                        <!--<button class="btn btn-primary" id="smartbio-addBtn" {{addButtonEnabled}}><span class="fa fa-plus">  Add this line</span></button>-->
+                        <button class="btn btn-primary" id="smartbio-addClauseBtn"><span class="fa fa-plus">  Add an 'IF'</span></button>
+                    </div>
                 </div>
+                <!--<div class="panel-footer">-->
+
+                <!--</div>-->
             </div>
 
 
@@ -52,14 +59,14 @@
                     <!--{{> valueSelector}}-->
                 <!--</div>-->
             <!--</div>-->
-            <div class="row">
-                <div class="col col-lg-12">
-                    <div class="text-center">
-                        <!--<button class="btn btn-primary" id="smartbio-addBtn" {{addButtonEnabled}}><span class="fa fa-plus">  Add this line</span></button>-->
-                        <button class="btn btn-primary" id="smartbio-addClauseBtn"><span class="fa fa-plus">  Add an 'IF'</span></button>
-                    </div>
-                </div>
-            </div>
+            <!--<div class="row">-->
+                <!--<div class="col col-lg-12">-->
+                    <!--<div class="text-center">-->
+                        <!--&lt;!&ndash;<button class="btn btn-primary" id="smartbio-addBtn" {{addButtonEnabled}}><span class="fa fa-plus">  Add this line</span></button>&ndash;&gt;-->
+                        <!--<button class="btn btn-primary" id="smartbio-addClauseBtn"><span class="fa fa-plus">  Add an 'IF'</span></button>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
         </form>
     </div>
 </template>
@@ -78,19 +85,23 @@
     <div class="container-fluid">
         {{#each clauses}}
             <div class="row">
+                <div class="col col-sm-1 text-left pull-left">
+                    <button class="btn btn-primary btn-sm smartbio-clauseLister-editBtn" title="modify"><span class="fa fa-pencil"></span></button>
+                </div>
+                <div class="col col-sm-1 middle">
+                    {{showAnd}}
+                </div>
                 <div class="col col-sm-3 middle">
-                    <h5>{{pred.name}}</h5>
+                    <b>{{pred.name}}</b>
                 </div>
                 <div class="col col-sm-6 middle">
                     {{#each objs}}
-                        <h5>{{name}}</h5>
+                        {{showOr}} <b>{{name}}</b>
                     {{/each}}
                 </div>
-                <div class="col col-sm-1 middle">
-                    <h5>AND...</h5>
-                </div>
-                <div class="col col-sm-2 middle text-right">
-                    <button class="btn btn-danger btn-sm" id="smartbio-clauseLister-deleteBtn"><span class="fa fa-close"></span></button>
+
+                <div class="col col-sm-1 text-right">
+                    <button class="btn btn-danger btn-sm smartbio-clauseLister-deleteBtn" title="remove"><span class="fa fa-close"></span></button>
                 </div>
             </div>
         {{/each}}
