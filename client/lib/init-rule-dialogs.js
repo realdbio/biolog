@@ -27,38 +27,23 @@ Meteor.startup(function(){
         });
     };
 
-//    addClause = function() {
-//        //TODO support negation by checking a box
-//        var pred = Session.get("selectedPredicate");
-//        var objs = Session.get("selectedObjects");
-//        var negated = false;
-//        var ruleBefore = Session.get("rule");
-//        var idx = ruleBefore.clauses.length;
-//        var clause = {
-//            pred: pred,
-//            objs: objs,
-//            negated: negated,
-//            idx: idx
-//        };
-////        console.log("adding clause to ruleTool=" + JSON.stringify(ruleTool));
-//
-//        ruleTool.addClause(clause);
-//        var rule = ruleTool.prepareRule();
-//        Session.set("rule", rule);
-//        console.log("Rule now = " + JSON.stringify(rule, null, "  "));
-//        Session.set("selectedPredicate", null);
-//        Session.set("selectedObjects", []);
-//    };
-
     var saveClause = function(clause) {
         var rule = Session.get("rule");
         var clauses = rule.clauses;
         clauses[clause.idx] = clause;
         Session.set("rule", rule);
-//        console.log("Rule now = " + JSON.stringify(rule, null, "  "));
         Session.set("selectedPredicate", null);
         Session.set("selectedObjects", []);
         Session.set("editClauseIndex", null);
+
+        var instance = EasySearch.getComponentInstance(
+            { id : 'predicateChooser', index : 'predicates' }
+        );
+        instance.clear();
+        var instance2 = EasySearch.getComponentInstance(
+            { id : 'objectChooser', index : 'entities' }
+        );
+        instance2.clear();
     };
 
     var addRuleDialogSpec = {
@@ -92,6 +77,11 @@ Meteor.startup(function(){
         rule.description = ruleDescription;
         var ruleTool = new RuleTool(rule);
         addRule(ruleTool.prepareRule());
+
+        //clear
+        document.getElementById("ruleName").value = "";
+        var ruleDescription = document.getElementById("ruleDescription").value = "";
+        Session.set("rule", null);
     });
 
     addRuleDialog.buttons.cancel.on('click', function(button){

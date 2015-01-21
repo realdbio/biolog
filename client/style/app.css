@@ -4,3 +4,11 @@
     /*margin: 0px;*/
     /*float: none;*/
 }
+
+.move-up-10 {
+    margin-top: -10px;
+}
+
+.move-down-15 {
+    margin-top: 15px;
+}

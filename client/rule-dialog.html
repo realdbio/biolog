@@ -31,9 +31,25 @@
                     <h3 class="panel-title">Flag this rule for any <b>{{etypeName}}</b> that has:</h3>
                 </div>
                 <div class="panel-body">
-                    {{> clauseLister}}
+                    <div class="text-center move-up-10">
+                        <div class="radio">
+                            <label>
+                                <input type="radio" name="andOrRadios" id="AndSelected" value="AND" {{andChecked}}>
+                                All of these
+                            </label>
+                            &nbsp;&nbsp;&nbsp;
+                            <label>
+                                <input type="radio" name="andOrRadios" id="OrSelected" value="OR" {{orChecked}}>
+                                Any of these
+                            </label>
+                        </div>
+                    </div>
+                    <div class="container-fluid move-down-15">
+                        {{> clauseLister}}
+                    </div>
 
-                    <div class="text-center">
+
+                    <div class="text-center move-down-15">
                         <!--<button class="btn btn-primary" id="smartbio-addBtn" {{addButtonEnabled}}><span class="fa fa-plus">  Add this line</span></button>-->
                         <button class="btn btn-primary" id="smartbio-addClauseBtn"><span class="fa fa-plus">  Add an 'IF'</span></button>
                     </div>

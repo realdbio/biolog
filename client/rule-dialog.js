@@ -31,37 +31,27 @@ Template.addRuleDialog.events({
 //
 //        // Clear form
 //        event.target.ruleName.value = "";
-//        event.target.ruleName.value = "";
+//        event.target.ruleDescription.value = "";
 
         // Prevent default form submit
         return false;
     },
 
     'click #smartbio-addClauseBtn': function(event, template) {
-
         Session.set("editClauseIndex", null);
         addClauseDialog.show();
+    },
 
-//        console.log('click #smartbio-addBtn');
-//        event.preventDefault();
-//
-//        //TODO support negation by checking a box
-//        var pred = Session.get("selectedPredicate");
-//        var objs = Session.get("selectedObjects");
-//        var negated = false;
-//        var clause = {
-//            pred: pred,
-//            objs: objs,
-//            negated: negated
-//        };
-////        console.log("adding clause to ruleTool=" + JSON.stringify(ruleTool));
-//        ruleTool.addClause(clause);
-//        var rule = ruleTool.prepareRule();
-//        Session.set("rule", rule);
-//        console.log("Rule now = " + JSON.stringify(rule, null, "  "));
-//        Session.set("selectedPredicate", null);
-//        Session.set("selectedObjects", []);
+    'change #AndSelected' : function(event) {
+        var rule = Session.get("rule");
+        rule.booleanMode = "AND";
+        Session.set("rule", rule);
+    },
 
+    'change #OrSelected' : function(event) {
+        var rule = Session.get("rule");
+        rule.booleanMode = "OR";
+        Session.set("rule", rule);
     }
 
 
@@ -71,7 +61,6 @@ Template.addRuleDialog.helpers({
     etypeName: function() {
         var rule = Session.get("rule");
         if (! rule) return "";
-//        console.log("etypeName: rule=" + JSON.stringify(rule));
 
         var typesStr = "";
         for (var i in rule.etypes) {
@@ -87,6 +76,24 @@ Template.addRuleDialog.helpers({
             return "";
         }
         return "disabled";
+    },
+
+    andChecked: function() {
+        var rule = Session.get("rule");
+        if (! rule) return "";
+        if (!rule.booleanMode) rule.booleanMode = "OR";
+        Session.set("rule", rule);
+        if (rule.booleanMode == "OR") return "";
+        return "checked";
+    },
+
+    orChecked: function() {
+        var rule = Session.get("rule");
+        if (! rule) return "";
+        if (!rule.booleanMode) rule.booleanMode = "OR";
+        Session.set("rule", rule);
+        if (rule.booleanMode == "OR") return "checked";
+        return "";
     }
 
 
@@ -105,13 +112,10 @@ Template.clauseLister.events({
     },
 
     'click .smartbio-clauseLister-editBtn': function(event, template) {
-        console.log('click .smartbio-editClauseBtn: this.pred=' + this.pred + '; this.idx=' + this.idx);
-
         Session.set("editClauseIndex", this.idx);
         Session.set("selectedPredicate", this.pred);
         Session.set("selectedObjects", this.objs);
         addClauseDialog.show();
-
     }
 })
 
@@ -124,7 +128,8 @@ Template.clauseLister.helpers({
 
     showAnd: function() {
         if (this.idx === 0) return "";
-        return "AND";
+        var rule = Session.get("rule");
+        return rule.booleanMode;
     },
 
     showOr: function() {
