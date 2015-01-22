@@ -19,7 +19,16 @@ Template.addClauseDialog.events({
     'click .smartbio-clauseObjBtn': function(event, template) {
         event.preventDefault();
         var selectedObjects = Session.get("selectedObjects");
-        if (!selectedObjects) selectedObjects = [];
+        var pred = Session.get("selectedPredicate");
+        if (!pred) return alert("Please select a property");
+        if (!selectedObjects || selectedObjects.length == 0) {
+            selectedObjects = [];
+            this.conjunction = null;
+        } else {
+            this.conjunction = "OR";
+        }
+        this.pred = pred;
+
         var idx = selectedObjects.length;
         this.idx = idx;
         selectedObjects.push(this);

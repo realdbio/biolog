@@ -40,10 +40,12 @@ Meteor.startup(function(){
             { id : 'predicateChooser', index : 'predicates' }
         );
         instance.clear();
+        document.getElementById("predicateChooser").value = "";
         var instance2 = EasySearch.getComponentInstance(
             { id : 'objectChooser', index : 'entities' }
         );
         instance2.clear();
+        document.getElementById("objectChooser").value = "";
     };
 
     var addRuleDialogSpec = {
@@ -55,7 +57,7 @@ Meteor.startup(function(){
         removeOnHide: false, //optional. If this is true, modal will be removed from DOM upon hiding
         buttons: {
             "ok": {
-                closeModalOnClick: true, // if this is false, dialog doesnt close automatically on click
+                closeModalOnClick: true, // if this is false, dialog doesn't close automatically on click
                 class: 'btn-info',
                 label: 'Save'
             },
@@ -97,7 +99,7 @@ Meteor.startup(function(){
         removeOnHide: false, //optional. If this is true, modal will be removed from DOM upon hiding
         buttons: {
             "ok": {
-                closeModalOnClick: true, // if this is false, dialog doesnt close automatically on click
+                closeModalOnClick: false, // if this is false, dialog doesnt close automatically on click
                 class: 'btn-info',
                 label: 'Save'
             },
@@ -113,11 +115,11 @@ Meteor.startup(function(){
 
     addClauseDialog.buttons.ok.on('click', function(button){
         var idx = Session.get("editClauseIndex");
-        var pred = Session.get("selectedPredicate");
+//        var pred = Session.get("selectedPredicate");
         var objs = Session.get("selectedObjects");
 
-        if (!pred || !objs || objs.length===0) {
-            alert("You must select a property and at least 1 object/value");
+        if (!objs || objs.length===0) {
+            alert("You must add at least 1 object/value");
             return false;
         }
 
@@ -126,13 +128,13 @@ Meteor.startup(function(){
         var negated = false;
 
         var clause = {
-            pred: pred,
             objs: objs,
             negated: negated,
             idx: idx
         };
 
         saveClause(clause);
+        addClauseDialog.hide();
     });
 
     addClauseDialog.buttons.cancel.on('click', function(button){

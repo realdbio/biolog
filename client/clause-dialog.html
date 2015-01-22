@@ -6,11 +6,11 @@
             </div>
             <div class="panel-body">
                 <div class="row">
-                    <div class="col col-sm-4">
+                    <div class="col col-sm-2">
                         <p>has</p>
-                        <p><b>{{displayPredicate}}</b></p>
+                        <!--<p><b>{{displayPredicate}}</b></p>-->
                     </div>
-                    <div class="col col-sm-8">
+                    <div class="col col-sm-10">
                         <p>
                             {{> objectButtons}}
                         </p>
@@ -93,7 +93,7 @@
     {{#each clauseObjects}}
         {{showOr}}
         <button class="btn btn-default btn-sm smartbio-objectButtons-deleteObjBtn" title="remove">
-            {{name}}  <span class="fa fa-close"></span>
+            {{pred.name}}: {{name}}  <span class="fa fa-close"></span>
         </button>
     {{/each}}
 </template>

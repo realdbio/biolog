@@ -107,12 +107,12 @@
                 <div class="col col-sm-1 middle">
                     {{showAnd}}
                 </div>
-                <div class="col col-sm-3 middle">
-                    <b>{{pred.name}}</b>
-                </div>
-                <div class="col col-sm-6 middle">
+                <!--<div class="col col-sm-3 middle">-->
+                    <!--<b>{{pred.name}}</b>-->
+                <!--</div>-->
+                <div class="col col-sm-9 middle">
                     {{#each objs}}
-                        {{showOr}} <b>{{name}}</b>
+                        {{conjunction}} {{pred.name}}: <b>{{name}}</b>
                     {{/each}}
                 </div>
 
