@@ -99,41 +99,55 @@ Template.addRuleDialog.helpers({
 
 });
 
-Template.clauseLister.events({
-    'click .smartbio-clauseLister-deleteBtn': function(event) {
+Template.blockEdit.events({
+    'click .smartbio-blockEdit-removeThisBtn': function(event) {
         var rule = Session.get("rule");
-        var clauses = rule.clauses;
-        for (var i=this.idx; i<clauses.length; i++) {
-            var clause = clauses[i];
-            clause.idx = clause.idx -1;
+        var blocks = rule.blocks;
+        for (var i=this.idx; i<blocks.length; i++) {
+            var block = blocks[i];
+            block.idx = block.idx -1;
         }
-        clauses.splice(this.idx, 1);
+        blocks.splice(this.idx, 1);
         Session.set("rule", rule);
     },
 
-    'click .smartbio-clauseLister-editBtn': function(event, template) {
-        Session.set("editClauseIndex", this.idx);
-        Session.set("selectedPredicate", this.pred);
-        Session.set("selectedObjects", this.objs);
-        addClauseDialog.show();
+    'click .smartbio-blockEdit-addClauseBtn': function(event, template) {
+        Session.set("selectedBlock", this);
+        clauseDialog.show();
+    },
+
+    'click .smartbio-blockEdit-addBlockBtn': function(event, template) {
+        var newBlock = {
+            conjunction: "OR",
+            clauses: [],
+            blocks: []
+        };
+
+        this.blocks.push(newBlock);
+        Session.set("selectedBlock", newBlock);
+        blockDialog.show();
     }
 })
 
-Template.clauseLister.helpers({
+Template.blockDisplay.helpers({
+    blocks: function() {
+        return this.blocks;
+    },
+
     clauses: function() {
-        var rule = Session.get("rule");
-        if (!rule) return;
-        return rule.clauses;
+        return this.clauses;
     },
 
-    showAnd: function() {
-        if (this.idx === 0) return "";
-        var rule = Session.get("rule");
-        return rule.booleanMode;
-    },
-
-    showOr: function() {
-        if (this.idx ===0) return "";
-        return " or ";
+    blockPanelColor: function() {
+        if (this.conjunction == "AND") {
+            return "panel-primary bg-info";
+        }
+        return "panel-success bg-success";
     }
+
+//    showConjunction: function(clauseCount) {
+//        if (clauseCount > 0) return this.conjunction
+//        if (this.idx === 0) return "";
+//        return this.conjunction;
+//    }
 });

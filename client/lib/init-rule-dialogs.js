@@ -27,14 +27,14 @@ Meteor.startup(function(){
         });
     };
 
-    var saveClause = function(clause) {
+    var saveBlock = function(block) {
         var rule = Session.get("rule");
-        var clauses = rule.clauses;
-        clauses[clause.idx] = clause;
+        var blocks = rule.blocks;
+        blocks[block.idx] = block;
         Session.set("rule", rule);
         Session.set("selectedPredicate", null);
         Session.set("selectedObjects", []);
-        Session.set("editClauseIndex", null);
+        Session.set("editBlockIndex", null);
 
         var instance = EasySearch.getComponentInstance(
             { id : 'predicateChooser', index : 'predicates' }
@@ -90,12 +90,12 @@ Meteor.startup(function(){
         Session.set("ruleSearchBoxUserQuery", "");
     });
 
-    var addClauseDialogSpec = {
-        template: Template.addClauseDialog,
-        title: "Add a Clause",
-        modalDialogClass: "add-clause-dialog", //optional
-        modalBodyClass: "add-clause-body", //optional
-        modalFooterClass: "add-clause-footer",//optional
+    var addBlockDialogSpec = {
+        template: Template.addBlockDialog,
+        title: "Add a Block",
+        modalDialogClass: "add-block-dialog", //optional
+        modalBodyClass: "add-block-body", //optional
+        modalFooterClass: "add-block-footer",//optional
         removeOnHide: false, //optional. If this is true, modal will be removed from DOM upon hiding
         buttons: {
             "ok": {
@@ -110,11 +110,11 @@ Meteor.startup(function(){
         }
     };
 
-    addClauseDialog = ReactiveModal.initDialog(addClauseDialogSpec);
+    addBlockDialog = ReactiveModal.initDialog(addBlockDialogSpec);
 
 
-    addClauseDialog.buttons.ok.on('click', function(button){
-        var idx = Session.get("editClauseIndex");
+    addBlockDialog.buttons.ok.on('click', function(button){
+        var idx = Session.get("editBlockIndex");
 //        var pred = Session.get("selectedPredicate");
         var objs = Session.get("selectedObjects");
 
@@ -124,21 +124,21 @@ Meteor.startup(function(){
         }
 
         var ruleBefore = Session.get("rule");
-        if (idx == null) idx = ruleBefore.clauses.length;
+        if (idx == null) idx = ruleBefore.blocks.length;
         var negated = false;
 
-        var clause = {
+        var block = {
             objs: objs,
             negated: negated,
             idx: idx
         };
 
-        saveClause(clause);
-        addClauseDialog.hide();
+        saveBlock(block);
+        addBlockDialog.hide();
     });
 
-    addClauseDialog.buttons.cancel.on('click', function(button){
-//        Session.set("clauseSearchBoxUserQuery", "");
+    addBlockDialog.buttons.cancel.on('click', function(button){
+//        Session.set("blockSearchBoxUserQuery", "");
     });
 
     //Edit Rule Dialog

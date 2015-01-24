@@ -23,7 +23,7 @@
                     <!--<h4>Flag this rule for any <b>{{etypeName}}</b> that has:</h4>-->
                 <!--</div>-->
             <!--</div>-->
-            <!--{{> clauseLister}}-->
+            <!--{{> blockDisplay}}-->
 
 
             <div class="panel panel-info">
@@ -31,95 +31,111 @@
                     <h3 class="panel-title">Flag this rule for any <b>{{etypeName}}</b> that has:</h3>
                 </div>
                 <div class="panel-body">
-                    <div class="text-center move-up-10">
-                        <div class="radio">
-                            <label>
-                                <input type="radio" name="andOrRadios" id="AndSelected" value="AND" {{andChecked}}>
-                                All of these
-                            </label>
-                            &nbsp;&nbsp;&nbsp;
-                            <label>
-                                <input type="radio" name="andOrRadios" id="OrSelected" value="OR" {{orChecked}}>
-                                Any of these
-                            </label>
+                    {{#with block}}
+                        <div class="container-fluid move-down-15">
+                            {{> blockEdit}}
                         </div>
-                    </div>
-                    <div class="container-fluid move-down-15">
-                        {{> clauseLister}}
-                    </div>
-
-
-                    <div class="text-center move-down-15">
-                        <!--<button class="btn btn-primary" id="smartbio-addBtn" {{addButtonEnabled}}><span class="fa fa-plus">  Add this line</span></button>-->
-                        <button class="btn btn-primary" id="smartbio-addClauseBtn"><span class="fa fa-plus">  Add an 'IF'</span></button>
-                    </div>
+                    {{/with}}
                 </div>
-                <!--<div class="panel-footer">-->
-
-                <!--</div>-->
             </div>
-
-
-            <!--<div class="row">-->
-                <!--<div class="col-sm-12">-->
-                    <!--<h4>Add an 'IF':</h4>-->
-                <!--</div>-->
-            <!--</div>-->
-            <!--<div class="row">-->
-                <!--<div class="col-sm-4">-->
-                    <!--<h4>...has</h4>-->
-                    <!--{{> predicateSelector}}-->
-                <!--</div>-->
-                <!--<div class="col-sm-4">-->
-                    <!--<h4>...of</h4>-->
-                    <!--{{> valueSelector}}-->
-                <!--</div>-->
-            <!--</div>-->
-            <!--<div class="row">-->
-                <!--<div class="col col-lg-12">-->
-                    <!--<div class="text-center">-->
-                        <!--&lt;!&ndash;<button class="btn btn-primary" id="smartbio-addBtn" {{addButtonEnabled}}><span class="fa fa-plus">  Add this line</span></button>&ndash;&gt;-->
-                        <!--<button class="btn btn-primary" id="smartbio-addClauseBtn"><span class="fa fa-plus">  Add an 'IF'</span></button>-->
-                    <!--</div>-->
-                <!--</div>-->
-            <!--</div>-->
         </form>
     </div>
 </template>
 
 
-<template name="editRuleDialog">
-    <div class="container">
-        <div class="row">
-            <h2>{{rule.name}}</h2>
+<!--<template name="editRuleDialog">-->
+    <!--<div class="container">-->
+        <!--<div class="row">-->
+            <!--<h2>{{rule.name}}</h2>-->
+        <!--</div>-->
+    <!--</div>-->
+<!--</template>-->
+
+
+<template name="blockDisplay">
+    <div class="panel {{blockPanelColor}}">
+        <div class="panel-body">
+            <button class="btn btn-info btn-sm btn-circle pull-right smartbio-blockDisplay-editBlockBtn" title="edit this block">
+                <span class="fa fa-close"></span>Edit
+            </button>
+            {{#each clauses}}
+                {{>clauseDisplay}}
+                {{conjunction}}
+            {{/each}}
+            {{#each blocks}}
+                {{>blockDisplay}}
+                {{conjunction}}
+            {{/blocks}}
+            <button class="btn btn-primary btn-sm btn-circle pull-left smartbio-blockDisplay-addBlockBtn" title="add a child block">
+                <span class="fa fa-plus"></span>Add a Child Block
+            </button>
         </div>
     </div>
 </template>
 
 
-<template name="clauseLister">
-    <div class="container-fluid">
-        {{#each clauses}}
-            <div class="row">
-                <div class="col col-sm-1 text-left pull-left">
-                    <button class="btn btn-primary btn-sm smartbio-clauseLister-editBtn" title="modify"><span class="fa fa-pencil"></span></button>
-                </div>
-                <div class="col col-sm-1 middle">
-                    {{showAnd}}
-                </div>
-                <!--<div class="col col-sm-3 middle">-->
-                    <!--<b>{{pred.name}}</b>-->
-                <!--</div>-->
-                <div class="col col-sm-9 middle">
-                    {{#each objs}}
-                        {{conjunction}} {{pred.name}}: <b>{{name}}</b>
-                    {{/each}}
-                </div>
 
-                <div class="col col-sm-1 text-right">
-                    <button class="btn btn-danger btn-sm smartbio-clauseLister-deleteBtn" title="remove"><span class="fa fa-close"></span></button>
+<template name="clauseDisplay">
+    <div class="btn-group" role="group" aria-label="...">
+        <button class="btn btn-default btn-sm smartbio-objectButtons-negateBtn" title="negate">
+            {{conjunctionStr}}
+        </button>
+        <button class="btn btn-default btn-sm smartbio-objectButtons-deleteObjBtn" title="remove">
+            {{pred.name}}: {{name}}  <span class="fa fa-close"></span>
+        </button>
+    </div>
+</template>
+
+
+
+<template name="blockEdit">
+    <div class="panel {{blockPanelColor}}">
+        <div class="panel-body">
+            <div class="text-center move-up-10">
+                <div class="radio">
+                    <label>
+                        <input type="radio" name="andOrRadios" id="AndSelected" value="AND" {{andChecked}}>
+                        All of these
+                    </label>
+                    &nbsp;&nbsp;&nbsp;
+                    <label>
+                        <input type="radio" name="andOrRadios" id="OrSelected" value="OR" {{orChecked}}>
+                        Any of these
+                    </label>
                 </div>
             </div>
-        {{/each}}
+
+
+            <button class="btn btn-danger btn-sm btn-circle pull-right smartbio-blockDisplay-removeThisBtn" title="remove this block">
+                <span class="fa fa-pencil"></span>Remove
+            </button>
+            <button class="btn btn-primary btn-sm btn-circle pull-left smartbio-blockDisplay-addClauseBtn" title="add a clause">
+                <span class="fa fa-plus"></span>Add Clause
+            </button>
+            {{#each clauses}}
+                {{showConjunction}}
+                {{>clauseEdit}}
+            {{/each}}
+            {{#each blocks}}
+                {{showConjunction}}
+                {{>blockDisplay}}
+            {{/blocks}}
+            <button class="btn btn-primary btn-sm btn-circle pull-left smartbio-blockDisplay-addBlockBtn" title="add a child block">
+                <span class="fa fa-plus"></span>Add a Child Block
+            </button>
+        </div>
+    </div>
+</template>
+
+
+
+<template name="clauseEdit">
+    <div class="btn-group" role="group" aria-label="...">
+        <button class="btn btn-default btn-sm smartbio-objectButtons-negateBtn" title="negate">
+            {{conjunctionStr}}
+        </button>
+        <button class="btn btn-default btn-sm smartbio-objectButtons-deleteObjBtn" title="remove">
+            {{pred.name}}: {{name}}  <span class="fa fa-close"></span>
+        </button>
     </div>
 </template>
