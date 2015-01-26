@@ -1,5 +1,5 @@
 
-//addRuleDialog = null;
+//ruleDialog = null;
 
 Meteor.startup(function(){
     addRule = function(rule) {
@@ -27,15 +27,17 @@ Meteor.startup(function(){
         });
     };
 
-    var saveBlock = function(block) {
-        var rule = Session.get("rule");
-        var blocks = rule.blocks;
-        blocks[block.idx] = block;
-        Session.set("rule", rule);
-        Session.set("selectedPredicate", null);
-        Session.set("selectedObjects", []);
-        Session.set("editBlockIndex", null);
 
+    var saveBlock = function(block, path) {
+        var rule = Session.get("rule");
+//        var blocks = rule.blocks;
+        if (!rule[path]) rule[path] = [];
+        if (!block.idx) block.idx = 0;
+        rule[path][block.idx] = block;
+    };
+
+
+    var clearClauseSelector = function() {
         var instance = EasySearch.getComponentInstance(
             { id : 'predicateChooser', index : 'predicates' }
         );
@@ -48,8 +50,9 @@ Meteor.startup(function(){
         document.getElementById("objectChooser").value = "";
     };
 
-    var addRuleDialogSpec = {
-        template: Template.addRuleDialog,
+
+    var ruleDialogSpec = {
+        template: Template.ruleDialog,
         title: "Add a Rule",
         modalDialogClass: "add-rule-dialog", //optional
         modalBodyClass: "add-rule-body", //optional
@@ -68,9 +71,9 @@ Meteor.startup(function(){
         }
     };
 
-    addRuleDialog = ReactiveModal.initDialog(addRuleDialogSpec);
+    ruleDialog = ReactiveModal.initDialog(ruleDialogSpec);
 
-    addRuleDialog.buttons.ok.on('click', function(button){
+    ruleDialog.buttons.ok.on('click', function(button){
         var rule = Session.get("rule");
         var ruleName = document.getElementById("ruleName").value;
         var ruleDescription = document.getElementById("ruleDescription").value;
@@ -86,16 +89,16 @@ Meteor.startup(function(){
         Session.set("rule", null);
     });
 
-    addRuleDialog.buttons.cancel.on('click', function(button){
+    ruleDialog.buttons.cancel.on('click', function(button){
         Session.set("ruleSearchBoxUserQuery", "");
     });
 
-    var addBlockDialogSpec = {
-        template: Template.addBlockDialog,
+    var blockDialogSpec = {
+        template: Template.blockEdit,
         title: "Add a Block",
-        modalDialogClass: "add-block-dialog", //optional
-        modalBodyClass: "add-block-body", //optional
-        modalFooterClass: "add-block-footer",//optional
+        modalDialogClass: "block-dialog", //optional
+        modalBodyClass: "block-body", //optional
+        modalFooterClass: "block-footer",//optional
         removeOnHide: false, //optional. If this is true, modal will be removed from DOM upon hiding
         buttons: {
             "ok": {
@@ -110,53 +113,51 @@ Meteor.startup(function(){
         }
     };
 
-    addBlockDialog = ReactiveModal.initDialog(addBlockDialogSpec);
+    blockDialog = ReactiveModal.initDialog(blockDialogSpec);
 
 
-    addBlockDialog.buttons.ok.on('click', function(button){
-        var idx = Session.get("editBlockIndex");
+    blockDialog.buttons.ok.on('click', function(button){
 //        var pred = Session.get("selectedPredicate");
-        var objs = Session.get("selectedObjects");
+        var block = Session.get("selectedBlock");
+        var path = Session.get("selectedPath");
+        var rule = Session.get("rule");
+        rule[path] = block;
 
-        if (!objs || objs.length===0) {
-            alert("You must add at least 1 object/value");
-            return false;
-        }
-
-        var ruleBefore = Session.get("rule");
-        if (idx == null) idx = ruleBefore.blocks.length;
-        var negated = false;
-
-        var block = {
-            objs: objs,
-            negated: negated,
-            idx: idx
-        };
-
-        saveBlock(block);
-        addBlockDialog.hide();
+//        if (!objs || objs.length===0) {
+//            alert("You must add at least 1 object/value");
+//            return false;
+//        }
+//
+//        var ruleBefore = Session.get("rule");
+//        if (idx == null) idx = ruleBefore.blocks.length;
+//        var negated = false;
+//
+//        var block = {
+//            objs: objs,
+//            negated: negated,
+//            idx: idx
+//        };
+//
+//        saveBlock(block);
+        blockDialog.hide();
     });
 
-    addBlockDialog.buttons.cancel.on('click', function(button){
+    blockDialog.buttons.cancel.on('click', function(button){
 //        Session.set("blockSearchBoxUserQuery", "");
     });
 
-    //Edit Rule Dialog
-    var editRuleDialogSpec = {
-        template: Template.editRuleDialog,
-        title: function() {
-//            var patient = Session.get("patient");
-            var rule = Session.get("selectedRule")
-            if (! rule) return "Edit a Rule";
-            return rule.objName;
-        },
-        modalDialogClass: "edit-rule-dialog", //optional
-        modalBodyClass: "edit-rule-body", //optional
-        modalFooterClass: "edit-rule-footer",//optional
+
+
+    var clauseDialogSpec = {
+        template: Template.clauseDialog,
+        title: "Add a Clause",
+        modalDialogClass: "clause-dialog", //optional
+        modalBodyClass: "clause-dialog-body", //optional
+        modalFooterClass: "clause-dialog-footer",//optional
         removeOnHide: false, //optional. If this is true, modal will be removed from DOM upon hiding
         buttons: {
             "ok": {
-                closeModalOnClick: true, // if this is false, dialog doesnt close automatically on click
+                closeModalOnClick: false, // if this is false, dialog doesnt close automatically on click
                 class: 'btn-info',
                 label: 'Save'
             },
@@ -167,11 +168,73 @@ Meteor.startup(function(){
         }
     };
 
-    editRuleDialog = ReactiveModal.initDialog(editRuleDialogSpec);
+    clauseDialog = ReactiveModal.initDialog(clauseDialogSpec);
 
-    editRuleDialog.buttons.ok.on('click', function(button){
-        console.log("Save rule = " + JSON.stringify(Session.get("selectedRule")));
-        updateRule(Session.get("selectedRule"));
+
+    clauseDialog.buttons.ok.on('click', function(button){
+        var clauses = Session.get("selectedClauses");
+
+        if (!clauses || clauses.length===0) {
+            alert("You must add at least 1 object/value");
+            return false;
+        }
+//
+//        var ruleBefore = Session.get("rule");
+//        if (idx == null) idx = ruleBefore.blocks.length;
+//        var negated = false;
+//
+//        var block = {
+//            objs: objs,
+//            negated: negated,
+//            idx: idx
+//        };
+
+        var block = Session.get("selectedBlock");
+        var path = Session.get("selectedPath");
+        var rule = Session.get("rule");
+
+        saveBlock(block, path);
+        clearClauseSelector();
+        blockDialog.hide();
     });
+
+    clauseDialog.buttons.cancel.on('click', function(button){
+//        Session.set("blockSearchBoxUserQuery", "");
+    });
+
+
+
+//    //Edit Rule Dialog
+//    var editRuleDialogSpec = {
+//        template: Template.editRuleDialog,
+//        title: function() {
+////            var patient = Session.get("patient");
+//            var rule = Session.get("selectedRule")
+//            if (! rule) return "Edit a Rule";
+//            return rule.objName;
+//        },
+//        modalDialogClass: "edit-rule-dialog", //optional
+//        modalBodyClass: "edit-rule-body", //optional
+//        modalFooterClass: "edit-rule-footer",//optional
+//        removeOnHide: false, //optional. If this is true, modal will be removed from DOM upon hiding
+//        buttons: {
+//            "ok": {
+//                closeModalOnClick: true, // if this is false, dialog doesnt close automatically on click
+//                class: 'btn-info',
+//                label: 'Save'
+//            },
+//            "cancel": {
+//                class: 'btn-danger',
+//                label: 'Cancel'
+//            }
+//        }
+//    };
+//
+//    editRuleDialog = ReactiveModal.initDialog(editRuleDialogSpec);
+//
+//    editRuleDialog.buttons.ok.on('click', function(button){
+//        console.log("Save rule = " + JSON.stringify(Session.get("selectedRule")));
+//        updateRule(Session.get("selectedRule"));
+//    });
 });
 

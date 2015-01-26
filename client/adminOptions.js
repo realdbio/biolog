@@ -11,7 +11,12 @@ Template.adminOptions.events({
         event.preventDefault();
 //        var patient = Session.get("patient");
         var rule = {
-            etypes: ["patient"]
+            etypes: ["patient"],
+            block: {
+                conjunction: "AND",
+                clauses: [],
+                blocks: []
+            }
         };
         var ruleTool = new RuleTool(rule);
         rule = ruleTool.getInitializedRule();
@@ -20,6 +25,6 @@ Template.adminOptions.events({
 //        console.log("addRuleOption: rule=" + JSON.stringify(rule));
 //        setStartEndDateControls("addDiagnosisDialog");
         console.log("adminOptions: ruleTool=" + JSON.stringify(ruleTool));
-        addRuleDialog.show();
+        ruleDialog.show();
     }
 });

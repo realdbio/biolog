@@ -5,10 +5,10 @@
     /*float: none;*/
 }
 
-.move-up-10 {
-    margin-top: -10px;
+.move-up-in-panel {
+    margin-top: -15px;
 }
 
-.move-down-15 {
+.move-down-in-panel {
     margin-top: 15px;
 }

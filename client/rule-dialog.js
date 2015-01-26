@@ -1,5 +1,5 @@
 
-Template.addRuleDialog.created = function() {
+Template.ruleDialog.created = function() {
     predicateChooser = EasySearch.getComponentInstance(
         { index : 'predicates', id: 'predicateChooser' }
     );
@@ -18,7 +18,7 @@ Template.addRuleDialog.created = function() {
 };
 
 
-Template.addRuleDialog.events({
+Template.ruleDialog.events({
     "submit .smartbio-new-rule": function (event) {
         // This function is called when the new task form is submitted
 
@@ -57,7 +57,12 @@ Template.addRuleDialog.events({
 
 });
 
-Template.addRuleDialog.helpers({
+Template.ruleDialog.helpers({
+    rule: function() {
+        var rule = Session.get("rule");
+        return rule;
+    },
+
     etypeName: function() {
         var rule = Session.get("rule");
         if (! rule) return "";
@@ -76,8 +81,62 @@ Template.addRuleDialog.helpers({
             return "";
         }
         return "disabled";
+    }
+
+
+});
+
+Template.blockEdit.events({
+    'click .smartbio-blockEdit-removeThisBtn': function(event) {
+        var rule = Session.get("rule");
+        var blocks = rule.blocks;
+        for (var i = this.idx; i<blocks.length; i++) {
+            var block = blocks[i];
+            block.idx = block.idx -1;
+        }
+        blocks.splice(this.idx, 1);
+        Session.set("rule", rule);
     },
 
+    'click .smartbio-blockEdit-addClauseBtn': function(event, template) {
+        Session.set("selectedBlock", this);
+        clauseDialog.show();
+    },
+
+    'click .smartbio-blockEdit-addBlockBtn': function(event, template) {
+        console.log('click .smartbio-blockEdit-addBlockBtn: this=' + JSON.stringify(this));
+        var rule = Session.get("rule");
+        console.log("rule=" + JSON.stringify(rule));
+        var newPath = this.path;
+        if (! newPath) newPath = "block";
+        newPath += ".blocks";
+
+        if (!this.block.blocks) this.block.blocks = [];
+        var idx = this.block.blocks.length;
+        newPath += "." + idx;
+        var conj = "OR";
+        if (this.conjunction == "OR") conj = "AND";
+        var newBlock = {
+            conjunction: conj,
+            clauses: [],
+            blocks: [],
+            path: newPath,
+            idx: idx
+        };
+
+        //save the block
+        //TODO - are both of lines these necessary?
+        this.block.blocks.push(newBlock);
+        setValuePath(rule, newPath, newBlock);
+
+        Session.set("selectedBlock", newBlock);
+        Session.set("rule", rule);
+        blockDialog.show();
+    }
+});
+
+
+Template.blockEdit.helpers({
     andChecked: function() {
         var rule = Session.get("rule");
         if (! rule) return "";
@@ -94,40 +153,24 @@ Template.addRuleDialog.helpers({
         Session.set("rule", rule);
         if (rule.booleanMode == "OR") return "checked";
         return "";
+    },
+
+    blocks: function() {
+        return this.blocks;
+    },
+
+    clauses: function() {
+        return this.clauses;
+    },
+
+    blockPanelColor: function() {
+        if (this.conjunction == "AND") {
+            return "panel-primary bg-info";
+        }
+        return "panel-success bg-success";
     }
-
-
 });
 
-Template.blockEdit.events({
-    'click .smartbio-blockEdit-removeThisBtn': function(event) {
-        var rule = Session.get("rule");
-        var blocks = rule.blocks;
-        for (var i=this.idx; i<blocks.length; i++) {
-            var block = blocks[i];
-            block.idx = block.idx -1;
-        }
-        blocks.splice(this.idx, 1);
-        Session.set("rule", rule);
-    },
-
-    'click .smartbio-blockEdit-addClauseBtn': function(event, template) {
-        Session.set("selectedBlock", this);
-        clauseDialog.show();
-    },
-
-    'click .smartbio-blockEdit-addBlockBtn': function(event, template) {
-        var newBlock = {
-            conjunction: "OR",
-            clauses: [],
-            blocks: []
-        };
-
-        this.blocks.push(newBlock);
-        Session.set("selectedBlock", newBlock);
-        blockDialog.show();
-    }
-})
 
 Template.blockDisplay.helpers({
     blocks: function() {

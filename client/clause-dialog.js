@@ -1,6 +1,6 @@
 
 
-Template.addClauseDialog.events({
+Template.clauseDialog.events({
     "submit .smartbio-new-rule": function (event) {
         // This function is called when the new task form is submitted
 
@@ -18,26 +18,26 @@ Template.addClauseDialog.events({
     //TODO "OR" button to add more
     'click .smartbio-clauseObjBtn': function(event, template) {
         event.preventDefault();
-        var selectedObjects = Session.get("selectedObjects");
+        var selectedClauses = Session.get("selectedClauses");
         var pred = Session.get("selectedPredicate");
         if (!pred) return alert("Please select a property");
-        if (!selectedObjects || selectedObjects.length == 0) {
-            selectedObjects = [];
+        if (!selectedClauses || selectedClauses.length == 0) {
+            selectedClauses = [];
             this.conjunction = null;
         } else {
             this.conjunction = "OR";
         }
         this.pred = pred;
 
-        var idx = selectedObjects.length;
+        var idx = selectedClauses.length;
         this.idx = idx;
-        selectedObjects.push(this);
-        Session.set("selectedObjects", selectedObjects);
+        selectedClauses.push(this);
+        Session.set("selectedClauses", selectedClauses);
     }
 });
 
 
-Template.addClauseDialog.helpers({
+Template.clauseDialog.helpers({
     etypeName: function() {
         var rule = Session.get("rule");
         if (! rule) return "";
@@ -52,7 +52,7 @@ Template.addClauseDialog.helpers({
     },
 
     addButtonEnabled: function() {
-        if (Session.get("selectedPredicate") && Session.get("selectedObjects")) {
+        if (Session.get("selectedPredicate") && Session.get("selectedClauses")) {
             return "";
         }
         return "disabled";
@@ -66,28 +66,28 @@ Template.addClauseDialog.helpers({
 });
 
 
-Template.objectButtons.events({
-    'click .smartbio-objectButtons-deleteObjBtn': function(event) {
-        console.log('click .smartbio-objectButtons-deleteObjBtn');
-        var objects = Session.get("selectedObjects");
-        for (var i=this.idx; i<objects.length; i++) {
-            var object = objects[i];
-            object.idx = object.idx -1;
-        }
-        objects.splice(this.idx, 1);
-        Session.set("selectedObjects", objects);
-    }
-})
+//Template.objectButtons.events({
+//    'click .smartbio-objectButtons-deleteObjBtn': function(event) {
+//        console.log('click .smartbio-objectButtons-deleteObjBtn');
+//        var objects = Session.get("selectedClauses");
+//        for (var i=this.idx; i<objects.length; i++) {
+//            var object = objects[i];
+//            object.idx = object.idx -1;
+//        }
+//        objects.splice(this.idx, 1);
+//        Session.set("selectedClauses", objects);
+//    }
+//})
 
-Template.objectButtons.helpers({
-
-    clauseObjects: function() {
-        var selectedObjects = Session.get("selectedObjects");
-        return selectedObjects;
-    },
-
-    showOr: function() {
-        if (this.idx ===0) return "";
-        return " or ";
-    }
-});
+//Template.objectButtons.helpers({
+//
+//    clauseClauses: function() {
+//        var selectedClauses = Session.get("selectedClauses");
+//        return selectedClauses;
+//    },
+//
+//    showOr: function() {
+//        if (this.idx ===0) return "";
+//        return " or ";
+//    }
+//});
