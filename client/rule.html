@@ -1,0 +1,214 @@
+<template name="rule">
+    <div class="container-fluid">
+        <form class="form-horizontal smartbio-new-rule">
+
+            <div class="form-group">
+                <label for="ruleName" class="col-sm-2 control-label">Title</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" name="ruleName" id="ruleName" placeholder="Rule Title" size="30"/>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="ruleDescription" class="col-sm-2 control-label">Message</label>
+                <div class="col-sm-10">
+                    <textarea class="form-control" rows="3" name="ruleDescription" id="ruleDescription"
+                            placeholder="Text to display when the rule applies"></textarea>
+                </div>
+            </div>
+
+            <h2 class="panel-title">Flag this rule for any <b>{{etypeName}}</b> that has:</h2>
+
+            {{#with rule.block}}
+            <div class="container-fluid move-down-in-panel">
+                {{> blockEdit}}
+            </div>
+            {{/with}}
+
+            <!--<div class="panel panel-info">-->
+                <!--<div class="panel-heading">-->
+                    <!--<h3 class="panel-title">Flag this rule for any <b>{{etypeName}}</b> that has:</h3>-->
+                <!--</div>-->
+                <!--<div class="panel-body">-->
+                    <!--{{#with rule.block}}-->
+                        <!--<div class="container-fluid move-down-15">-->
+                            <!--{{> blockEdit}}-->
+                        <!--</div>-->
+                    <!--{{/with}}-->
+                <!--</div>-->
+            <!--</div>-->
+        </form>
+    </div>
+</template>
+
+
+
+<template name="blockDisplay">
+    <div class="{{blockPanelColor}}">
+        <div class="panel-body">
+            <button class="btn btn-default btn-sm pull-left biolog-blockDisplay-editBlockBtn" title="edit this block">
+                <span class="fa fa-pencil"> </span>
+            </button>
+            <span class="pull-right">
+                <button class="btn btn-danger btn-sm biolog-blockDisplay-removeThisBtn {{displayRemoveButton}}" title="remove this block">
+                    <span class="fa fa-close"></span>
+                </button>
+            </span>
+            {{#each clauses}}
+                {{>clauseDisplay}}
+                {{conjunction}}
+            {{/each}}
+            {{#each blocks}}
+                {{>blockDisplay}}
+                {{conjunction}}
+            {{/each}}
+        </div>
+    </div>
+</template>
+
+
+
+<template name="blockEdit">
+    <div class="{{blockPanelColor}}">
+        <div class="panel-heading">
+            <select name="selectAndOr" class="selectAndOr">
+                <option value="AND" {{andSelected}}>ALL of these (AND)</option>
+                <option value="OR" {{orSelected}}>ANY of these (OR)</option>
+            </select>
+
+            <span class="pull-right">
+                <button class="btn btn-danger btn-xs biolog-blockEdit-removeThisBtn {{displayRemoveButton}}" title="remove this block">
+                    <span class="fa fa-close"></span>
+                </button>
+            </span>
+        </div>
+        <div class="panel-body">
+            <!--<div class="text-center move-up-in-panel">-->
+            <!--</div>-->
+
+            {{#each clauses}}
+                {{showClauseConjunction}}
+                {{>clauseDisplay}}
+            {{/each}}
+
+            <div>
+                <!--<button class="btn btn-primary btn-sm btn-circle center smartbio-blockEdit-addClauseBtn" title="add a clause">-->
+                    <!--<span class="fa fa-plus"></span>  Add an 'IF' Clause-->
+                <!--</button>-->
+                {{>clauseEdit}}
+            </div>
+
+            {{#each blocks}}
+                {{showBlockConjunction}}
+                {{>blockDisplay}}
+            {{/each}}
+            <div>
+                <button class="btn btn-primary btn-sm btn-circle center smartbio-blockEdit-addBlockBtn" title="add a child block">
+                    <span class="fa fa-plus"></span>  Add a Child Block
+                </button>
+            </div>
+        </div>
+    </div>
+</template>
+
+
+
+
+<template name="clauseDisplay">
+    {{conjunctionStr}}
+    <div class="btn-group" role="group" aria-label="...">
+        <button class="btn btn-default btn-sm smartbio-objectButtons-negateBtn {{notHidden}}" title="negate">
+            NOT
+        </button>
+        <button class="btn btn-default btn-sm smartbio-objectButtons-deleteObjBtn" title="remove">
+            {{pred.name}}: {{object.name}}  <span class="fa fa-close"></span>
+        </button>
+    </div>
+</template>
+
+
+<template name="clauseEdit">
+    <div class="container-fluid">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Add an IF</h3>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col col-sm-4">
+                        {{> predicateSelector}}
+                    </div>
+                    <div class="col col-sm-8">
+                        {{> valueSelector}}
+                    </div>
+                </div>
+                <div class="row text-center">
+                    <button class="btn btn-sm btn-success biolog-clauseEdit-addBtn">Add</button>
+                </div>
+            </div>
+        </div>
+
+        <!--<div class="row">-->
+        <!--<div class="col-sm-4">-->
+        <!--<h4>...has <b>{{displayPredicate}}</b></h4>-->
+        <!--{{> predicateSelector}}-->
+        <!--</div>-->
+        <!--<div class="col-sm-8">-->
+        <!--<h4>...of</h4>-->
+        <!--<p>-->
+        <!--{{> objectButtons}}-->
+        <!--</p>-->
+        <!--{{> valueSelector}}-->
+        <!--</div>-->
+        <!--</div>-->
+    </div>
+</template>
+
+
+
+<template name="predicateSelector">
+    <div class="row">
+        <div class="col">
+            {{> esInput index="predicates" placeholder="Select a property..." id="predicateChooser" }}
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            {{#esEach index="predicates" id="predicateChooser"}}
+            <div class="item">
+                <button type="button" class="btn btn-default btn-sm biolog-clausePredBtn">
+                    <span class="fa fa-square-o"></span> {{name}}
+                </button>
+            </div>
+            {{/esEach}}
+        </div>
+    </div>
+</template>
+
+
+<template name="valueSelector">
+    <div class="row">
+        <div class="col">
+            {{> esInput index="entities" placeholder="Select..." id="objectChooser" }}
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+
+            <ul class="list-group">
+                {{#esEach index="entities" id="objectChooser"}}
+                <!--<div class="item">-->
+                    <!--<button type="button" class="btn btn-default btn-sm biolog-clauseObjBtn">-->
+                        <!--<span class="glyphicon glyphicon-book"></span> {{name}}-->
+                    <!--</button>-->
+                <!--</div>-->
+                    <li class="list-group-item biolog-clauseObjBtn">
+                        <small>{{name}}</small>
+                    </li>
+                {{/esEach}}
+            </ul>
+        </div>
+    </div>
+</template>
