@@ -285,36 +285,30 @@ Template.clauseDisplay.helpers({
 });
 
 Template.clauseEdit.events({
-    'click .biolog-clauseEdit-addBtn': function(event, template) {
+//    'click .biolog-clauseEdit-addBtn': function(event, template) {
+//
+//    },
 
-    },
 
-    'click .biolog-clausePredBtn': function(event, template) {
-        event.preventDefault();
-        Session.set("selectedPredicate", this);
-        //set easy search to search for entities of the predicate's objectEtypes
-        EasySearch.changeProperty('entities', 'etypes', this.objectEtypes);
-    },
 
-    //TODO "OR" button to add more
-    'click .biolog-clauseObjBtn': function(event, template) {
-        event.preventDefault();
-        var selectedClauses = Session.get("selectedClauses");
-        var pred = Session.get("selectedPredicate");
-        if (!pred) return alert("Please select a property");
-        if (!selectedClauses || selectedClauses.length == 0) {
-            selectedClauses = [];
-            this.conjunction = null;
-        } else {
-            this.conjunction = "OR";
-        }
-        this.pred = pred;
-
-        var idx = selectedClauses.length;
-        this.idx = idx;
-        selectedClauses.push(this);
-        Session.set("selectedClauses", selectedClauses);
-    }
+//    'click .biolog-clauseObjBtn': function(event, template) {
+//        event.preventDefault();
+//        var selectedClauses = Session.get("selectedClauses");
+//        var pred = Session.get("selectedPredicate");
+//        if (!pred) return alert("Please select a property");
+//        if (!selectedClauses || selectedClauses.length == 0) {
+//            selectedClauses = [];
+////            this.conjunction = null;
+////        } else {
+////            this.conjunction = "OR";
+//        }
+//        this.pred = pred;
+//
+//        var idx = selectedClauses.length;
+//        this.idx = idx;
+//        selectedClauses.push(this);
+//        Session.set("selectedClauses", selectedClauses);
+//    }
 });
 
 Template.clauseEdit.helpers({
@@ -324,12 +318,56 @@ Template.clauseEdit.helpers({
 
 });
 
+Template.predicateSelector.created = function() {
+    var instance = EasySearch.getComponentInstance(
+        { id : 'predicateChooser', index : 'predicates' }
+    );
+    instance.on('searchingDone', function (searchingIsDone) {
+        if (searchingIsDone) Session.set("selectedPredicate", null);
+    });
+};
+
+Template.predicateSelector.events({
+    'click .biolog-clausePredBtn': function(event, template) {
+        event.preventDefault();
+        Session.set("selectedPredicate", this);
+        //set easy search to search for entities of the predicate's objectEtypes
+        EasySearch.changeProperty('entities', 'etypes', this.objectEtypes);
+
+        var instance = EasySearch.getComponentInstance(
+            { id : 'predicateChooser', index : 'predicates' }
+        );
+        instance.clear();
+    }
+});
+
+Template.predicateSelector.helpers({
+    selectedPredName: function() {
+        var selectedPredicate = Session.get("selectedPredicate");
+        if (!selectedPredicate) return "";
+        return selectedPredicate.name;
+    },
+
+    hidePredIfNoneSelected: function() {
+        var selectedPredicate = Session.get("selectedPredicate");
+        if (selectedPredicate) return "";
+        return "hidden";
+    }
+});
+
+Template.valueSelector.created = function() {
+    var instance = EasySearch.getComponentInstance(
+        { id : 'objectChooser', index : 'entities' }
+    );
+    instance.on('searchingDone', function (searchingIsDone) {
+        if (searchingIsDone) Session.set("selectedObject", null);
+    });
+};
 
 Template.valueSelector.events({
     'click .biolog-clauseObjBtn': function(event, template) {
-        console.log("Save: " + JSON.stringify(this));
         var pred = Session.get("selectedPredicate");
-        if (! pred) return alert("Please select a property");
+        if (! pred) return alert("Please select a property, to the left");
 
         var rule = Session.get("rule");
         var block = Session.get("selectedBlock");
@@ -343,8 +381,11 @@ Template.valueSelector.events({
             object: this
         };
 
+
+        Session.set("selectedObject", this);
         block.clauses.push(clause);
         setValuePath(rule, block.path, block);
+        console.log("Added to the clauses.  Rule=" + JSON.stringify(rule));
         Session.set("rule", rule);
 
         var instance = EasySearch.getComponentInstance(
@@ -356,7 +397,19 @@ Template.valueSelector.events({
 });
 
 
+Template.valueSelector.helpers({
+    selectedObjName: function() {
+        var selectedObject = Session.get("selectedObject");
+        if (!selectedObject) return "";
+        return selectedObject.name;
+    },
 
+    hideObjectIfNoneSelected: function() {
+        var selectedObject = Session.get("selectedObject");
+        if (selectedObject) return "";
+        return "hidden";
+    }
+});
 
 //Template.clauseDialog.events({
 //    "submit .smartbio-new-rule": function (event) {

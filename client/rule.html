@@ -129,22 +129,17 @@
 
 <template name="clauseEdit">
     <div class="container-fluid">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h3 class="panel-title">Add an IF</h3>
-            </div>
-            <div class="panel-body">
-                <div class="row">
-                    <div class="col col-sm-4">
-                        {{> predicateSelector}}
-                    </div>
-                    <div class="col col-sm-8">
-                        {{> valueSelector}}
-                    </div>
+       <div class="alert alert-warning">
+            <div class="row">
+                <div class="col col-sm-4">
+                    {{> predicateSelector}}
                 </div>
-                <div class="row text-center">
-                    <button class="btn btn-sm btn-success biolog-clauseEdit-addBtn">Add</button>
+                <div class="col col-sm-8">
+                    {{> valueSelector}}
                 </div>
+                <!--<div class="col col-sm-1">-->
+                    <!--<button class="btn btn-sm btn-success biolog-clauseEdit-addBtn">Add</button>-->
+                <!--</div>-->
             </div>
         </div>
 
@@ -175,6 +170,13 @@
 
     <div class="row">
         <div class="col-md-6">
+
+            <div class="biolog-predSelector-selectedPred {{hidePredIfNoneSelected}}">
+                <button type="button" class="btn btn-success btn-sm biolog-selectedPredBtn">
+                    <span class="glyphicon glyphicon-check"></span> {{selectedPredName}}
+                </button>
+            </div>
+
             {{#esEach index="predicates" id="predicateChooser"}}
             <div class="item">
                 <button type="button" class="btn btn-default btn-sm biolog-clausePredBtn">
@@ -197,18 +199,25 @@
     <div class="row">
         <div class="col-md-6">
 
-            <ul class="list-group">
-                {{#esEach index="entities" id="objectChooser"}}
-                <!--<div class="item">-->
-                    <!--<button type="button" class="btn btn-default btn-sm biolog-clauseObjBtn">-->
-                        <!--<span class="glyphicon glyphicon-book"></span> {{name}}-->
-                    <!--</button>-->
-                <!--</div>-->
-                    <li class="list-group-item biolog-clauseObjBtn">
-                        <small>{{name}}</small>
-                    </li>
-                {{/esEach}}
-            </ul>
+            <div class="biolog-valueSelector-selectedObject {{hideObjectIfNoneSelected}}">
+                <button type="button" class="btn btn-success btn-sm biolog-selectedObjBtn">
+                    <span class="glyphicon glyphicon-check"></span> {{selectedObjName}}
+                </button>
+            </div>
+            <!--<ul class="list-group">-->
+            {{#esEach index="entities" id="objectChooser"}}
+                <div class="item">
+                    <button type="button" class="btn btn-default btn-sm biolog-clauseObjBtn">
+                        <span class="glyphicon glyphicon-book"></span> {{name}}
+                    </button>
+                </div>
+                <!--<li class="list-group-item biolog-clauseObjBtn">-->
+                    <!--<small>{{name}}</small>-->
+                <!--</li>-->
+            {{/esEach}}
+            <!--</ul>-->
+
+
         </div>
     </div>
 </template>
