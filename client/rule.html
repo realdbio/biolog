@@ -1,6 +1,6 @@
 <template name="rule">
     <div class="container-fluid">
-        <form class="form-horizontal smartbio-new-rule">
+        <form class="form-horizontal biolog-new-rule">
 
             <div class="form-group">
                 <label for="ruleName" class="col-sm-2 control-label">Title</label>
@@ -55,11 +55,11 @@
                 </button>
             </span>
             {{#each clauses}}
-                {{>clauseDisplay}}
+                {{> clauseDisplay}}
                 {{conjunction}}
             {{/each}}
             {{#each blocks}}
-                {{>blockDisplay}}
+                {{> blockDisplay}}
                 {{conjunction}}
             {{/each}}
         </div>
@@ -71,6 +71,7 @@
 <template name="blockEdit">
     <div class="{{blockPanelColor}}">
         <div class="panel-heading">
+        <!--<div class="row">-->
             <select name="selectAndOr" class="selectAndOr">
                 <option value="AND" {{andSelected}}>ALL of these (AND)</option>
                 <option value="OR" {{orSelected}}>ANY of these (OR)</option>
@@ -83,27 +84,37 @@
             </span>
         </div>
         <div class="panel-body">
+            {{> clauseEdit}}
             <!--<div class="text-center move-up-in-panel">-->
             <!--</div>-->
-
+            <!--<div class="row">-->
             {{#each clauses}}
                 {{showClauseConjunction}}
-                {{>clauseDisplay}}
+                {{> clauseDisplay}}
             {{/each}}
 
-            <div>
-                <!--<button class="btn btn-primary btn-sm btn-circle center smartbio-blockEdit-addClauseBtn" title="add a clause">-->
+            <!--<div>-->
+                <!--<button class="btn btn-primary btn-sm btn-circle center biolog-blockEdit-addClauseBtn" title="add a clause">-->
                     <!--<span class="fa fa-plus"></span>  Add an 'IF' Clause-->
                 <!--</button>-->
-                {{>clauseEdit}}
-            </div>
 
+            <!--</div>-->
+
+            <!--{{> blockListDisplay parent=this}}-->
+
+            <div class="row">
+                {{conjunction}}
+            </div>
             {{#each blocks}}
-                {{showBlockConjunction}}
-                {{>blockDisplay}}
+                <div class="row">
+                    {{blockConjunction ..}}
+                </div>
+                {{> blockDisplay}}
             {{/each}}
+
             <div>
-                <button class="btn btn-primary btn-sm btn-circle center smartbio-blockEdit-addBlockBtn" title="add a child block">
+                <!--{{parentBlockConjunction}}-->
+                <button class="btn btn-primary btn-sm btn-circle center biolog-blockEdit-addBlockBtn" title="add a child block">
                     <span class="fa fa-plus"></span>  Add a Child Block
                 </button>
             </div>
@@ -112,15 +123,23 @@
 </template>
 
 
-
+<!--<template name="blockListDisplay">-->
+    <!--<div class="row">-->
+        <!--{{parent.conjunction}}-->
+    <!--</div>-->
+    <!--{{#each parent.blocks}}-->
+        <!--{{parentBlockConjunction ..}}-->
+        <!--{{> blockDisplay}}-->
+    <!--{{/each}}-->
+<!--</template>-->
 
 <template name="clauseDisplay">
-    {{conjunctionStr}}
+    {{blockConjunction ../.. .. this}}
     <div class="btn-group" role="group" aria-label="...">
-        <button class="btn btn-default btn-sm smartbio-objectButtons-negateBtn {{notHidden}}" title="negate">
+        <button class="btn btn-default btn-sm biolog-objectButtons-negateBtn {{notHidden}}" title="negate">
             NOT
         </button>
-        <button class="btn btn-default btn-sm smartbio-objectButtons-deleteObjBtn" title="remove">
+        <button class="btn btn-default btn-sm biolog-objectButtons-deleteObjBtn" title="remove">
             {{pred.name}}: {{object.name}}  <span class="fa fa-close"></span>
         </button>
     </div>
@@ -128,7 +147,7 @@
 
 
 <template name="clauseEdit">
-    <div class="container-fluid">
+    <!--<div class="container-fluid">-->
        <div class="alert alert-warning">
             <div class="row">
                 <div class="col col-sm-4">
@@ -156,7 +175,7 @@
         <!--{{> valueSelector}}-->
         <!--</div>-->
         <!--</div>-->
-    </div>
+    <!--</div>-->
 </template>
 
 

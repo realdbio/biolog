@@ -19,7 +19,7 @@ Template.rule.created = function() {
 
 
 Template.rule.events({
-    "submit .smartbio-new-rule": function (event) {
+    "submit .biolog-new-rule": function (event) {
         // This function is called when the new task form is submitted
 
 //        var name = event.target.ruleName.value;
@@ -37,7 +37,7 @@ Template.rule.events({
         return false;
     },
 
-    'click #smartbio-addClauseBtn': function(event, template) {
+    'click #biolog-addClauseBtn': function(event, template) {
         Session.set("editClauseIndex", null);
         addClauseDialog.show();
     },
@@ -108,7 +108,7 @@ Template.rule.helpers({
 });
 
 Template.blockEdit.events({
-    'click .smartbio-blockEdit-removeThisBtn': function(event) {
+    'click .biolog-blockEdit-removeThisBtn': function(event) {
         var rule = Session.get("rule");
         var blocks = rule.blocks;
         for (var i = this.idx; i<blocks.length; i++) {
@@ -119,13 +119,13 @@ Template.blockEdit.events({
         Session.set("rule", rule);
     },
 
-//    'click .smartbio-blockEdit-addClauseBtn': function(event, template) {
+//    'click .biolog-blockEdit-addClauseBtn': function(event, template) {
 //        Session.set("selectedBlock", this);
 //        clauseDialog.show();
 //    },
 
-    'click .smartbio-blockEdit-addBlockBtn': function(event, template) {
-        console.log('click .smartbio-blockEdit-addBlockBtn: this=' + JSON.stringify(this));
+    'click .biolog-blockEdit-addBlockBtn': function(event, template) {
+        console.log('click .biolog-blockEdit-addBlockBtn: this=' + JSON.stringify(this));
         var rule = Session.get("rule");
         console.log("rule=" + JSON.stringify(rule));
         var newPath = this.path;
@@ -151,6 +151,8 @@ Template.blockEdit.events({
         setValuePath(rule, newPath, newBlock);
 
         Session.set("selectedBlock", newBlock);
+//        Session.set("selectedPredicate", null);
+        Session.set("selectedObject", null);
         Session.set("rule", rule);
         blockDialog.show();
     },
@@ -192,6 +194,8 @@ Template.blockEdit.helpers({
     },
 
     clauses: function() {
+//        var rule = Session.get("rule");
+//        var block = getValuePath(rule, this.path);
         return this.clauses;
     },
 
@@ -209,13 +213,23 @@ Template.blockEdit.helpers({
     displayRemoveButton: function() {
         if (this.path == "block") return "hidden";
         return "";
+    },
+
+    blockConjunction: function() {
+        return this.conjunction;
     }
 });
+//
+//Template.blockListDisplay.helpers({
+//    blocks: function() {
+//        return this.blocks;
+//    }
+//});
 
 
 Template.blockDisplay.events({
     'click .biolog-blockDisplay-editBlockBtn': function(event, template) {
-        console.log('click .smartbio-blockDisplay-editBlockBtn: this=' + JSON.stringify(this));
+        console.log('click .biolog-blockDisplay-editBlockBtn: this=' + JSON.stringify(this));
 
         Session.set("selectedBlock", this);
         blockDialog.show();
@@ -251,6 +265,10 @@ Template.blockDisplay.helpers({
     displayRemoveButton: function() {
         if (this.path == "block") return "hidden";
         return "";
+    },
+
+    blockConjunction: function() {
+        return this.conjunction;
     }
 });
 
@@ -270,19 +288,24 @@ Template.clauseEdit.created = function () {
 };
 
 Template.clauseDisplay.helpers({
-    conjunctionStr: function() {
-        var block = Session.get("selectedBlock");
-        var rule = Session.get("rule");
-        if (! block) block = rule.block;
-        if (this.idx === 0) return "";
-        return block.conjunction;
-    },
+//    conjunctionStr: function() {
+////        var block = Session.get("selectedBlock");
+//        var rule = Session.get("rule");
+//        if (! block) block = rule.block;
+//        if (this.idx === 0) return "";
+//        return block.conjunction;
+//    },
 
     notHidden: function() {
         if (this.negated) return "";
         return "hidden";
     }
 });
+
+Template.clauseDisplay.blockConjunction = function(parentTemplate, currentTemplate, currentValueInsideEachLoop) {
+    console.log("parentTemplate=" + JSON.stringify(parentTemplate));
+    return parentTemplate.conjunction;
+}
 
 Template.clauseEdit.events({
 //    'click .biolog-clauseEdit-addBtn': function(event, template) {
@@ -412,14 +435,14 @@ Template.valueSelector.helpers({
 });
 
 //Template.clauseDialog.events({
-//    "submit .smartbio-new-rule": function (event) {
+//    "submit .biolog-new-rule": function (event) {
 //        // This function is called when the new task form is submitted
 //
 //        // Prevent default form submit
 //        return false;
 //    },
 //
-//    'click .smartbio-clausePredBtn': function(event, template) {
+//    'click .biolog-clausePredBtn': function(event, template) {
 //        event.preventDefault();
 //        Session.set("selectedPredicate", this);
 //        //set easy search to search for entities of the predicate's objectEtypes
@@ -427,7 +450,7 @@ Template.valueSelector.helpers({
 //    },
 //
 //    //TODO "OR" button to add more
-//    'click .smartbio-clauseObjBtn': function(event, template) {
+//    'click .biolog-clauseObjBtn': function(event, template) {
 //        event.preventDefault();
 //        var selectedClauses = Session.get("selectedClauses");
 //        var pred = Session.get("selectedPredicate");
