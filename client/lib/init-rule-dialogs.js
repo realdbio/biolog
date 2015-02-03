@@ -93,7 +93,7 @@ Meteor.startup(function(){
 //    });
 
     var blockDialogSpec = {
-        template: Template.blockEdit,
+        template: Template.blockEditDialog,
         title: "Add a Block",
         modalDialogClass: "block-dialog", //optional
         modalBodyClass: "block-body", //optional

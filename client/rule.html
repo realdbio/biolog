@@ -45,27 +45,38 @@
 
 <template name="blockDisplay">
     <div class="{{blockPanelColor}}">
-        <div class="panel-body">
-            <button class="btn btn-default btn-sm pull-left biolog-blockDisplay-editBlockBtn" title="edit this block">
+        <!--<div class="panel-body">-->
+        <div class="row">
+            <button class="btn btn-default btn-sm pull-left biolog-blockDisplay-editBlockBtn biolog-menuButton" title="edit this block">
                 <span class="fa fa-pencil"> </span>
             </button>
             <span class="pull-right">
-                <button class="btn btn-danger btn-sm biolog-blockDisplay-removeThisBtn {{displayRemoveButton}}" title="remove this block">
+                <button class="btn btn-danger btn-sm biolog-blockDisplay-removeThisBtn {{displayRemoveButton}} biolog-menuButton" title="remove this block">
                     <span class="fa fa-close"></span>
                 </button>
             </span>
-            {{#each clauses}}
-                {{> clauseDisplay}}
-                {{conjunction}}
-            {{/each}}
-            {{#each blocks}}
-                {{> blockDisplay}}
-                {{conjunction}}
-            {{/each}}
         </div>
+
+        {{#each clauses}}
+            {{displayConjunction}}
+            {{> clauseDisplay}}
+        {{/each}}
+        <div class="row">
+            {{conjunctionBeforeBlocks}}
+        </div>
+        {{#each blocks}}
+            {{displayConjunction ..}}
+            {{> blockDisplay}}
+            <!--{{conjunction}}-->
+        {{/each}}
+        <!--</div>-->
     </div>
 </template>
 
+
+<template name="blockEditDialog">
+    {{> Template.dynamic template="blockEdit" data=getSelectedBlock }}
+</template>
 
 
 <template name="blockEdit">
@@ -88,8 +99,9 @@
             <!--<div class="text-center move-up-in-panel">-->
             <!--</div>-->
             <!--<div class="row">-->
+            <!--{{> Template.dynamic template="clauseListDisplay" data=this }}-->
             {{#each clauses}}
-                {{showClauseConjunction}}
+                {{displayConjunction}}
                 {{> clauseDisplay}}
             {{/each}}
 
@@ -107,7 +119,7 @@
             </div>
             {{#each blocks}}
                 <div class="row">
-                    {{blockConjunction ..}}
+                    {{displayConjunction ..}}
                 </div>
                 {{> blockDisplay}}
             {{/each}}
@@ -123,18 +135,16 @@
 </template>
 
 
-<!--<template name="blockListDisplay">-->
-    <!--<div class="row">-->
-        <!--{{parent.conjunction}}-->
-    <!--</div>-->
-    <!--{{#each parent.blocks}}-->
-        <!--{{parentBlockConjunction ..}}-->
-        <!--{{> blockDisplay}}-->
+<!--<template name="clauseListDisplay">-->
+    <!--{{#each clauses}}-->
+        <!--{{showClauseConjunction}}-->
+        <!--{{> clauseDisplay}}-->
     <!--{{/each}}-->
 <!--</template>-->
 
 <template name="clauseDisplay">
-    {{blockConjunction ../.. .. this}}
+    <!--{{blockConjunction ../.. .. this}}-->
+    {{displayConjunction}}
     <div class="btn-group" role="group" aria-label="...">
         <button class="btn btn-default btn-sm biolog-objectButtons-negateBtn {{notHidden}}" title="negate">
             NOT

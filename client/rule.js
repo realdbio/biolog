@@ -107,6 +107,14 @@ Template.rule.helpers({
     }
 });
 
+
+Template.blockEditDialog.helpers({
+    getSelectedBlock: function() {
+        return Session.get("selectedBlock");
+    }
+});
+
+
 Template.blockEdit.events({
     'click .biolog-blockEdit-removeThisBtn': function(event) {
         var rule = Session.get("rule");
@@ -193,12 +201,6 @@ Template.blockEdit.helpers({
         return this.blocks;
     },
 
-    clauses: function() {
-//        var rule = Session.get("rule");
-//        var block = getValuePath(rule, this.path);
-        return this.clauses;
-    },
-
     blockPanelColor: function() {
         var rule = Session.get("rule");
         if (!rule || !this.path) return "alert alert-info";
@@ -215,7 +217,16 @@ Template.blockEdit.helpers({
         return "";
     },
 
-    blockConjunction: function() {
+    clauses: function() {
+        for (var i in this.clauses) {
+            this.clauses[i].conjunction = this.conjunction;
+        }
+        return this.clauses;
+    },
+
+    displayConjunction: function() {
+        console.log("displayConjunction=" + JSON.stringify(this.conjunction));
+        if (this.idx === 0) return "";
         return this.conjunction;
     }
 });
@@ -229,7 +240,7 @@ Template.blockEdit.helpers({
 
 Template.blockDisplay.events({
     'click .biolog-blockDisplay-editBlockBtn': function(event, template) {
-        console.log('click .biolog-blockDisplay-editBlockBtn: this=' + JSON.stringify(this));
+//        console.log('click .biolog-blockDisplay-editBlockBtn: this=' + JSON.stringify(this));
 
         Session.set("selectedBlock", this);
         blockDialog.show();
@@ -251,10 +262,6 @@ Template.blockDisplay.helpers({
         return this.blocks;
     },
 
-    clauses: function() {
-        return this.clauses;
-    },
-
     blockPanelColor: function() {
         if (this.conjunction == "AND") {
             return "alert alert-info";
@@ -267,13 +274,33 @@ Template.blockDisplay.helpers({
         return "";
     },
 
-    blockConjunction: function() {
+    clauses: function() {
+        for (var i in this.clauses) {
+            this.clauses[i].conjunction = this.conjunction;
+        }
+        return this.clauses;
+    },
+
+    displayConjunction: function() {
+        console.log("displayConjunction=" + JSON.stringify(this.conjunction));
+        if (this.idx === 0) return "";
         return this.conjunction;
+    },
+
+    conjunctionBeforeBlocks: function() {
+        if (this.blocks && this.blocks.length > 0) return this.conjunction;
+        return "";
     }
 });
 
 
 
+//Template.clauseListDisplay.helpers({
+//    showClauseConjunction: function() {
+//        console.log("showClauseConjunction=" + JSON.stringify(this));
+//        return this.conjunction;
+//    }
+//});
 
 
 
@@ -288,13 +315,11 @@ Template.clauseEdit.created = function () {
 };
 
 Template.clauseDisplay.helpers({
-//    conjunctionStr: function() {
-////        var block = Session.get("selectedBlock");
-//        var rule = Session.get("rule");
-//        if (! block) block = rule.block;
-//        if (this.idx === 0) return "";
-//        return block.conjunction;
-//    },
+    showConjunction: function() {
+//        var block = Session.get("selectedBlock");
+        if (this.idx === 0) return "";
+        return this.conjunction;
+    },
 
     notHidden: function() {
         if (this.negated) return "";
@@ -302,10 +327,10 @@ Template.clauseDisplay.helpers({
     }
 });
 
-Template.clauseDisplay.blockConjunction = function(parentTemplate, currentTemplate, currentValueInsideEachLoop) {
-    console.log("parentTemplate=" + JSON.stringify(parentTemplate));
-    return parentTemplate.conjunction;
-}
+//Template.clauseDisplay.blockConjunction = function(parentTemplate, currentTemplate, currentValueInsideEachLoop) {
+//    console.log("parentTemplate=" + JSON.stringify(parentTemplate));
+//    return parentTemplate.conjunction;
+//}
 
 Template.clauseEdit.events({
 //    'click .biolog-clauseEdit-addBtn': function(event, template) {
@@ -408,7 +433,7 @@ Template.valueSelector.events({
         Session.set("selectedObject", this);
         block.clauses.push(clause);
         setValuePath(rule, block.path, block);
-        console.log("Added to the clauses.  Rule=" + JSON.stringify(rule));
+//        console.log("Added to the clauses.  Rule=" + JSON.stringify(rule));
         Session.set("rule", rule);
 
         var instance = EasySearch.getComponentInstance(
