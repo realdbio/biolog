@@ -210,8 +210,8 @@ Template.blockDisplay.helpers({
         if (this.idx==0) return "";
         var path = this.path;
         var parentPath = path;
-        if (parentPath.indexOf(".")) parentPath = parentPath.substring(0, path.indexOf("."));
-        if (parentPath.indexOf(".")) parentPath = parentPath.substring(0, path.indexOf("."));
+        if (parentPath.indexOf(".")) parentPath = parentPath.substring(0, parentPath.lastIndexOf("."));
+        if (parentPath.indexOf(".")) parentPath = parentPath.substring(0, parentPath.lastIndexOf("."));
         var conjPath = parentPath + ".conjunction";
         //var idxPath = parentPath + ".idx";
         var rule = Session.get("rule");

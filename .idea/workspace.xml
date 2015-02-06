@@ -87,8 +87,8 @@
       <file leaf-file-name="rule.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/client/rule.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.23255815" vertical-offset="2340" max-vertical-offset="5235">
-              <caret line="166" column="31" selection-start-line="166" selection-start-column="31" selection-end-line="166" selection-end-column="31" />
+            <state vertical-scroll-proportion="0.25581396" vertical-offset="3000" max-vertical-offset="5235">
+              <caret line="211" column="22" selection-start-line="211" selection-start-column="12" selection-end-line="211" selection-end-column="22" />
               <folding />
             </state>
           </provider>
@@ -758,8 +758,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/client/rule.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.23255815" vertical-offset="2340" max-vertical-offset="5235">
-          <caret line="166" column="31" selection-start-line="166" selection-start-column="31" selection-end-line="166" selection-end-column="31" />
+        <state vertical-scroll-proportion="0.25581396" vertical-offset="3000" max-vertical-offset="5235">
+          <caret line="211" column="22" selection-start-line="211" selection-start-column="12" selection-end-line="211" selection-end-column="22" />
           <folding />
         </state>
       </provider>
