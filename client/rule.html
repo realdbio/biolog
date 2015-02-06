@@ -21,7 +21,7 @@
 
             {{#with rule.block}}
             <div class="container-fluid move-down-in-panel">
-                {{> blockEdit}}
+                {{> blockDisplay}}
             </div>
             {{/with}}
 
@@ -43,33 +43,55 @@
 
 
 
+
+<!--Main window-->
 <template name="blockDisplay">
     <div class="{{blockPanelColor}}">
         <!--<div class="panel-body">-->
         <div class="row">
-            <button class="btn btn-default btn-sm pull-left biolog-blockDisplay-editBlockBtn biolog-menuButton" title="edit this block">
-                <span class="fa fa-pencil"> </span>
-            </button>
+            <span class="pull-left biolog-menuButton">
+                <select name="selectAndOr" class="selectAndOr">
+                    <option value="AND" {{andSelected}}>ALL of these (AND)</option>
+                    <option value="OR" {{orSelected}}>ANY of these (OR)</option>
+                </select>
+            </span>
+            <span class="dropdown pull-left">
+                <button
+                        data-toggle="dropdown"
+                        class="btn btn-primary btn-xs biolog-menuButton dropdown-toggle"
+                        type="button"
+                        title="Add an IF">
+                    IF...
+                </button>
+                <!--<a data-toggle="dropdown" href="#">Dropdown trigger</a>-->
+                <ul class="dropdown-menu" role="menu">
+                    <li role="presentation"><a tabindex="-1" role="menuitem" href="#" class="biolog-addDiagnosis">has Diagnosis...</a></li>
+                    <li role="presentation"><a tabindex="-1" role="menuitem" href="#" class="biolog-addMedication">takes Medication...</a></li>
+                    <li class="divider" role="presentation"></li>
+                    <li role="presentation"><a tabindex="-1" role="menuitem" href="#" class="biolog-addBlock">Add a BLOCK: ( ... )</a></li>
+                </ul>
+                <!--<ul class="dropdown-menu" role="menu">-->
+                    <!--<li role="presentation"><a role="menuitem" href="#" id="biolog-blockDisplay-diagnosis">Diagnosis is...</a></li>-->
+                <!--</ul>-->
+            </span>
             <span class="pull-right">
-                <button class="btn btn-danger btn-sm biolog-blockDisplay-removeThisBtn {{displayRemoveButton}} biolog-menuButton" title="remove this block">
+                <button class="btn btn-danger btn-xs biolog-removeThisBlock {{displayRemoveButton}} biolog-menuButton" title="Remove this block">
                     <span class="fa fa-close"></span>
                 </button>
             </span>
         </div>
 
         {{#each clauses}}
-            {{displayConjunction}}
-            {{> clauseDisplay}}
+        {{displayConjunction}}
+        {{> clauseDisplay}}
         {{/each}}
         <div class="row">
             {{conjunctionBeforeBlocks}}
         </div>
         {{#each blocks}}
-            {{displayConjunction ..}}
-            {{> blockDisplay}}
-            <!--{{conjunction}}-->
+        {{displayConjunction ..}}
+        {{> blockDisplay}}
         {{/each}}
-        <!--</div>-->
     </div>
 </template>
 
@@ -82,12 +104,10 @@
 <template name="blockEdit">
     <div class="{{blockPanelColor}}">
         <div class="panel-heading">
-        <!--<div class="row">-->
             <select name="selectAndOr" class="selectAndOr">
                 <option value="AND" {{andSelected}}>ALL of these (AND)</option>
                 <option value="OR" {{orSelected}}>ANY of these (OR)</option>
             </select>
-
             <span class="pull-right">
                 <button class="btn btn-danger btn-xs biolog-blockEdit-removeThisBtn {{displayRemoveButton}}" title="remove this block">
                     <span class="fa fa-close"></span>
@@ -96,36 +116,20 @@
         </div>
         <div class="panel-body">
             {{> clauseEdit}}
-            <!--<div class="text-center move-up-in-panel">-->
-            <!--</div>-->
-            <!--<div class="row">-->
-            <!--{{> Template.dynamic template="clauseListDisplay" data=this }}-->
             {{#each clauses}}
                 {{displayConjunction}}
                 {{> clauseDisplay}}
             {{/each}}
-
-            <!--<div>-->
-                <!--<button class="btn btn-primary btn-sm btn-circle center biolog-blockEdit-addClauseBtn" title="add a clause">-->
-                    <!--<span class="fa fa-plus"></span>  Add an 'IF' Clause-->
-                <!--</button>-->
-
-            <!--</div>-->
-
-            <!--{{> blockListDisplay parent=this}}-->
-
             <div class="row">
                 {{conjunction}}
             </div>
             {{#each blocks}}
-                <div class="row">
-                    {{displayConjunction ..}}
-                </div>
-                {{> blockDisplay}}
+            <div class="row">
+                {{displayConjunction ..}}
+            </div>
+            {{> blockDisplay}}
             {{/each}}
-
             <div>
-                <!--{{parentBlockConjunction}}-->
                 <button class="btn btn-primary btn-sm btn-circle center biolog-blockEdit-addBlockBtn" title="add a child block">
                     <span class="fa fa-plus"></span>  Add a Child Block
                 </button>
@@ -135,15 +139,7 @@
 </template>
 
 
-<!--<template name="clauseListDisplay">-->
-    <!--{{#each clauses}}-->
-        <!--{{showClauseConjunction}}-->
-        <!--{{> clauseDisplay}}-->
-    <!--{{/each}}-->
-<!--</template>-->
-
 <template name="clauseDisplay">
-    <!--{{blockConjunction ../.. .. this}}-->
     {{displayConjunction}}
     <div class="btn-group" role="group" aria-label="...">
         <button class="btn btn-default btn-sm biolog-objectButtons-negateBtn {{notHidden}}" title="negate">
@@ -155,39 +151,18 @@
     </div>
 </template>
 
-
 <template name="clauseEdit">
-    <!--<div class="container-fluid">-->
-       <div class="alert alert-warning">
-            <div class="row">
-                <div class="col col-sm-4">
-                    {{> predicateSelector}}
-                </div>
-                <div class="col col-sm-8">
-                    {{> valueSelector}}
-                </div>
-                <!--<div class="col col-sm-1">-->
-                    <!--<button class="btn btn-sm btn-success biolog-clauseEdit-addBtn">Add</button>-->
-                <!--</div>-->
+    <div class="alert alert-warning">
+        <div class="row">
+            <div class="col col-sm-4">
+                {{> predicateSelector}}
+            </div>
+            <div class="col col-sm-8">
+                {{> valueSelector}}
             </div>
         </div>
-
-        <!--<div class="row">-->
-        <!--<div class="col-sm-4">-->
-        <!--<h4>...has <b>{{displayPredicate}}</b></h4>-->
-        <!--{{> predicateSelector}}-->
-        <!--</div>-->
-        <!--<div class="col-sm-8">-->
-        <!--<h4>...of</h4>-->
-        <!--<p>-->
-        <!--{{> objectButtons}}-->
-        <!--</p>-->
-        <!--{{> valueSelector}}-->
-        <!--</div>-->
-        <!--</div>-->
-    <!--</div>-->
+    </div>
 </template>
-
 
 
 <template name="predicateSelector">
@@ -196,16 +171,13 @@
             {{> esInput index="predicates" placeholder="Select a property..." id="predicateChooser" }}
         </div>
     </div>
-
     <div class="row">
         <div class="col-md-6">
-
             <div class="biolog-predSelector-selectedPred {{hidePredIfNoneSelected}}">
                 <button type="button" class="btn btn-success btn-sm biolog-selectedPredBtn">
                     <span class="glyphicon glyphicon-check"></span> {{selectedPredName}}
                 </button>
             </div>
-
             {{#esEach index="predicates" id="predicateChooser"}}
             <div class="item">
                 <button type="button" class="btn btn-default btn-sm biolog-clausePredBtn">
@@ -233,20 +205,14 @@
                     <span class="glyphicon glyphicon-check"></span> {{selectedObjName}}
                 </button>
             </div>
-            <!--<ul class="list-group">-->
             {{#esEach index="entities" id="objectChooser"}}
-                <div class="item">
-                    <button type="button" class="btn btn-default btn-sm biolog-clauseObjBtn">
-                        <span class="glyphicon glyphicon-book"></span> {{name}}
-                    </button>
-                </div>
-                <!--<li class="list-group-item biolog-clauseObjBtn">-->
-                    <!--<small>{{name}}</small>-->
-                <!--</li>-->
+            <div class="item">
+                <button type="button" class="btn btn-default btn-sm biolog-clauseObjBtn">
+                    <span class="glyphicon glyphicon-book"></span> {{name}}
+                </button>
+            </div>
             {{/esEach}}
-            <!--</ul>-->
-
-
         </div>
     </div>
 </template>
+

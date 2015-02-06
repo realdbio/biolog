@@ -50,49 +50,8 @@ Meteor.startup(function(){
     };
 
 
-//    var ruleDialogSpec = {
-//        template: Template.ruleDialog,
-//        title: "Add a Rule",
-//        modalDialogClass: "add-rule-dialog", //optional
-//        modalBodyClass: "add-rule-body", //optional
-//        modalFooterClass: "add-rule-footer",//optional
-//        removeOnHide: false, //optional. If this is true, modal will be removed from DOM upon hiding
-//        buttons: {
-//            "ok": {
-//                closeModalOnClick: true, // if this is false, dialog doesn't close automatically on click
-//                class: 'btn-info',
-//                label: 'Save'
-//            },
-//            "cancel": {
-//                class: 'btn-danger',
-//                label: 'Cancel'
-//            }
-//        }
-//    };
-//
-//    ruleDialog = ReactiveModal.initDialog(ruleDialogSpec);
-//
-//    ruleDialog.buttons.ok.on('click', function(button){
-//        var rule = Session.get("rule");
-//        var ruleName = document.getElementById("ruleName").value;
-//        var ruleDescription = document.getElementById("ruleDescription").value;
-//        rule.name = ruleName;
-//        rule.nameLC = ruleName.toLowerCase();
-//        rule.description = ruleDescription;
-//        var ruleTool = new RuleTool(rule);
-//        addRule(ruleTool.prepareRule());
-//
-//        //clear
-//        document.getElementById("ruleName").value = "";
-//        var ruleDescription = document.getElementById("ruleDescription").value = "";
-//        Session.set("rule", null);
-//    });
-//
-//    ruleDialog.buttons.cancel.on('click', function(button){
-//        Session.set("ruleSearchBoxUserQuery", "");
-//    });
-
     var blockDialogSpec = {
+        id: "blockDialog",
         template: Template.blockEditDialog,
         title: "Add a Block",
         modalDialogClass: "block-dialog", //optional
@@ -100,58 +59,42 @@ Meteor.startup(function(){
         modalFooterClass: "block-footer",//optional
         removeOnHide: false, //optional. If this is true, modal will be removed from DOM upon hiding
         buttons: {
-            "ok": {
-                closeModalOnClick: false, // if this is false, dialog doesnt close automatically on click
-                class: 'btn-info',
-                label: 'Save'
-            },
+//            "ok": {
+//                closeModalOnClick: false, // if this is false, dialog doesnt close automatically on click
+//                class: 'btn-info',
+//                label: 'Save'
+//            },
             "cancel": {
                 class: 'btn-danger',
-                label: 'Cancel'
+                label: 'Close'
             }
         }
     };
 
     blockDialog = ReactiveModal.initDialog(blockDialogSpec);
 
+//    blockDialog.on('hide.bs.modal', function() {
+//        console.log("blockDialog hide!");
+//    });
 
-    blockDialog.buttons.ok.on('click', function(button){
-
-//        if (!objs || objs.length===0) {
+//    blockDialog.buttons.ok.on('click', function(button){
+//
+//        var clauses = Session.get("selectedClauses");
+//
+//        if (!clauses || clauses.length===0) {
 //            alert("You must add at least 1 object/value");
 //            return false;
 //        }
 //
-//        var ruleBefore = Session.get("rule");
-//        if (idx == null) idx = ruleBefore.blocks.length;
-//        var negated = false;
-//
-//        var block = {
-//            objs: objs,
-//            negated: negated,
-//            idx: idx
-//        };
+//        var block = Session.get("selectedBlock");
+//        var rule = Session.get("rule");
 //
 //        saveBlock(block);
-
-
-
-        var clauses = Session.get("selectedClauses");
-
-        if (!clauses || clauses.length===0) {
-            alert("You must add at least 1 object/value");
-            return false;
-        }
-
-        var block = Session.get("selectedBlock");
-        var rule = Session.get("rule");
-
-        saveBlock(block);
-        clearClauseSelector();
-
-
-        blockDialog.hide();
-    });
+//        clearClauseSelector();
+//
+//
+//        blockDialog.hide();
+//    });
 
     blockDialog.buttons.cancel.on('click', function(button){
 //        Session.set("blockSearchBoxUserQuery", "");

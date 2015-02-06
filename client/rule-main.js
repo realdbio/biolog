@@ -37,10 +37,10 @@ Template.rule.events({
         return false;
     },
 
-    'click #biolog-addClauseBtn': function(event, template) {
-        Session.set("editClauseIndex", null);
-        addClauseDialog.show();
-    },
+//    'click #biolog-addClauseBtn': function(event, template) {
+//        Session.set("editClauseIndex", null);
+//        addClauseDialog.show();
+//    },
 
     'change #AndSelected' : function(event) {
         var rule = Session.get("rule");
@@ -108,7 +108,7 @@ Template.rule.helpers({
 });
 
 
-Template.blockEditDialog.helpers({
+Template.blockEdit.helpers({
     getSelectedBlock: function() {
         return Session.get("selectedBlock");
     }
@@ -126,12 +126,6 @@ Template.blockEdit.events({
         blocks.splice(this.idx, 1);
         Session.set("rule", rule);
     },
-
-//    'click .biolog-blockEdit-addClauseBtn': function(event, template) {
-//        Session.set("selectedBlock", this);
-//        clauseDialog.show();
-//    },
-
     'click .biolog-blockEdit-addBlockBtn': function(event, template) {
         console.log('click .biolog-blockEdit-addBlockBtn: this=' + JSON.stringify(this));
         var rule = Session.get("rule");
@@ -152,30 +146,23 @@ Template.blockEdit.events({
             path: newPath,
             idx: idx
         };
-
         //save the block
         //TODO - are both of lines these necessary?
         this.blocks.push(newBlock);
         setValuePath(rule, newPath, newBlock);
-
         Session.set("selectedBlock", newBlock);
-//        Session.set("selectedPredicate", null);
         Session.set("selectedObject", null);
         Session.set("rule", rule);
         blockDialog.show();
     },
-
     'change .selectAndOr': function(event, template) {
-//        console.log('change .selectAndOr: ' + JSON.stringify(event.target.value))
         var rule = Session.get("rule");
         this.conjunction = event.target.value;
         setValuePath(rule, this.path, this);
         Session.set("rule", rule);
     },
-
     'click .biolog-blockEdit-removeThisBtn': function(event, template) {
         if (! confirm("Are you sure you want to remove this block and ALL that it contains?")) return;
-
         console.log("Removing: " + JSON.stringify(this));
         var rule = Session.get("rule");
         setValuePath(rule, this.path, null);
@@ -198,6 +185,7 @@ Template.blockEdit.helpers({
     },
 
     blocks: function() {
+//        console.log("blockEdit: blocks: blockDialog=" + JSON.stringify(blockDialog));
         return this.blocks;
     },
 
@@ -218,6 +206,7 @@ Template.blockEdit.helpers({
     },
 
     clauses: function() {
+        console.log("blockEdit: clauses: this=" + JSON.stringify(this, null, "  "));
         for (var i in this.clauses) {
             this.clauses[i].conjunction = this.conjunction;
         }
@@ -225,7 +214,7 @@ Template.blockEdit.helpers({
     },
 
     displayConjunction: function() {
-        console.log("displayConjunction=" + JSON.stringify(this.conjunction));
+//        console.log("displayConjunction=" + JSON.stringify(this.conjunction));
         if (this.idx === 0) return "";
         return this.conjunction;
     }
@@ -239,14 +228,43 @@ Template.blockEdit.helpers({
 
 
 Template.blockDisplay.events({
-    'click .biolog-blockDisplay-editBlockBtn': function(event, template) {
-//        console.log('click .biolog-blockDisplay-editBlockBtn: this=' + JSON.stringify(this));
-
+    'click .biolog-addDiagnosis': function(event, template) {
         Session.set("selectedBlock", this);
-        blockDialog.show();
+        Session.set("selectedPredicate", diagnosisPredicate);
+        objDialog.show();
     },
 
-    'click .biolog-blockDisplay-removeThisBtn': function(event, template) {
+    'click .biolog-addMedication': function(event, template) {
+        Session.set("selectedBlock", this);
+        Session.set("selectedPredicate", medicationPredicate);
+        objDialog.show();
+    },
+
+    'click .biolog-addBlock': function(event, template) {
+        console.log('click .biolog-addBlock: this=' + JSON.stringify(this));
+        var rule = Session.get("rule");
+//        console.log("rule=" + JSON.stringify(rule));
+        var newPath = this.path;
+        if (! newPath) newPath = "block";
+        newPath += ".blocks";
+
+        if (!this.blocks) this.blocks = [];
+        var idx = this.blocks.length;
+        newPath += "." + idx;
+        var conj = "OR";
+        if (this.conjunction == "OR") conj = "AND";
+        var newBlock = {
+            conjunction: conj,
+            clauses: [],
+            blocks: [],
+            path: newPath,
+            idx: idx
+        };
+        this.blocks.push(newBlock);
+        setValuePath(rule, newPath, newBlock);
+        Session.set("rule", rule);
+    },
+    'click .biolog-removeThisBlock': function(event, template) {
         if (! confirm("Are you sure you want to remove this block and ALL that it contains?")) return;
 
         console.log("Removing: " + JSON.stringify(this));
@@ -282,7 +300,7 @@ Template.blockDisplay.helpers({
     },
 
     displayConjunction: function() {
-        console.log("displayConjunction=" + JSON.stringify(this.conjunction));
+//        console.log("displayConjunction=" + JSON.stringify(this.conjunction));
         if (this.idx === 0) return "";
         return this.conjunction;
     },
@@ -327,37 +345,7 @@ Template.clauseDisplay.helpers({
     }
 });
 
-//Template.clauseDisplay.blockConjunction = function(parentTemplate, currentTemplate, currentValueInsideEachLoop) {
-//    console.log("parentTemplate=" + JSON.stringify(parentTemplate));
-//    return parentTemplate.conjunction;
-//}
 
-Template.clauseEdit.events({
-//    'click .biolog-clauseEdit-addBtn': function(event, template) {
-//
-//    },
-
-
-
-//    'click .biolog-clauseObjBtn': function(event, template) {
-//        event.preventDefault();
-//        var selectedClauses = Session.get("selectedClauses");
-//        var pred = Session.get("selectedPredicate");
-//        if (!pred) return alert("Please select a property");
-//        if (!selectedClauses || selectedClauses.length == 0) {
-//            selectedClauses = [];
-////            this.conjunction = null;
-////        } else {
-////            this.conjunction = "OR";
-//        }
-//        this.pred = pred;
-//
-//        var idx = selectedClauses.length;
-//        this.idx = idx;
-//        selectedClauses.push(this);
-//        Session.set("selectedClauses", selectedClauses);
-//    }
-});
 
 Template.clauseEdit.helpers({
     newDiagnosisName: function () {
@@ -414,12 +402,24 @@ Template.valueSelector.created = function() {
 
 Template.valueSelector.events({
     'click .biolog-clauseObjBtn': function(event, template) {
+//        console.log('click .biolog-clauseObjBtn: this=' + JSON.stringify(this));
         var pred = Session.get("selectedPredicate");
         if (! pred) return alert("Please select a property, to the left");
 
         var rule = Session.get("rule");
-        var block = Session.get("selectedBlock");
-        if (!block) block = rule.block;
+//        var block = Session.get("selectedBlock");
+//        var block = theBlock;
+//        console.log("valueSelector:
+        var block = null;
+        console.log("valueSelector: template.data=" + JSON.stringify(template.data, null, "  "));
+        if (template.data && template.data.path) {
+            block = getValuePath(rule, template.data.path);
+        } else {
+            block = Session.get("selectedBlock");
+        }
+
+
+//        if (!block) block = rule.block;
         if (! block.clauses) block.clauses = [];
         var idx = block.clauses.length;
         var clause = {
@@ -428,10 +428,12 @@ Template.valueSelector.events({
             pred: pred,
             object: this
         };
-
+        block.clauses[idx] = clause;
 
         Session.set("selectedObject", this);
         block.clauses.push(clause);
+        console.log("valueSelector: block=" + JSON.stringify(block, null, "  "));
+        Session.set("selectedBlock", block);
         setValuePath(rule, block.path, block);
 //        console.log("Added to the clauses.  Rule=" + JSON.stringify(rule));
         Session.set("rule", rule);
@@ -458,69 +460,3 @@ Template.valueSelector.helpers({
         return "hidden";
     }
 });
-
-//Template.clauseDialog.events({
-//    "submit .biolog-new-rule": function (event) {
-//        // This function is called when the new task form is submitted
-//
-//        // Prevent default form submit
-//        return false;
-//    },
-//
-//    'click .biolog-clausePredBtn': function(event, template) {
-//        event.preventDefault();
-//        Session.set("selectedPredicate", this);
-//        //set easy search to search for entities of the predicate's objectEtypes
-//        EasySearch.changeProperty('entities', 'etypes', this.objectEtypes);
-//    },
-//
-//    //TODO "OR" button to add more
-//    'click .biolog-clauseObjBtn': function(event, template) {
-//        event.preventDefault();
-//        var selectedClauses = Session.get("selectedClauses");
-//        var pred = Session.get("selectedPredicate");
-//        if (!pred) return alert("Please select a property");
-//        if (!selectedClauses || selectedClauses.length == 0) {
-//            selectedClauses = [];
-//            this.conjunction = null;
-//        } else {
-//            this.conjunction = "OR";
-//        }
-//        this.pred = pred;
-//
-//        var idx = selectedClauses.length;
-//        this.idx = idx;
-//        selectedClauses.push(this);
-//        Session.set("selectedClauses", selectedClauses);
-//    }
-//});
-//
-//
-//Template.clauseDialog.helpers({
-//    etypeName: function() {
-//        var rule = Session.get("rule");
-//        if (! rule) return "";
-//
-//        var typesStr = "";
-//        for (var i in rule.etypes) {
-//            var etype = rule.etypes[i];
-//            if (typesStr.length > 0) typesStr += " or ";
-//            typesStr += etype;
-//        }
-//        return typesStr;
-//    },
-//
-//    addButtonEnabled: function() {
-//        if (Session.get("selectedPredicate") && Session.get("selectedClauses")) {
-//            return "";
-//        }
-//        return "disabled";
-//    },
-//
-//    displayPredicate: function() {
-//        var selectedPredicate = Session.get("selectedPredicate");
-//        if (selectedPredicate) return selectedPredicate.name;
-//        return "";
-//    }
-//});
-
