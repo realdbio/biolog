@@ -1,5 +1,8 @@
 <template name="rule">
     <div class="container-fluid">
+        <div class="alert alert-warning {{errorPresent}}">
+            {{errorMessage}}
+        </div>
         <form class="form-horizontal biolog-new-rule">
 
             <div class="form-group">
@@ -24,14 +27,16 @@
                 {{> blockDisplay}}
             </div>
             {{/with}}
+
+            <div class="centered">
+                <button type="button" class="btn btn-primary" id="biolog-saveRule">Save</button>
+            </div>
         </form>
     </div>
 </template>
 
 
 
-
-<!--Main window-->
 <template name="blockDisplay">
     <div class="{{blockPanelColor}}">
         <!--<div class="panel-body">-->

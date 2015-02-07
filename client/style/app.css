@@ -5,6 +5,11 @@
     /*float: none;*/
 }
 
+.centered {
+    align: center;
+    text-align: center;
+}
+
 .move-up-in-panel {
     margin-top: -15px;
 }

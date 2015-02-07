@@ -10,6 +10,35 @@ Template.rule.created = function() {
 };
 
 
+Template.rule.events({
+    'click #biolog-saveRule': function(event) {
+        event.stopPropagation();
+        event.preventDefault();
+        var rule = Session.get("rule");
+        var isValid = Rules.simpleSchema().namedContext().validate(rule);
+        var keys = Rules.simpleSchema().namedContext().invalidKeys();
+        console.log("keys=" + JSON.stringify(keys));
+        if (!isValid) {
+            var errMsg = "The following are required: "
+            for (var ki in keys) {
+                var key = keys[ki];
+                if (ki > 0) errMsg += ", ";
+                errMsg += key.name;
+            }
+            Session.set("errorMessage", errMsg);
+            console.log("Rule form has errors: " + errMsg);
+            return;
+        } else {
+            Session.set("errorMessages", null);
+        }
+        console.error("isValid=" + JSON.stringify(isValid));
+        var ruleTool = new RuleTool(rule);
+        ruleTool.buildIfQuery();
+        ruleTool.saveRule();
+    }
+});
+
+
 Template.rule.helpers({
     rule: function() {
         var rule = Session.get("rule");
@@ -24,7 +53,6 @@ Template.rule.helpers({
                     path: "block"
                 }
             };
-            Session.set("rule", rule);
             var ruleTool = new RuleTool(rule);
             rule = ruleTool.getInitializedRule();
             Session.set("rule", rule);
@@ -45,19 +73,17 @@ Template.rule.helpers({
         return typesStr;
     },
 
-    addButtonEnabled: function() {
-        if (Session.get("selectedPredicate") && Session.get("selectedObjects")) {
-            return "";
-        }
-        return "disabled";
+    errorMessage: function() {
+        return Session.get("errorMessage");
     },
 
-    blockPanelColor: function() {
-        if (this.conjunction == "AND") {
-            return "alert alert-info";
+    errorPresent: function() {
+        if(Session.get("errorMessage")) {
+            return "";
         }
-        return "alert alert-success";
+        return "hidden";
     }
+
 });
 
 
