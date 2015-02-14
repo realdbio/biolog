@@ -21,3 +21,32 @@
 .biolog-menuButton {
     margin: -10px 5px 5px 5px !important;
 }
+
+/*.biolog-selectBox {*/
+    /*height: 50px;*/
+/*}*/
+
+
+@media screen and (-webkit-min-device-pixel-ratio:0) {  /*safari and chrome*/
+    select {
+        height:24px;
+        line-height:24px;
+        background:#f4f4f4;
+        margin-top: 2px;
+    }
+}
+select::-moz-focus-inner { /*Remove button padding in FF*/
+    border: 0;
+    padding: 0;
+}
+@-moz-document url-prefix() { /* targets Firefox only */
+    select {
+        padding: 15px 0!important;
+    }
+}
+@media screen\0 { /* IE Hacks: targets IE 8, 9 and 10 */
+    select {
+        height:24px;
+        line-height:24px;
+    }
+}

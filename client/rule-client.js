@@ -269,7 +269,7 @@ Template.clauseDisplay.events({
         //if (! okRemove) return false;
         var rule = Session.get("rule");
         var clauses = getValuePath(rule, parentPath);
-        console.log("parentPath=" + parentPath + "; deleteIndex=" + JSON.stringify(deleteIndex));
+        //console.log("parentPath=" + parentPath + "; deleteIndex=" + JSON.stringify(deleteIndex));
         var newClauses = [];
         var newIndex = 0;
         for (var ci in clauses) {
@@ -282,7 +282,7 @@ Template.clauseDisplay.events({
             }
         }
         setValuePath(rule, parentPath, newClauses);
-        console.log("AFTER: rule=" + JSON.stringify(rule, null, "  "));
+        //console.log("AFTER: rule=" + JSON.stringify(rule, null, "  "));
         Session.set("rule", rule);
     }
 });
@@ -355,6 +355,15 @@ Template.valueSelector.events({
 });
 
 
+Template.thenValueSelector.created = function() {
+    var instance = EasySearch.getComponentInstance(
+        { id : 'thenObjectChooser', index : 'entities' }
+    );
+    instance.on('searchingDone', function (searchingIsDone) {
+        if (searchingIsDone) Session.set("selectedThenObject", null);
+    });
+};
+
 Template.valueSelector.helpers({
     selectedObjName: function() {
         var selectedObject = Session.get("selectedObject");
@@ -364,6 +373,63 @@ Template.valueSelector.helpers({
 
     hideObjectIfNoneSelected: function() {
         var selectedObject = Session.get("selectedObject");
+        if (selectedObject) return "";
+        return "hidden";
+    }
+});
+
+
+
+Template.consequent.events({
+    'click .biolog-addFlag': function(event) {
+        console.log("Add a Flag...");
+    },
+
+    'click .biolog-addDiagnosis': function(event) {
+        console.log("Add a Diagnosis...");
+    },
+
+    'click .biolog-addMetric': function(event) {
+        console.log("Add a Metric...");
+    }
+});
+
+
+Template.thenValueSelector.events({
+    'click .biolog-clauseObjBtn': function(event, template) {
+        var pred = Session.get("selectedThenPredicate");
+        if (! pred) return alert("Please select a property");
+
+        var rule = Session.get("rule");
+        if (! rule.then) rule.then = [];
+        var idx = block.then.length;
+        var thenItem = {
+            idx: idx,
+            pred: pred,
+            object: this
+        };
+        rule.then[idx] = thenItem;
+
+        Session.set("selectedThenObject", this);
+        Session.set("rule", rule);
+
+        var instance = EasySearch.getComponentInstance(
+            { id : 'objectChooser', index : 'entities' }
+        );
+        instance.clear();
+        //TODO clear the search box and focus on it
+    }
+});
+
+Template.thenValueSelector.helpers({
+    selectedObjName: function() {
+        var selectedObject = Session.get("selectedThenObject");
+        if (!selectedObject) return "";
+        return selectedObject.name;
+    },
+
+    hideObjectIfNoneSelected: function() {
+        var selectedObject = Session.get("selectedThenObject");
         if (selectedObject) return "";
         return "hidden";
     }

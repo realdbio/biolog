@@ -23,8 +23,16 @@
             <h2 class="panel-title">Flag this rule for any <b>{{etypeName}}</b> that has:</h2>
 
             {{#with rule.block}}
+                <div class="container-fluid move-down-in-panel">
+                    {{> blockDisplay}}
+                </div>
+            {{/with}}
+
+            <h2 class="panel-title">When this rule applies, do this:</h2>
+
+            {{#with rule}}
             <div class="container-fluid move-down-in-panel">
-                {{> blockDisplay}}
+                {{> consequent}}
             </div>
             {{/with}}
 
@@ -36,21 +44,42 @@
 </template>
 
 
+<template name="consequent">
+    <div class="alert alert-warning">
+        <div class="row">
+            <div class="col col-sm-3">
+                <span class="dropdown pull-left">
+                    <button
+                            data-toggle="dropdown"
+                            class="btn btn-primary btn-sm biolog-menuButton dropdown-toggle"
+                            type="button"
+                            title="Add a THEN">
+                        THEN...
+                    </button>
+                    <ul class="dropdown-menu" role="menu">
+                        <li role="presentation"><a tabindex="-1" role="menuitem" href="#" class="biolog-addFlag" id="{{path}}">Add a Flag</a></li>
+                        <li role="presentation"><a tabindex="-1" role="menuitem" href="#" class="biolog-addDiagnosis" id="{{path}}">Add a Diagnosis</a></li>
+                        <li role="presentation"><a tabindex="-1" role="menuitem" href="#" class="biolog-addMetric" id="{{path}}">Add a Metric</a></li>
+                    </ul>
+                </span>
+            </div>
+        </div>
+        {{#each then}}
+            {{> thenDisplay}}
+        {{/each}}
+    </div>
+</template>
+
 
 <template name="blockDisplay">
     <div class="{{blockPanelColor}}">
         <!--<div class="panel-body">-->
         <div class="row">
-            <span class="pull-left biolog-menuButton">
-                <select name="selectAndOr" class="selectAndOr" id="{{path}}">
-                    <option value="AND" {{andSelected}}>ALL of these (AND)</option>
-                    <option value="OR" {{orSelected}}>ANY of these (OR)</option>
-                </select>
-            </span>
+
             <span class="dropdown pull-left">
                 <button
                         data-toggle="dropdown"
-                        class="btn btn-primary btn-xs biolog-menuButton dropdown-toggle"
+                        class="btn btn-primary btn-sm biolog-menuButton dropdown-toggle"
                         type="button"
                         title="Add an IF">
                     IF...
@@ -65,6 +94,12 @@
                 <!--<ul class="dropdown-menu" role="menu">-->
                     <!--<li role="presentation"><a role="menuitem" href="#" id="biolog-blockDisplay-diagnosis">Diagnosis is...</a></li>-->
                 <!--</ul>-->
+            </span>
+            <span class="pull-left biolog-menuButton biolog-selectBox">
+                <select name="selectAndOr" class="selectAndOr" id="{{path}}">
+                    <option value="AND" {{andSelected}}>ALL of these (AND)</option>
+                    <option value="OR" {{orSelected}}>ANY of these (OR)</option>
+                </select>
             </span>
             <span class="pull-right">
                 <button id="{{path}}" class="btn btn-danger btn-xs biolog-removeThisBlock {{displayRemoveButton}} biolog-menuButton" title="Remove this block">
@@ -91,7 +126,6 @@
 
 
 <template name="clauseDisplay">
-    <!--{{displayConjunction}}-->
     <div class="btn-group" role="group" aria-label="...">
         <button class="btn btn-default btn-sm biolog-objectButtons-negateBtn {{notHidden}}" title="negate">
             NOT
@@ -126,6 +160,34 @@
                     <span class="glyphicon glyphicon-book"></span> {{name}}
                 </button>
             </div>
+            {{/esEach}}
+        </div>
+    </div>
+</template>
+
+
+
+<template name="thenValueSelector">
+    <div class="row">
+        <div class="col col-md-6">
+            {{> esInput index="entities" placeholder="Select..." id="objectChooser" }}
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col col-md-6">
+
+            <div class="biolog-valueSelector-selectedObject {{hideObjectIfNoneSelected}}">
+                <button type="button" class="btn btn-success btn-sm biolog-selectedObjBtn">
+                    <span class="glyphicon glyphicon-check"></span> {{selectedObjName}}
+                </button>
+            </div>
+            {{#esEach index="entities" id="objectChooser"}}
+                <div class="item">
+                    <button type="button" class="btn btn-default btn-sm biolog-clauseObjBtn">
+                        <span class="glyphicon glyphicon-book"></span> {{name}}
+                    </button>
+                </div>
             {{/esEach}}
         </div>
     </div>
