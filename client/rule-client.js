@@ -4,9 +4,34 @@ Template.rule.created = function() {
     //    { index : 'predicates', id: 'predicateChooser' }
     //);
 
+
+
+    EasySearch.createSearchIndex('entities', {
+        'field' : ['name', 'description'],
+        'collection' : Entities,
+        'props' : {
+            'filteredCategories' : []
+        },
+        'query' : function (searchString) {
+            // Default query that will be used for searching
+            var query = EasySearch.getSearcher(this.use).defaultQuery(this, searchString);
+
+            // filter for categories if set
+            if (this.props.filteredCategories.length > 0) {
+                query.etypes = { $in : this.props.filteredCategories };
+            }
+
+            return query;
+        }
+    });
+
     objectChooser = EasySearch.getComponentInstance(
-        { index : 'entities', id: 'objectChooser' }
+        { index : 'entities' }
     );
+
+    //thenObjectChooser = EasySearch.getComponentInstance(
+    //    { index : 'entities', id: 'thenObjectChooser' }
+    //);
 };
 
 
@@ -93,7 +118,7 @@ Template.blockDisplay.events({
         event.preventDefault();
         var path=event.currentTarget.id;
         var val = event.currentTarget.value;
-        console.log("path=" + path + "; this.path=" + this.path + "; this=" + JSON.stringify(this));
+        //console.log("path=" + path + "; this.path=" + this.path + "; this=" + JSON.stringify(this));
         if (this.path != path) return;
         var rule = Session.get("rule");
         this.conjunction = val;
@@ -108,6 +133,12 @@ Template.blockDisplay.events({
         if (this.path != path) return;
         Session.set("selectedBlock", this);
         Session.set("selectedPredicate", diagnosisPredicate);
+        Session.set("selectedObject", null);
+        var instance = EasySearch.getComponentInstance(
+            { id : 'objectChooser', index : 'entities' }
+        );
+        instance.clear();
+        EasySearch.changeProperty('entities', 'filteredCategories', ["health-condition"]);
         objDialog.show();
     },
 
@@ -118,6 +149,12 @@ Template.blockDisplay.events({
         if (this.path != path) return;
         Session.set("selectedBlock", this);
         Session.set("selectedPredicate", medicationPredicate);
+        Session.set("selectedObject", null);
+        var instance = EasySearch.getComponentInstance(
+            { id : 'objectChooser', index : 'entities' }
+        );
+        instance.clear();
+        EasySearch.changeProperty('entities', 'filteredCategories', ["medication"]);
         objDialog.show();
     },
 
@@ -357,7 +394,7 @@ Template.valueSelector.events({
 
 Template.thenValueSelector.created = function() {
     var instance = EasySearch.getComponentInstance(
-        { id : 'thenObjectChooser', index : 'entities' }
+        { id : 'objectChooser', index : 'entities' }
     );
     instance.on('searchingDone', function (searchingIsDone) {
         if (searchingIsDone) Session.set("selectedThenObject", null);
@@ -382,15 +419,39 @@ Template.valueSelector.helpers({
 
 Template.consequent.events({
     'click .biolog-addFlag': function(event) {
-        console.log("Add a Flag...");
+        event.stopPropagation();
+        event.preventDefault();
+        Session.set("selectedThenPredicate", flagPredicate);
+        var instance = EasySearch.getComponentInstance(
+            { id : 'objectChooser', index : 'entities' }
+        );
+        instance.clear();
+        EasySearch.changeProperty('entities', 'filteredCategories', ["flag"]);
+        thenObjDialog.show();
     },
 
     'click .biolog-addDiagnosis': function(event) {
-        console.log("Add a Diagnosis...");
+        event.stopPropagation();
+        event.preventDefault();
+        Session.set("selectedThenPredicate", diagnosisPredicate);
+        var instance = EasySearch.getComponentInstance(
+            { id : 'objectChooser', index : 'entities' }
+        );
+        instance.clear();
+        EasySearch.changeProperty('entities', 'filteredCategories', ["health-condition"]);
+        thenObjDialog.show();
     },
 
-    'click .biolog-addMetric': function(event) {
-        console.log("Add a Metric...");
+    'click .biolog-addMeasurement': function(event) {
+        event.stopPropagation();
+        event.preventDefault();
+        Session.set("selectedThenPredicate", diagnosisPredicate);
+        var instance = EasySearch.getComponentInstance(
+            { id : 'objectChooser', index : 'entities' }
+        );
+        instance.clear();
+        EasySearch.changeProperty('entities', 'filteredCategories', ["measurement"]);
+        thenObjDialog.show();
     }
 });
 
