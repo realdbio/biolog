@@ -6,24 +6,7 @@ Template.rule.created = function() {
 
 
 
-    EasySearch.createSearchIndex('entities', {
-        'field' : ['name', 'description'],
-        'collection' : Entities,
-        'props' : {
-            'filteredCategories' : []
-        },
-        'query' : function (searchString) {
-            // Default query that will be used for searching
-            var query = EasySearch.getSearcher(this.use).defaultQuery(this, searchString);
 
-            // filter for categories if set
-            if (this.props.filteredCategories.length > 0) {
-                query.etypes = { $in : this.props.filteredCategories };
-            }
-
-            return query;
-        }
-    });
 
     objectChooser = EasySearch.getComponentInstance(
         { index : 'entities' }
@@ -135,8 +118,10 @@ Template.blockDisplay.events({
         Session.set("selectedPredicate", diagnosisPredicate);
         Session.set("selectedObject", null);
         var instance = EasySearch.getComponentInstance(
-            { id : 'objectChooser', index : 'entities' }
+            //{ id : 'objectChooser', index : 'entities' }
+            { index : 'entities' }
         );
+
         instance.clear();
         EasySearch.changeProperty('entities', 'filteredCategories', ["health-condition"]);
         objDialog.show();
@@ -151,7 +136,8 @@ Template.blockDisplay.events({
         Session.set("selectedPredicate", medicationPredicate);
         Session.set("selectedObject", null);
         var instance = EasySearch.getComponentInstance(
-            { id : 'objectChooser', index : 'entities' }
+            //{ id : 'objectChooser', index : 'entities' }
+            { index : 'entities' }
         );
         instance.clear();
         EasySearch.changeProperty('entities', 'filteredCategories', ["medication"]);
@@ -344,7 +330,8 @@ Template.clauseDisplay.helpers({
 
 Template.valueSelector.created = function() {
     var instance = EasySearch.getComponentInstance(
-        { id : 'objectChooser', index : 'entities' }
+        //{ id : 'objectChooser', index : 'entities' }
+        { index : 'entities' }
     );
     instance.on('searchingDone', function (searchingIsDone) {
         if (searchingIsDone) Session.set("selectedObject", null);
@@ -384,7 +371,8 @@ Template.valueSelector.events({
         Session.set("rule", rule);
 
         var instance = EasySearch.getComponentInstance(
-            { id : 'objectChooser', index : 'entities' }
+            //{ id : 'objectChooser', index : 'entities' }
+            { index : 'entities' }
         );
         instance.clear();
         //TODO clear the search box and focus on it
@@ -394,7 +382,8 @@ Template.valueSelector.events({
 
 Template.thenValueSelector.created = function() {
     var instance = EasySearch.getComponentInstance(
-        { id : 'objectChooser', index : 'entities' }
+        //{ id : 'objectChooser', index : 'entities' }
+        { index : 'entities' }
     );
     instance.on('searchingDone', function (searchingIsDone) {
         if (searchingIsDone) Session.set("selectedThenObject", null);
@@ -423,7 +412,8 @@ Template.consequent.events({
         event.preventDefault();
         Session.set("selectedThenPredicate", flagPredicate);
         var instance = EasySearch.getComponentInstance(
-            { id : 'objectChooser', index : 'entities' }
+            //{ id : 'objectChooser', index : 'entities' }
+            { index : 'entities' }
         );
         instance.clear();
         EasySearch.changeProperty('entities', 'filteredCategories', ["flag"]);
@@ -435,7 +425,8 @@ Template.consequent.events({
         event.preventDefault();
         Session.set("selectedThenPredicate", diagnosisPredicate);
         var instance = EasySearch.getComponentInstance(
-            { id : 'objectChooser', index : 'entities' }
+            //{ id : 'objectChooser', index : 'entities' }
+            { index : 'entities' }
         );
         instance.clear();
         EasySearch.changeProperty('entities', 'filteredCategories', ["health-condition"]);
@@ -447,7 +438,8 @@ Template.consequent.events({
         event.preventDefault();
         Session.set("selectedThenPredicate", diagnosisPredicate);
         var instance = EasySearch.getComponentInstance(
-            { id : 'objectChooser', index : 'entities' }
+            //{ id : 'objectChooser', index : 'entities' }
+            { index : 'entities' }
         );
         instance.clear();
         EasySearch.changeProperty('entities', 'filteredCategories', ["measurement"]);
@@ -463,7 +455,7 @@ Template.thenValueSelector.events({
 
         var rule = Session.get("rule");
         if (! rule.then) rule.then = [];
-        var idx = block.then.length;
+        var idx = rule.then.length;
         var thenItem = {
             idx: idx,
             pred: pred,
@@ -475,7 +467,8 @@ Template.thenValueSelector.events({
         Session.set("rule", rule);
 
         var instance = EasySearch.getComponentInstance(
-            { id : 'objectChooser', index : 'entities' }
+            //{ id : 'objectChooser', index : 'entities' }
+            { index : 'entities' }
         );
         instance.clear();
         //TODO clear the search box and focus on it

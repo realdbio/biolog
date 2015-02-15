@@ -71,6 +71,18 @@
 </template>
 
 
+<template name="thenDisplay">
+    <div class="btn-group" role="group" aria-label="...">
+        <!--<button class="btn btn-default btn-sm biolog-objectButtons-negateBtn {{notHidden}}" title="negate">-->
+            <!--NOT-->
+        <!--</button>-->
+        <button class="btn btn-default btn-sm biolog-deleteThenObjBtn" title="remove">
+            {{pred.name}}: {{object.name}}  <span class="fa fa-close"></span>
+        </button>
+    </div>
+</template>
+
+
 <template name="blockDisplay">
     <div class="{{blockPanelColor}}">
         <!--<div class="panel-body">-->
