@@ -10,7 +10,7 @@ Meteor.startup(function() {
         removeOnHide: false, //optional. If this is true, modal will be removed from DOM upon hiding
         buttons: {
             "cancel": {
-                class: 'btn-danger',
+                class: 'btn-default btn-sm',
                 label: 'Close'
             }
         }
@@ -28,7 +28,7 @@ Meteor.startup(function() {
         removeOnHide: false, //optional. If this is true, modal will be removed from DOM upon hiding
         buttons: {
             "cancel": {
-                class: 'btn-danger',
+                class: 'btn-default btn-sm',
                 label: 'Close'
             }
         }

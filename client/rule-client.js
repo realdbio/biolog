@@ -125,6 +125,9 @@ Template.blockDisplay.events({
         instance.clear();
         EasySearch.changeProperty('entities', 'filteredCategories', ["health-condition"]);
         objDialog.show();
+        //console.log("objectChooser=" + document.getElementById("objectChooser").id);
+        var frm = document.getElementById("objectChooserForm");
+        //setTimeout(function () { frm.objectChooser.focus(); }, 100);
     },
 
     'click .biolog-addMedication': function(event, template) {
@@ -334,7 +337,11 @@ Template.valueSelector.created = function() {
         { index : 'entities' }
     );
     instance.on('searchingDone', function (searchingIsDone) {
-        if (searchingIsDone) Session.set("selectedObject", null);
+        //console.log("searchingDone: Found " + JSON.stringify(instance.searchResults));
+        if (searchingIsDone) {
+            Session.set("selectedObject", null);
+            //Session.set("matchCount", instance.total);
+        }
     });
 };
 
@@ -386,7 +393,10 @@ Template.thenValueSelector.created = function() {
         { index : 'entities' }
     );
     instance.on('searchingDone', function (searchingIsDone) {
-        if (searchingIsDone) Session.set("selectedThenObject", null);
+        if (searchingIsDone) {
+            Session.set("selectedThenObject", null);
+            //Session.set("matchCount", instance.total);
+        }
     });
 };
 
@@ -401,7 +411,24 @@ Template.valueSelector.helpers({
         var selectedObject = Session.get("selectedObject");
         if (selectedObject) return "";
         return "hidden";
+    },
+
+    predName: function() {
+        var pred = Session.get("selectedPredicate");
+        if (!pred) return "";
+        return pred.name;
     }
+
+    //disableAddBtn: function() {
+    //    //var instance = EasySearch.getComponentInstance(
+    //    //    { index : 'entities' }
+    //    //);
+    //    //console.log("instance.total=" + instance.total);
+    //    //if (instance.total > 0) return "";
+    //    var matchCount = Session.get("matchCount");
+    //    if (! matchCount) return "disabled";
+    //    return "";
+    //}
 });
 
 
@@ -486,5 +513,11 @@ Template.thenValueSelector.helpers({
         var selectedObject = Session.get("selectedThenObject");
         if (selectedObject) return "";
         return "hidden";
+    },
+
+    predName: function() {
+        var pred = Session.get("selectedThenPredicate");
+        if (!pred) return "";
+        return pred.name;
     }
 });
