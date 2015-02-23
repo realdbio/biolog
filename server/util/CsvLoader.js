@@ -46,7 +46,7 @@ CsvLoader.prototype.loadKaiserJson = function(map, json, src, callback) {
         }
         var nameLC = name;
         nameLC = name.toLowerCase();
-        var id = "health-condition/" + strToId(nameLC);
+        var id = "healthcondition/" + strToId(nameLC);
         var theDate = new Date();
         var entity = {
             _id: id,
@@ -60,7 +60,7 @@ CsvLoader.prototype.loadKaiserJson = function(map, json, src, callback) {
             updater: "dave",
             synonyms: [],
             parents: [],
-            etypes: ["health-condition"]
+            etypes: ["healthcondition"]
         };
 
         //add synonyms

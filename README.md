@@ -32,3 +32,11 @@ https://github.com/CollectionFS/Meteor-CollectionFS
 Add/update/delete current facts to patient entity
 Rules schema, using Percolator syntax
 Rules tooling
+
+Run ElasticSearch locally
+-------------------------
+elasticsearch -f -D es.config=/usr/local/opt/elasticsearch/config/elasticsearch.yml
+
+Install ElasticSearch admin interface
+-------------------------------------
+http://stackoverflow.com/questions/8954785/elastic-search-how-to-see-the-indexed-data

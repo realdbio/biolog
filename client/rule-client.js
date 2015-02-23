@@ -123,7 +123,7 @@ Template.blockDisplay.events({
         );
 
         instance.clear();
-        EasySearch.changeProperty('entities', 'filteredCategories', ["health-condition"]);
+        EasySearch.changeProperty('entities', 'filteredCategories', ["healthcondition"]);
         objDialog.show();
         //console.log("objectChooser=" + document.getElementById("objectChooser").id);
         var frm = document.getElementById("objectChooserForm");
@@ -456,7 +456,7 @@ Template.consequent.events({
             { index : 'entities' }
         );
         instance.clear();
-        EasySearch.changeProperty('entities', 'filteredCategories', ["health-condition"]);
+        EasySearch.changeProperty('entities', 'filteredCategories', ["healthcondition"]);
         thenObjDialog.show();
     },
 

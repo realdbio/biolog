@@ -17,3 +17,9 @@ Meteor.publish("patientDiagnoses", function (patientId) {
 //Meteor.publish("currentPatient"), function() {
 //    return Entities.find({etypes: "patient" }, {sort: [["used","desc"]]}, {limit: 20});
 //});
+
+
+EasySearch.config({
+    'host' : 'localhost:9200'
+
+});

@@ -17,5 +17,13 @@ Template.adminOptions.events({
 //        console.log("adminOptions: ruleTool=" + JSON.stringify(ruleTool));
 //        ruleDialog.show();
         Router.go("rule");
+    },
+
+    "click #loadCsvOption": function(event, template) {
+        event.preventDefault();
+        if (Meteor.user() == null || Meteor.user()._id == null) {
+            return;
+        }
+        Meteor.call("loadData");
     }
 });
