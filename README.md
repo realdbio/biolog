@@ -40,3 +40,5 @@ elasticsearch -f -D es.config=/usr/local/opt/elasticsearch/config/elasticsearch.
 Install ElasticSearch admin interface
 -------------------------------------
 http://stackoverflow.com/questions/8954785/elastic-search-how-to-see-the-indexed-data
+Access it:
+http://localhost:9200/_plugin/head/

@@ -24,42 +24,24 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="console.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="console.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/client/console.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.625" vertical-offset="0" max-vertical-offset="555">
-              <caret line="1" column="31" selection-start-line="1" selection-start-column="31" selection-end-line="1" selection-end-column="31" />
+            <state vertical-scroll-proportion="0.20833333" vertical-offset="0" max-vertical-offset="648">
+              <caret line="9" column="18" selection-start-line="9" selection-start-column="18" selection-end-line="9" selection-end-column="18" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="loadCsv.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/server/methods/loadCsv.js">
+      <file leaf-file-name="console.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/client/console.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="78" max-vertical-offset="525">
-              <caret line="4" column="27" selection-start-line="4" selection-start-column="27" selection-end-line="4" selection-end-column="27" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CsvLoader.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/server/util/CsvLoader.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-6.181818" vertical-offset="590" max-vertical-offset="2100">
-              <caret line="62" column="38" selection-start-line="62" selection-start-column="38" selection-end-line="62" selection-end-column="38" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="init-server.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/server/lib/init-server.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="3" max-vertical-offset="450">
-              <caret line="22" column="29" selection-start-line="22" selection-start-column="29" selection-end-line="22" selection-end-column="29" />
-              <folding />
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="390">
+              <caret line="20" column="47" selection-start-line="20" selection-start-column="47" selection-end-line="20" selection-end-column="47" />
+              <folding>
+                <element signature="e#0#36#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -84,12 +66,34 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="init.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="init.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lib/init.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.5945946" vertical-offset="1513" max-vertical-offset="2040">
-              <caret line="117" column="32" selection-start-line="117" selection-start-column="32" selection-end-line="117" selection-end-column="32" />
+            <state vertical-scroll-proportion="-8.333333" vertical-offset="1620" max-vertical-offset="2040">
+              <caret line="123" column="27" selection-start-line="123" selection-start-column="27" selection-end-line="123" selection-end-column="27" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="README.md" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/README.md">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-22.28" vertical-offset="88" max-vertical-offset="735">
+              <caret line="43" column="35" selection-start-line="43" selection-start-column="35" selection-end-line="43" selection-end-column="35" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="init-speech.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/client/lib/init-speech.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="165" max-vertical-offset="900">
+              <caret line="19" column="9" selection-start-line="19" selection-start-column="9" selection-end-line="19" selection-end-column="9" />
+              <folding>
+                <element signature="e#0#36#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -148,15 +152,17 @@
         <option value="$PROJECT_DIR$/client/imports.html" />
         <option value="$PROJECT_DIR$/.meteor/versions" />
         <option value="$PROJECT_DIR$/.meteor/packages" />
-        <option value="$PROJECT_DIR$/client/console.html" />
         <option value="$PROJECT_DIR$/server/lib/init-server.js" />
-        <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/server/util/CsvLoader.js" />
         <option value="$PROJECT_DIR$/client/rule-client.js" />
         <option value="$PROJECT_DIR$/lib/init-shared-data.js" />
         <option value="$PROJECT_DIR$/client/layout.html" />
         <option value="$PROJECT_DIR$/client/adminOptions.js" />
         <option value="$PROJECT_DIR$/lib/init.js" />
+        <option value="$PROJECT_DIR$/README.md" />
+        <option value="$PROJECT_DIR$/client/lib/init-speech.js" />
+        <option value="$PROJECT_DIR$/client/console.js" />
+        <option value="$PROJECT_DIR$/client/console.html" />
       </list>
     </option>
   </component>
@@ -352,6 +358,24 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="client" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="lib" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="smartbio" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="smartbio" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value=".meteor" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -446,7 +470,7 @@
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32142857" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32142857" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.18665667" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -486,14 +510,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/server/lib/init-data.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="120" max-vertical-offset="315">
-          <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/lib/init-shared-data.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="300" max-vertical-offset="420">
@@ -795,14 +811,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.92890996" vertical-offset="223" max-vertical-offset="705">
-          <caret line="41" column="85" selection-start-line="41" selection-start-column="85" selection-end-line="41" selection-end-column="85" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/server/methods/loadCsv.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="78" max-vertical-offset="525">
@@ -843,14 +851,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/console.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.625" vertical-offset="0" max-vertical-offset="555">
-          <caret line="1" column="31" selection-start-line="1" selection-start-column="31" selection-end-line="1" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/client/layout.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-12.0" vertical-offset="522" max-vertical-offset="945">
@@ -869,8 +869,44 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/init.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5945946" vertical-offset="1513" max-vertical-offset="2040">
-          <caret line="117" column="32" selection-start-line="117" selection-start-column="32" selection-end-line="117" selection-end-column="32" />
+        <state vertical-scroll-proportion="-8.333333" vertical-offset="1620" max-vertical-offset="2040">
+          <caret line="123" column="27" selection-start-line="123" selection-start-column="27" selection-end-line="123" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-22.28" vertical-offset="88" max-vertical-offset="735">
+          <caret line="43" column="35" selection-start-line="43" selection-start-column="35" selection-end-line="43" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/lib/init-speech.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="165" max-vertical-offset="900">
+          <caret line="19" column="9" selection-start-line="19" selection-start-column="9" selection-end-line="19" selection-end-column="9" />
+          <folding>
+            <element signature="e#0#36#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/console.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="390">
+          <caret line="20" column="47" selection-start-line="20" selection-start-column="47" selection-end-line="20" selection-end-column="47" />
+          <folding>
+            <element signature="e#0#36#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/console.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.20833333" vertical-offset="0" max-vertical-offset="648">
+          <caret line="9" column="18" selection-start-line="9" selection-start-column="18" selection-end-line="9" selection-end-column="18" />
           <folding />
         </state>
       </provider>
