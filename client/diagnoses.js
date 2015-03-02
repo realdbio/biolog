@@ -88,6 +88,20 @@ Template.addDiagnosisButton.events({
 });
 
 
+Template.diagnosisItem.rendered = function() {
+    $('.time-slider').noUiSlider({
+        start: [0, 1000],
+        connect: true,
+        range: {
+            'min': 0,
+            'max': 1000
+        }
+        //format: wNumb({
+        //    decimals: 0
+        //})
+    });
+};
+
 Template.diagnosisItem.events({
     'click .smartbio-diagnosisbtn': function(event, template) {
         event.preventDefault();
@@ -98,3 +112,20 @@ Template.diagnosisItem.events({
         editDiagnosisDialog.show();
     }
 });
+
+Template.diagnosisItem.helpers({
+    color: function() {
+        return "color-red";
+    },
+
+    getStartDate: function() {
+        var vals = $('#diagnosesSliders-' + this._id).val();
+        console.log("getStartDate: startVal id=" + '#diagnosesSliders-' + this._id);
+        if (!vals) return;
+        var startVal = vals[0];
+    },
+
+    getEndDate: function() {
+        console.log("getEndDate: this=" + JSON.stringify(this));
+    }
+})

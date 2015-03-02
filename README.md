@@ -42,3 +42,7 @@ Install ElasticSearch admin interface
 http://stackoverflow.com/questions/8954785/elastic-search-how-to-see-the-indexed-data
 Access it:
 http://localhost:9200/_plugin/head/
+
+Web Speech
+----------
+http://stephenwalther.com/archive/2015/01/05/using-html5-speech-recognition-and-text-to-speech

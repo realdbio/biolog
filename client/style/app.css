@@ -22,6 +22,39 @@
     margin: -10px 5px 5px 5px !important;
 }
 
+/*.color-red {*/
+    /*color: #c0392b;*/
+/*}*/
+
+.time-slider {
+    height: 20px !important;
+}
+
+.noUi-base {
+    height: 20px !important;
+}
+
+.noUi-connect {
+    background-color: #c0392b;
+}
+
+.noUi-handle::before,.noUi-handle::after {
+    content: none !important;
+}
+
+.noUi-handle-lower {
+    height: 24px !important;
+    width: 24px !important;
+    margin: 4px 0px 0px 15px !important;
+    background-image: none !important;
+}
+
+.noUi-handle-upper {
+    height: 24px !important;
+    width: 24px !important;
+    margin: 4px 20px 0px -5px !important;
+}
+
 /*.biolog-selectBox {*/
     /*height: 50px;*/
 /*}*/

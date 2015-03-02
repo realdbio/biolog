@@ -3,10 +3,7 @@
     <div class="list">
         {{#each diagnoses}}
         <div class="item">
-            <p>
-                {{> diagnosisItem}}
-                <!--{{name}}-->
-            </p>
+            {{> diagnosisItem}}
         </div>
         {{/each}}
     </div>
@@ -18,7 +15,6 @@
         <div class="item">
             <p>
                 {{> factItem}}
-                <!--{{name}}-->
             </p>
         </div>
         {{/each}}
@@ -44,28 +40,50 @@
     </button>
 </template>
 
+
 <template name="diagnosisItem">
     <div class="btn-group-sm">
-        <!--{{> entityButton}}-->
-        <button type="button" class="btn btn-sm btn-default smartbio-diagnosisbtn">
-            <span class="fa fa-medkit"></span> {{objName}}
-        </button>
-        <!--<button type="button" id="realdb-btn-entity-plus-{{_id}}" class="btn btn-primary">-->
-        <!--<span class="glyphicon glyphicon-plus"></span>-->
+        <!--<button type="button" class="btn btn-sm btn-default smartbio-diagnosisbtn">-->
+            <!--<span class="fa fa-medkit"></span> {{objName}}-->
         <!--</button>-->
+        <!--<div class="progress">-->
+            <!--<div class="progress-bar progress-bar-success" style="width: 35%">-->
+                <!--<span class="sr-only">35% Complete (success)</span>-->
+            <!--</div>-->
+            <!--<div class="progress-bar progress-bar-warning progress-bar-striped" style="width: 20%">-->
+                <!--<span class="sr-only">20% Complete (warning)</span>-->
+            <!--</div>-->
+            <!--<div class="progress-bar progress-bar-danger" style="width: 10%">-->
+                <!--<span class="sr-only">10% Complete (danger)</span>-->
+            <!--</div>-->
+        <!--</div>-->
 
-        <!--<button type="button" class="btn-sm btn-default dropdown-toggle" data-toggle="dropdown" title="Add...">-->
-            <!--<span class="glyphicon glyphicon-plus"></span>-->
-        <!--</button>-->
-        <!--<ul class="dropdown-menu" role="menu">-->
-            <!--<li><a id="smartbio-link-add-fact-{{_id}}" href="#">Add a Fact</a></li>-->
-            <!--<li><a id="smartbio-link-add-sib-{{_id}}" href="#">Another action</a></li>-->
-            <!--<li><a href="#">Something else here</a></li>-->
-            <!--<li class="divider"></li>-->
-            <!--<li><a href="#">Separated link</a></li>-->
-        <!--</ul>-->
+
+
+
+
+
+        <div id="diagnosesSliders">
+            <div class="row-fluid">
+                <div class="col col-sm-12">
+                    <span>{{getStartDate}}</span>
+                    <div id="diagnosesSliders-{{_id}}" class="time-slider {{color}}"></div>
+                    <span>{{getEndDate}}</span>
+                </div>
+            </div>
+
+        </div>
+
+
+
+
+
+
+
+
     </div>
 </template>
+
 
 <template name="factItem">
     <div class="btn-group-sm">
