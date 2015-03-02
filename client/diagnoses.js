@@ -89,16 +89,29 @@ Template.addDiagnosisButton.events({
 
 
 Template.diagnosisItem.rendered = function() {
-    $('.time-slider').noUiSlider({
+    console.log("diagnosisItem.rendered: this=" + this);
+    this.$('.time-slider').noUiSlider({
         start: [0, 1000],
         connect: true,
         range: {
             'min': 0,
             'max': 1000
         }
+        //format: {
+        //    to: function (value) {
+        //        return value + ',-';
+        //    },
+        //    from: function (value) {
+        //        return value.replace(',-', '');
+        //    }
+        //}
         //format: wNumb({
         //    decimals: 0
         //})
+    })
+    .on('change', function (ev, val) {
+        //Session.set('slider', val);
+            console.log("Slider ev=" + ev.target.id);
     });
 };
 
@@ -119,10 +132,11 @@ Template.diagnosisItem.helpers({
     },
 
     getStartDate: function() {
-        var vals = $('#diagnosesSliders-' + this._id).val();
-        console.log("getStartDate: startVal id=" + '#diagnosesSliders-' + this._id);
-        if (!vals) return;
-        var startVal = vals[0];
+        //var theId = '#diagnosesSliders-' + this._id;
+        //var timeSlider = $(theId);
+        //console.log("getStartDate: startVal theId=" + theId + "; slider=" + timeSlider);
+        //if (!vals) return;
+        //var startVal = vals[0];
     },
 
     getEndDate: function() {

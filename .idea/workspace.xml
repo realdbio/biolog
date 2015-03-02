@@ -2,18 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bd94fda1-7476-48a0-9c18-24312c02a63a" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/packages/ramshackle:nouislider/jquery.nouislider.all.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/packages/ramshackle:nouislider/jquery.nouislider.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/packages/ramshackle:nouislider/jquery.nouislider.pips.min.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/style/app.css" afterPath="$PROJECT_DIR$/client/style/app.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/diagnoses.html" afterPath="$PROJECT_DIR$/client/diagnoses.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/diagnoses.js" afterPath="$PROJECT_DIR$/client/diagnoses.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.meteor/packages" afterPath="$PROJECT_DIR$/.meteor/packages" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.meteor/release" afterPath="$PROJECT_DIR$/.meteor/release" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.meteor/versions" afterPath="$PROJECT_DIR$/.meteor/versions" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="smartbio.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -47,21 +36,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="diagnoses.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="diagnoses.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/client/diagnoses.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.71653545" vertical-offset="580" max-vertical-offset="1500">
+            <state vertical-scroll-proportion="-18.958334" vertical-offset="580" max-vertical-offset="1500">
               <caret line="69" column="45" selection-start-line="69" selection-start-column="29" selection-end-line="69" selection-end-column="45" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="diagnoses.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="diagnoses.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/client/diagnoses.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="1308" max-vertical-offset="2040">
-              <caret line="122" column="84" selection-start-line="122" selection-start-column="84" selection-end-line="122" selection-end-column="84" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2250">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -621,6 +610,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.6026786" vertical-offset="0" max-vertical-offset="735">
           <caret line="27" column="75" selection-start-line="27" selection-start-column="75" selection-end-line="27" selection-end-column="75" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -827,18 +817,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/diagnoses.js">
+    <entry file="file://$PROJECT_DIR$/client/diagnoses.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1308" max-vertical-offset="2040">
-          <caret line="122" column="84" selection-start-line="122" selection-start-column="84" selection-end-line="122" selection-end-column="84" />
+        <state vertical-scroll-proportion="-18.958334" vertical-offset="580" max-vertical-offset="1500">
+          <caret line="69" column="45" selection-start-line="69" selection-start-column="29" selection-end-line="69" selection-end-column="45" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/diagnoses.html">
+    <entry file="file://$PROJECT_DIR$/client/diagnoses.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.71653545" vertical-offset="580" max-vertical-offset="1500">
-          <caret line="69" column="45" selection-start-line="69" selection-start-column="29" selection-end-line="69" selection-end-column="45" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2250">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
