@@ -45,7 +45,8 @@ Template.myDiagnoses.helpers({
 //        return Entities.find({etypes: "diagnosis"}).fetch();
 //        return Facts.find({pred: "diagnosis", subj: Meteor.userId(), valid: 1 }).fetch();
         if (! Session.get("patient") || ! Session.get("patient")._id) return;
-        return getPatientDiagnoses(Session.get("patient")._id).fetch();
+        var patientDiagnoses = getPatientDiagnoses(Session.get("patient")._id).fetch();
+        Session.set("patientDiagnoses", patientDiagnoses);
     }
 });
 
@@ -89,13 +90,17 @@ Template.addDiagnosisButton.events({
 
 
 Template.diagnosisItem.rendered = function() {
+    endOfToday = new Date();
+    endOfToday.setHours(23,59,59,999);
     console.log("diagnosisItem.rendered: this=" + this);
     this.$('.time-slider').noUiSlider({
-        start: [0, 1000],
+        start: [Session.get("patient").data.dob, endOfToday],
         connect: true,
         range: {
-            'min': 0,
-            'max': 1000
+            'min': [0],
+            '10%': [10, 10],
+            '90%': [990, 10],
+            'max': [1000]
         }
         //format: {
         //    to: function (value) {
@@ -110,8 +115,35 @@ Template.diagnosisItem.rendered = function() {
         //})
     })
     .on('change', function (ev, val) {
-        //Session.set('slider', val);
-            console.log("Slider ev=" + ev.target.id);
+            var id = ev.target.id.substring(ev.target.id.indexOf("-") + 1);
+            //Session.set('slider', val);
+            console.log("Slider ev=" + val);
+                var theDiagnosis = null;
+            var diagnoses = Session.get("patientDiagnoses");
+            for (var di in diagnoses) {
+                var diag = diagnoses[di];
+                if (diag._id == id) {
+                    theDiagnosis = diag;
+                    break;
+                }
+            }
+            if (! theDiagnosis) {
+                console.error("time-slider: unable to find diagnosis: " + id);
+            }
+
+            //set item dates
+            var startVal = val[0];
+            theDiagnosis.startFlag = 0;
+            theDiagnosis.startDate = startVal;
+            var endVal = val[1];
+            if (endVal == endOfToday) {
+                theDiagnosis.endFlag = 1;
+            } else {
+                theDiagnosis.endFlag = 0;
+                theDiagnosis.endDate = endVal;
+            }
+            diagnoses[di] = theDiagnosis;
+            Session.set("patientDiagnoses", diagnoses);
     });
 };
 
@@ -128,7 +160,7 @@ Template.diagnosisItem.events({
 
 Template.diagnosisItem.helpers({
     color: function() {
-        return "color-red";
+        return "color-blue";
     },
 
     getStartDate: function() {

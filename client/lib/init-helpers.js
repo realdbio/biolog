@@ -18,7 +18,10 @@ UI.registerHelper("patient", function() {
                 _id: patientId,
                 name: Meteor.user().profile.name,
                 nameLC: Meteor.user().profile.name.toLowerCase(),
-                etypes: ["patient"]
+                etypes: ["patient"],
+                data: {
+                    dob: new Date(1969, 7, 1)
+                }
             };
             Session.set("patient", patient);
             Meteor.call("addEntity", patient);
