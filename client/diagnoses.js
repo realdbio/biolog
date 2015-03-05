@@ -46,7 +46,9 @@ Template.myDiagnoses.helpers({
 //        return Facts.find({pred: "diagnosis", subj: Meteor.userId(), valid: 1 }).fetch();
         if (! Session.get("patient") || ! Session.get("patient")._id) return;
         var patientDiagnoses = getPatientDiagnoses(Session.get("patient")._id).fetch();
+        console.log("Found patientDiagnoses=" + JSON.stringify(patientDiagnoses));
         Session.set("patientDiagnoses", patientDiagnoses);
+        return patientDiagnoses;
     }
 });
 
