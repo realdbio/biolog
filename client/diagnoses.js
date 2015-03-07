@@ -40,11 +40,14 @@ Template.myDiagnoses.events({'submit form': function (event, template) {
 
 Template.myDiagnoses.helpers({
     diagnoses: function() {
-//        console.log("Meteor.user()=" + JSON.stringify(Meteor.user()));
-
-//        return Entities.find({etypes: "diagnosis"}).fetch();
-//        return Facts.find({pred: "diagnosis", subj: Meteor.userId(), valid: 1 }).fetch();
         if (! Session.get("patient") || ! Session.get("patient")._id) return;
+//        var patientDiagnoses = Session.get("patientDiagnoses");
+//        if (patientDiagnoses) return patientDiagnoses;
+////        console.log("Meteor.user()=" + JSON.stringify(Meteor.user()));
+//
+////        return Entities.find({etypes: "diagnosis"}).fetch();
+////        return Facts.find({pred: "diagnosis", subj: Meteor.userId(), valid: 1 }).fetch();
+
         var patientDiagnoses = getPatientDiagnoses(Session.get("patient")._id).fetch();
         console.log("Found patientDiagnoses=" + JSON.stringify(patientDiagnoses));
         Session.set("patientDiagnoses", patientDiagnoses);
@@ -92,36 +95,50 @@ Template.addDiagnosisButton.events({
 
 
 Template.diagnosisItem.rendered = function() {
-    endOfToday = new Date();
-    endOfToday.setHours(23,59,59,999);
-    console.log("diagnosisItem.rendered: this=" + this);
+    timenow = new Date();
+    //console.log("timenow=" + timenow + "; time=" + timenow.getTime());
+    //console.log("dob=" + Session.get("patient").data.dob + "; time=" + Session.get("patient").data.dob.getTime());
+    //endOfToday = new Date();
+    //endOfToday.setHours(23,59,59,999);
+    //noonYesterday = new Date(endOfToday).setHours(endOfToday.getHours() - 36);
+    //console.log("diagnosisItem.rendered: this=" + this);
+
+
+
+    //'90%': [noonYesterday, 1000],
+    //'95%' : [timenow.getTime(), 1000],
+    //format: {
+    //    to: function (value) {
+    //        return value + ',-';
+    //    },
+    //    from: function (value) {
+    //        return value.replace(',-', '');
+    //    }
+    //}
+    //format: wNumb({
+    //    decimals: 0
+    //})
+
     this.$('.time-slider').noUiSlider({
-        start: [Session.get("patient").data.dob, endOfToday],
+        start: [Session.get("patient").data.dob.getTime(), timenow.getTime()],
         connect: true,
+        step: 1,
         range: {
-            'min': [0],
-            '10%': [10, 10],
-            '90%': [990, 10],
-            'max': [1000]
-        }
-        //format: {
-        //    to: function (value) {
-        //        return value + ',-';
-        //    },
-        //    from: function (value) {
-        //        return value.replace(',-', '');
-        //    }
-        //}
-        //format: wNumb({
-        //    decimals: 0
-        //})
+            'min': [Session.get("patient").data.dob.getTime()],
+            'max': [timenow.getTime()]
+        },
+        format: wNumb({
+            decimals: 0
+        })
+
     })
     .on('change', function (ev, val) {
             var id = ev.target.id.substring(ev.target.id.indexOf("-") + 1);
             //Session.set('slider', val);
-            console.log("Slider ev=" + val);
+
                 var theDiagnosis = null;
             var diagnoses = Session.get("patientDiagnoses");
+
             for (var di in diagnoses) {
                 var diag = diagnoses[di];
                 if (diag._id == id) {
@@ -136,16 +153,22 @@ Template.diagnosisItem.rendered = function() {
             //set item dates
             var startVal = val[0];
             theDiagnosis.startFlag = 0;
-            theDiagnosis.startDate = startVal;
+            theDiagnosis.startDate = new Date(parseInt(startVal, 10));
+
             var endVal = val[1];
-            if (endVal == endOfToday) {
-                theDiagnosis.endFlag = 1;
-            } else {
-                theDiagnosis.endFlag = 0;
-                theDiagnosis.endDate = endVal;
-            }
-            diagnoses[di] = theDiagnosis;
-            Session.set("patientDiagnoses", diagnoses);
+
+            theDiagnosis.endDate = new Date(parseInt(endVal, 10));
+            //if (endVal == endOfToday) {
+            //    theDiagnosis.endDate = null;
+            //    theDiagnosis.endFlag = 1;
+            //} else {
+            //    theDiagnosis.endFlag = 0;
+            //    theDiagnosis.endDate = new Date(endVal);
+            //}
+            updateDiagnosis(theDiagnosis);
+            //diagnoses[di] = theDiagnosis;
+            //console.log("Slider ev=" + val + "; saving diagnosis=" + JSON.stringify(theDiagnosis));
+            //Session.set("patientDiagnoses", diagnoses);
     });
 };
 
@@ -166,14 +189,10 @@ Template.diagnosisItem.helpers({
     },
 
     getStartDate: function() {
-        //var theId = '#diagnosesSliders-' + this._id;
-        //var timeSlider = $(theId);
-        //console.log("getStartDate: startVal theId=" + theId + "; slider=" + timeSlider);
-        //if (!vals) return;
-        //var startVal = vals[0];
+        return this.startDate;
     },
 
     getEndDate: function() {
-        console.log("getEndDate: this=" + JSON.stringify(this));
+        return this.endDate;
     }
 })

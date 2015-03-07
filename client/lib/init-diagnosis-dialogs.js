@@ -15,6 +15,7 @@ Meteor.startup(function(){
     };
 
     updateDiagnosis = function(diagnosis) {
+        console.log("updateDiagnosis: " + JSON.stringify(diagnosis));
         Meteor.call("updateProperty", diagnosis, function(response) {
             if (response) {
                 if (response.success) {
