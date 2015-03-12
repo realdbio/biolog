@@ -499,6 +499,10 @@ Template.thenValueSelector.events({
         );
         instance.clear();
         //TODO clear the search box and focus on it
+    },
+
+    'click .biolog-thenValueSelector-addObjBtn' : function(event) {
+        console.log("biolog-thenValueSelector-addObjBtn");
     }
 });
 

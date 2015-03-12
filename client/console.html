@@ -7,26 +7,51 @@
                 <div>
                     <blockquote>{{recognizedSpeech}}</blockquote>
                 </div>
-            </div>
 
-            <div class="col-sm-4">
                 <div class="panel panel-info">
                     <div class="panel-heading">
-                        <h3 class="panel-title">Latest Activity</h3>
+                        <h3 class="panel-title"><span class="fa fa-medkit"></span>&nbsp;&nbsp;My Conditions</h3>
+                        <div class="pull-right">
+                            <div class="biolog-btn-group">
+                                {{> addDiagnosisButton }}
+                            </div>
+                        </div>
+
                     </div>
                     <div class="panel-body">
-                        <!--{{> myDiagnoses}}-->
+                        {{> myDiagnoses}}
                     </div>
                 </div>
             </div>
 
+            <!--<div class="col-sm-4">-->
+                <!--<div class="panel panel-info">-->
+                    <!--<div class="panel-heading">-->
+                        <!--<h3 class="panel-title">Latest Activity</h3>-->
+                    <!--</div>-->
+                    <!--<div class="panel-body">-->
+                        <!--{{> myActivity}}-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+
             <div class="col-sm-4">
                 <div class="panel panel-info">
                     <div class="panel-heading">
-                        <h3 class="panel-title">My Flags</h3>
+                        <h3 class="panel-title"><span class="fa fa-check-square-o"></span>&nbsp;&nbsp;My Checklist</h3>
+
+                        <div class="pull-right">
+                            <div class="biolog-btn-group">
+                                <button type="button" class="btn-xs btn-default" id="refreshChecklistButton">
+                                    <span class="fa fa-refresh"></span>
+                                </button>
+                            </div>
+                        </div>
                     </div>
+
+
                     <div class="panel-body">
-                        <!--{{> myFlags }}-->
+                        {{> myChecklist }}
                     </div>
                 </div>
             </div>
@@ -34,17 +59,17 @@
 
         <div class="row-fluid">
             <div class="col-md-12">
-                <div class="panel panel-info">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">My Conditions</h3>
-                    </div>
-                    <div class="panel-body">
-                        {{> myDiagnoses}}
-                    </div>
-                </div>
+
             </div>
         </div>
 
 
     </div>
+</template>
+
+
+<template name="myChecklist">
+    {{#each flags}}
+        {{text}}
+    {{/each}}
 </template>

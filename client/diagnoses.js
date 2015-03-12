@@ -49,7 +49,7 @@ Template.myDiagnoses.helpers({
 ////        return Facts.find({pred: "diagnosis", subj: Meteor.userId(), valid: 1 }).fetch();
 
         var patientDiagnoses = getPatientDiagnoses(Session.get("patient")._id).fetch();
-        console.log("Found patientDiagnoses=" + JSON.stringify(patientDiagnoses));
+        //console.log("Found patientDiagnoses=" + JSON.stringify(patientDiagnoses));
         Session.set("patientDiagnoses", patientDiagnoses);
         return patientDiagnoses;
     }
@@ -119,57 +119,64 @@ Template.diagnosisItem.rendered = function() {
     //    decimals: 0
     //})
 
-    this.$('.time-slider').noUiSlider({
-        start: [Session.get("patient").data.dob.getTime(), timenow.getTime()],
-        connect: true,
-        step: 1,
-        range: {
-            'min': [Session.get("patient").data.dob.getTime()],
-            'max': [timenow.getTime()]
-        },
-        format: wNumb({
-            decimals: 0
-        })
+    //this.$('.time-slider').noUiSlider({
+    //    start: [Session.get("patient").data.dob.getTime(), timenow.getTime()],
+    //    connect: true,
+    //    step: 1,
+    //    range: {
+    //        'min': [Session.get("patient").data.dob.getTime()],
+    //        'max': [timenow.getTime()]
+    //    },
+    //    format: wNumb({
+    //        decimals: 0
+    //    })
+    //
+    //})
+    //.on('change', function (ev, val) {
+    //        var id = ev.target.id.substring(ev.target.id.indexOf("-") + 1);
+    //        //Session.set('slider', val);
+    //
+    //            var theDiagnosis = null;
+    //        var diagnoses = Session.get("patientDiagnoses");
+    //
+    //        for (var di in diagnoses) {
+    //            var diag = diagnoses[di];
+    //            if (diag._id == id) {
+    //                theDiagnosis = diag;
+    //                break;
+    //            }
+    //        }
+    //        if (! theDiagnosis) {
+    //            console.error("time-slider: unable to find diagnosis: " + id);
+    //        }
+    //
+    //        //set item dates
+    //        var startVal = val[0];
+    //        theDiagnosis.startFlag = 0;
+    //        theDiagnosis.startDate = new Date(parseInt(startVal, 10));
+    //
+    //        var endVal = val[1];
+    //
+    //        theDiagnosis.endDate = new Date(parseInt(endVal, 10));
+    //        //if (endVal == endOfToday) {
+    //        //    theDiagnosis.endDate = null;
+    //        //    theDiagnosis.endFlag = 1;
+    //        //} else {
+    //        //    theDiagnosis.endFlag = 0;
+    //        //    theDiagnosis.endDate = new Date(endVal);
+    //        //}
+    //        updateDiagnosis(theDiagnosis);
+    //        //diagnoses[di] = theDiagnosis;
+    //        //console.log("Slider ev=" + val + "; saving diagnosis=" + JSON.stringify(theDiagnosis));
+    //        //Session.set("patientDiagnoses", diagnoses);
+    //});
 
-    })
-    .on('change', function (ev, val) {
-            var id = ev.target.id.substring(ev.target.id.indexOf("-") + 1);
-            //Session.set('slider', val);
 
-                var theDiagnosis = null;
-            var diagnoses = Session.get("patientDiagnoses");
+    //this.$(".time-slider").noUiSlider_pips({
+    //    mode: 'steps',
+    //    density: 10000
+    //});
 
-            for (var di in diagnoses) {
-                var diag = diagnoses[di];
-                if (diag._id == id) {
-                    theDiagnosis = diag;
-                    break;
-                }
-            }
-            if (! theDiagnosis) {
-                console.error("time-slider: unable to find diagnosis: " + id);
-            }
-
-            //set item dates
-            var startVal = val[0];
-            theDiagnosis.startFlag = 0;
-            theDiagnosis.startDate = new Date(parseInt(startVal, 10));
-
-            var endVal = val[1];
-
-            theDiagnosis.endDate = new Date(parseInt(endVal, 10));
-            //if (endVal == endOfToday) {
-            //    theDiagnosis.endDate = null;
-            //    theDiagnosis.endFlag = 1;
-            //} else {
-            //    theDiagnosis.endFlag = 0;
-            //    theDiagnosis.endDate = new Date(endVal);
-            //}
-            updateDiagnosis(theDiagnosis);
-            //diagnoses[di] = theDiagnosis;
-            //console.log("Slider ev=" + val + "; saving diagnosis=" + JSON.stringify(theDiagnosis));
-            //Session.set("patientDiagnoses", diagnoses);
-    });
 };
 
 Template.diagnosisItem.events({

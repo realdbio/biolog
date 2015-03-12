@@ -1,12 +1,17 @@
 <template name="myDiagnoses">
-    {{> addDiagnosisButton }}
-    <!--<div class="list">-->
+    <div class="list-group">
         {{#each diagnoses}}
         <!--<div class="item">-->
             {{> diagnosisItem}}
         <!--</div>-->
         {{/each}}
-    <!--</div>-->
+    </div>
+</template>
+
+<template name="diagnosisItem">
+    <a href="#" class="list-group-item smartbio-diagnosisbtn">
+        {{objName}}
+    </a>
 </template>
 
 <template name="allFacts">
@@ -21,48 +26,32 @@
     </div>
 </template>
 
-<!--<template name="mostUsedDiagnosiss">-->
-    <!--<div class="list">-->
-        <!--{{#each conditions}}-->
-        <!--<div class="item">-->
-            <!--<p>-->
-                <!--{{> conditionItem}}-->
-                <!--&lt;!&ndash;{{name}}&ndash;&gt;-->
-            <!--</p>-->
-        <!--</div>-->
-        <!--{{/each}}-->
-    <!--</div>-->
-<!--</template>-->
 
 <template name="addDiagnosisButton">
-    <button type="button" class="btn-sm" id="addDiagnosisButton">
-        <span class="glyphicon glyphicon-plus"></span> Add a condition
+    <button type="button" class="btn-xs btn-default" id="addDiagnosisButton">
+        <span class="glyphicon glyphicon-plus"></span> Add
     </button>
 </template>
 
 
-<template name="diagnosisItem">
+<template name="diagnosisItemLegacy">
     <div class="row">
-        <div class="col col-sm-2">
+        <div class="col col-sm-12">
             <button type="button" class="btn btn-sm btn-default smartbio-diagnosisbtn">
                 <span class="fa fa-medkit"></span> {{objName}}
             </button>
         </div>
-        <div class="col col-sm-10">
-            <!--<div class="diagnosesSliders">-->
-
-            <div id="diagnosesSliders-{{_id}}" class="time-slider"></div>
-
-            <!--</div>-->
-        </div>
+        <!--<div class="col col-sm-10">-->
+            <!--<div id="diagnosesSliders-{{_id}}" class="time-slider"></div>-->
+        <!--</div>-->
     </div>
 
-    <div class="row">
-        <div class="col col-sm-10">
-            <span class="pull-right">{{getStartDate}}</span>
-            <span class="pull-right">{{getEndDate}}</span>
-        </div>
-    </div>
+    <!--<div class="row">-->
+        <!--<div class="col col-sm-10">-->
+            <!--<span class="pull-left">{{getStartDate}}</span>-->
+            <!--<span class="pull-right">{{getEndDate}}</span>-->
+        <!--</div>-->
+    <!--</div>-->
 </template>
 
 

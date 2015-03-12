@@ -22,6 +22,14 @@
     margin: -10px 5px 5px 5px !important;
 }
 
+.biolog-btn-group{
+    bottom: 20px;
+    position: relative;
+    /*top: -10px;*/
+
+}
+
+
 /*.color-red {*/
     /*color: #c0392b;*/
 /*}*/
