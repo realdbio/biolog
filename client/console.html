@@ -51,7 +51,7 @@
 
 
                     <div class="panel-body">
-                        {{> myChecklist }}
+                        {{> isabelChecklist }}
                     </div>
                 </div>
             </div>
@@ -68,8 +68,14 @@
 </template>
 
 
-<template name="myChecklist">
-    {{#each flags}}
-        {{text}}
-    {{/each}}
+<template name="isabelChecklist">
+    <div class="list-group">
+        {{#each diagnoses}}
+            <a href="#" class="list-group-item smartbio-isabelbtn {{severityColor}}">
+                <span class="{{isabelIcon}}"></span>&nbsp;
+                {{diagnoses_name}}
+            </a>
+        {{/each}}
+    </div>
 </template>
+

@@ -13,10 +13,14 @@ isabelCallback = function(error, result) {
 };
 
 Meteor.methods({
-    isabel: function(clientCallback) {
+    isabel: function(dob, sex, pregnant, region, diagnoses) {
         this.unblock();
         return HTTP.get(
-            "http://www.isabelhealthcare.com/private/emr_diagnosis.jsp?searchType=0&specialties=28&action=login&id=40744&password=isabel15&dob=19870828&sex=m&pregnant=n&region=1&querytext=cold,cough,fever,chills&suggest=Suggest+Differential+Diagnosis&web_service=json&flag=sortbyRW_advanced&callback=isabel",
+            "http://www.isabelhealthcare.com/private/emr_diagnosis.jsp?" +
+            "searchType=0&specialties=28&action=login&id=40744&password=isabel15" +
+            "&dob=" + dob + "&sex=" + sex + "&pregnant=" + pregnant + "&region=" + region +
+            "&querytext=" + diagnoses + "&suggest=Suggest+Differential+Diagnosis&web_service=json" +
+            "&flag=sortbyRW_advanced&callback=isabel",
             {timeout: 20000}
         );
     }

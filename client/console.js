@@ -24,13 +24,24 @@ Template.console.events({
 
     'click #refreshChecklistButton': function(event) {
         console.log("search Isabel...");
-        Meteor.call("isabel", function(error, result){
+        dummyPatient();
+        var patientDiagnoses = Session.get("patientDiagnoses");
+        var diagnosisList = "";
+        for (var di in patientDiagnoses) {
+            var dx = patientDiagnoses[di];
+            if (diagnosisList.length > 0) diagnosisList += "|";
+            diagnosisList += dx.objName;
+        }
+        var pt = Session.get("patient");
+        var dob = yyyymmdd(pt.dob);
+        Meteor.call("isabel", dob, pt.sex, pt.pregnant, pt.region, diagnosisList, function(error, result){
             if (error) {
                 return console.error("ERROR calling Isabel: " + error);
             }
             var contentString = result.content.substring(7, result.content.length - 2);
             var content = JSON.parse(contentString);
             console.log("Received RESULT from Isabel: " + JSON.stringify(content, null, "  "));
+            Session.set("isabel", content.Diagnosis_checklist)
         });
     }
 });
@@ -42,13 +53,29 @@ Template.console.helpers({
     }
 });
 
-Template.myChecklist.events({
+//Template.myChecklist.events({
+//
+//});
+//
+//Template.myChecklist.helpers({
+//    checklist: function() {
+//        return getPatientFlags(Session.get("patient")._id).fetch();
+//    }
+//});
 
-});
+Template.isabelChecklist.helpers({
+    diagnoses: function() {
+        if (! Session.get("isabel")) return null;
+        return Session.get("isabel").diagnosis;
+    },
 
-Template.myChecklist.helpers({
-    checklist: function() {
-        //return Session.get("checklist");
-        return getPatientFlags(Session.get("patient")._id).fetch();
+    isabelIcon: function() {
+        if (this.red_flag && this.red_flag == "true") return "fa fa-warning";
+        return "fa fa-question-circle";
+    },
+
+    severityColor: function() {
+        if (this.red_flag && this.red_flag == "true") return "list-group-item-danger";
+        return "list-group-item-warning";
     }
 });
