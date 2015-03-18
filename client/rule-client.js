@@ -332,14 +332,15 @@ Template.clauseDisplay.helpers({
 
 
 Template.valueSelector.created = function() {
-    var instance = EasySearch.getComponentInstance(
+    esEntitiesInstance = EasySearch.getComponentInstance(
         //{ id : 'objectChooser', index : 'entities' }
         { index : 'entities' }
     );
-    instance.on('searchingDone', function (searchingIsDone) {
+    esEntitiesInstance.on('searchingDone', function (searchingIsDone) {
         //console.log("searchingDone: Found " + JSON.stringify(instance.searchResults));
         if (searchingIsDone) {
             Session.set("selectedObject", null);
+            //Session.set("esEntitiesQuery", esEntitiesInstance.currentValue);
             //Session.set("matchCount", instance.total);
         }
     });
@@ -347,14 +348,10 @@ Template.valueSelector.created = function() {
 
 Template.valueSelector.events({
     'click .biolog-clauseObjBtn': function(event, template) {
-//        console.log('click .biolog-clauseObjBtn: this=' + JSON.stringify(this));
         var pred = Session.get("selectedPredicate");
         if (! pred) return alert("Please select a property");
 
         var rule = Session.get("rule");
-//        var block = Session.get("selectedBlock");
-//        var block = theBlock;
-//        console.log("valueSelector:
         var block = Session.get("selectedBlock");
 
         if (! block.clauses) block.clauses = [];
@@ -383,6 +380,17 @@ Template.valueSelector.events({
         );
         instance.clear();
         //TODO clear the search box and focus on it
+    },
+
+    'click .biolog-valueSelector-addObjBtn': function(event) {
+        event.stopPropagation();
+        event.preventDefault();
+        var val = $('#objectChooser').val();
+        //var instance = EasySearch.getComponentInstance(
+        //    //{ id : 'objectChooser', index : 'entities' }
+        //    { index : "entities", id: "objectChooser" }
+        //);
+        console.log("Clicked biolog-valueSelector-addObjBtn: " + val);
     }
 });
 
