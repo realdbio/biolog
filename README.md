@@ -35,7 +35,7 @@ Rules tooling
 
 Run ElasticSearch locally
 -------------------------
-elasticsearch -f -D es.config=/usr/local/opt/elasticsearch/config/elasticsearch.yml
+elasticsearch -D es.config=/usr/local/opt/elasticsearch/config/elasticsearch.yml
 
 Install ElasticSearch admin interface
 -------------------------------------
