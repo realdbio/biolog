@@ -1,7 +1,7 @@
-smartbio
+biolog
 ========
 
-smart bio
+biolog.io is a free and open source personal health record (PHR).  It seeks to involve the patient in their health care, by providing them targeted health intelligence, and capturing their info in real time.
 
 To delete a collection
 ----------------------
