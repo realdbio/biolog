@@ -157,7 +157,7 @@
     <form id="objectChooserForm">
     <div class="row">
         <div class="col col-md-4">
-            {{> esInput index="entities" placeholder="Select..." id="objectChooser" }}
+            {{> esInput index="entities" placeholder="Select..." id="objectChooser" class=""}}
         </div>
         <div class="col col-sm-4">
             {{#ifEsInputIsEmpty index="entities" id="objectChooser"}}
@@ -196,19 +196,39 @@
     <div class="row">
         <div class="col col-md-6">
             {{> esInput index="entities" placeholder="Select..." id="objectChooser" }}
+
+            <div class="panel panel-default" id="panel1">
+                <!--<div class="panel-heading">-->
+                    <!--<h4 class="panel-title">-->
+                        <!--<a data-toggle="collapse" data-target="#collapseOne" href="#">-->
+                            <!--Add new {{predName}}-->
+                        <!--</a>-->
+                    <!--</h4>-->
+
+                <!--</div>-->
+
+            </div>
         </div>
 
-        <div class="col col-sm-4">
+        <div class="col col-sm-6">
             {{#ifEsInputIsEmpty index="entities" id="objectChooser"}}
             {{else}}
                 {{#ifEsHasNoResults index="entities" id="objectChooser"}}
-                    <button role="button" class="btn btn-sm btn-primary biolog-thenValueSelector-addObjBtn">
+                    <button role="button" class="btn btn-sm btn-primary biolog-thenValueSelector-addObjBtn" data-toggle="collapse" data-target="#collapseOne">
                         <i class="fa fa-plus"></i>Add new {{predName}}
                     </button>
                 {{/ifEsHasNoResults}}
             {{/ifEsInputIsEmpty}}
         </div>
     </div>
+    <div class="row">
+        <div class="col col-sm-12 col-md-6">
+            <div id="collapseOne" class="panel-collapse collapse">
+                <div class="panel-body">Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.</div>
+            </div>
+        </div>
+    </div>
+
 
     <div class="row">
         <div class="col col-md-6">
