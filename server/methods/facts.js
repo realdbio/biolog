@@ -47,7 +47,7 @@ Meteor.methods(FactMethods = {
         fact.created = theDate;
         fact.updated = theDate;
         if (!fact._id) fact._id = new Meteor.Collection.ObjectID()._str;
-        if (!fact.source) fact.source = "smartbio/server/facts";
+        if (!fact.source) fact.source = "biolog/server/facts";
         console.log("Inserting fact: " + JSON.stringify(fact));
         Facts.insert(fact);
 

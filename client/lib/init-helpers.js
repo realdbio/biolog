@@ -19,16 +19,21 @@ UI.registerHelper("patient", function() {
                 name: Meteor.user().profile.name,
                 nameLC: Meteor.user().profile.name.toLowerCase(),
                 etypes: ["patient"],
-                data: {
-                    dob: new Date(1969, 7, 1)
-                }
+                owners: [Meteor.userId()],
+                valid: 1,
+                data: {}
             };
             Session.set("patient", patient);
             Meteor.call("addEntity", patient);
+
+            ensureDemographics();
+
             return patient;
         });
     }
 });
+
+
 
 //UI.registerHelper('each_with_index', function(cursor) {
 ////    var fn = options.fn, inverse = options.inverse;

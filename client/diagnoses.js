@@ -165,7 +165,7 @@ Template.diagnosisItem.rendered = function() {
     //        //    theDiagnosis.endFlag = 0;
     //        //    theDiagnosis.endDate = new Date(endVal);
     //        //}
-    //        updateDiagnosis(theDiagnosis);
+    //        updateProperty(theDiagnosis);
     //        //diagnoses[di] = theDiagnosis;
     //        //console.log("Slider ev=" + val + "; saving diagnosis=" + JSON.stringify(theDiagnosis));
     //        //Session.set("patientDiagnoses", diagnoses);

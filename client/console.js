@@ -24,7 +24,7 @@ Template.console.events({
 
     'click #refreshChecklistButton': function(event) {
         console.log("search Isabel...");
-        dummyPatient();
+        //dummyPatient();
         var patientDiagnoses = Session.get("patientDiagnoses");
         var diagnosisList = "";
         for (var di in patientDiagnoses) {

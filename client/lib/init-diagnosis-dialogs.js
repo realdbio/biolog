@@ -2,30 +2,7 @@
 //addDiagnosisDialog = null;
 
 Meteor.startup(function(){
-    addDiagnosis = function(diagnosis) {
-        Meteor.call("addProperty", diagnosis, function(response) {
-            if (response) {
-                if (response.success) {
-                    console.log("Successfully added fact and property.")
-                } else {
-                    console.log("Error adding property: " + response.error);
-                }
-            }
-        });
-    };
 
-    updateDiagnosis = function(diagnosis) {
-        console.log("updateDiagnosis: " + JSON.stringify(diagnosis));
-        Meteor.call("updateProperty", diagnosis, function(response) {
-            if (response) {
-                if (response.success) {
-                    console.log("Successfully inserted fact and updated property.")
-                } else {
-                    console.log("Error updating property: " + response.error);
-                }
-            }
-        });
-    };
 
     var addDiagnosisDialogSpec = {
         template: Template.addDiagnosisDialog,
@@ -50,7 +27,7 @@ Meteor.startup(function(){
     addDiagnosisDialog = ReactiveModal.initDialog(addDiagnosisDialogSpec);
 
     addDiagnosisDialog.buttons.ok.on('click', function(button){
-        addDiagnosis(Session.get("selectedDiagnosis"));
+        addProperty(Session.get("selectedDiagnosis"));
     });
 
     addDiagnosisDialog.buttons.cancel.on('click', function(button){
@@ -87,7 +64,7 @@ Meteor.startup(function(){
 
     editDiagnosisDialog.buttons.ok.on('click', function(button){
         console.log("Save condition = " + JSON.stringify(Session.get("selectedDiagnosis")));
-        updateDiagnosis(Session.get("selectedDiagnosis"));
+        updateProperty(Session.get("selectedDiagnosis"));
     });
 });
 

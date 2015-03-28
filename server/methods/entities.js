@@ -23,7 +23,7 @@ Meteor.methods({
         var theDate = new Date();
         entity.created = theDate;
         entity.updated = theDate;
-        if (!entity.source) entity.source = "smartbio/server/entities";
+        if (!entity.source) entity.source = "biolog/server/entities";
         console.log("Inserting entity: " + JSON.stringify(entity));
         Entities.insert(entity);
 
