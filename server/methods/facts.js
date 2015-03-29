@@ -244,7 +244,7 @@ Meteor.methods(FactMethods = {
             }
         }
 
-        return FactMethods.addProperty(fact, true);
+        return FactMethods.setProperty(fact, true);
     },
 
 

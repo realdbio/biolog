@@ -20,32 +20,34 @@
     <div class="row">
         <div class="col col-lg-12">
             {{#with patient}}
-                <div class="form-group">
-                    <label for="inputNickname">Nickname</label>
-                    <input type="text" class="form-control" id="inputNickname"
-                           placeholder="What is this patient called?"
-                           value="{{nickname}}">
+                <form>
+                    <div class="form-group">
+                        <label for="inputNickname">Nickname</label>
+                        <input type="text" class="form-control" id="inputNickname"
+                               placeholder="What is this patient called?"
+                               value="{{nickname}}">
 
-                    <label for="inputDob">Date of Birth</label>
-                    <input type="date" class="form-control" id="inputDob" placeholder="Date of birth" value="{{dob}}">
+                        <label for="inputDob">Date of Birth</label>
+                        <input type="date" class="form-control" id="inputDob" placeholder="Date of birth" value="{{dob}}">
 
-                    <div class="radio">
-                        <label>
-                            <input type="radio" name="inputGender" id="inputGenderFemale" value="female" {{femaleChecked}}>
-                            Female
-                        </label>
+                        <div class="radio">
+                            <label>
+                                <input type="radio" name="inputGender" id="inputGenderFemale" value="female" {{femaleChecked}}>
+                                Female
+                            </label>
 
-                        <!--<label class="checkbox-inline">-->
-                            <!--<input type="checkbox" id="inputPregnant" value="yes" {{pregnantChecked}}> pregnant-->
-                        <!--</label>-->
+                            <!--<label class="checkbox-inline">-->
+                                <!--<input type="checkbox" id="inputPregnant" value="yes" {{pregnantChecked}}> pregnant-->
+                            <!--</label>-->
+                        </div>
+                        <div class="radio">
+                            <label>
+                                <input type="radio" name="inputGender" id="inputGenderMale" value="male" {{maleChecked}}>
+                                Male
+                            </label>
+                        </div>
                     </div>
-                    <div class="radio">
-                        <label>
-                            <input type="radio" name="inputGender" id="inputGenderMale" value="male" {{maleChecked}}>
-                            Male
-                        </label>
-                    </div>
-                </div>
+                </form>
             {{/with}}
         </div>
     </div>

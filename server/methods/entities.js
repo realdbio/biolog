@@ -2,6 +2,10 @@
 Meteor.methods({
     /* save an entity and associated methods */
 
+    getEntity: function(id) {
+        return Entities.findOne(id);
+    },
+
     addEntity: function (entity) {
         // Make sure the user is logged in before inserting a task
         if (!Meteor.userId()) {
