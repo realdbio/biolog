@@ -167,7 +167,7 @@ Template.patientDemographics.events({
 });
 
 
-Template.patientSelector.helpers({
+Template.patientDemographics.helpers({
     patients: function() {
         if (! Session.get("patient")) return;
         var pts = getUserPatients(Session.get("patient")._id).fetch();
@@ -176,20 +176,25 @@ Template.patientSelector.helpers({
     },
 
     femaleChecked: function() {
-        if (this.data["id/sex"]=="female") return "checked";
+        if (!this.data || !this.data["id/sex"]) return;
+        if (this.data["id/sex"].text=="female") return "checked";
         return "";
     },
 
     maleChecked: function() {
-        if (this.data["id/sex"]=="male") return "checked";
+        if (!this.data || !this.data["id/sex"]) return;
+        if (this.data["id/sex"].text=="male") return "checked";
         return "";
     },
 
     nickname: function() {
-        return this.data["id/nickname"];
+        if (!this.data || !this.data["id/nickname"]) return;
+        return this.data["id/nickname"].text;
     },
 
     dob: function() {
-        return this.data["id/dob"];
+        console.log("dob: this.data['id/dob']=" + JSON.stringify(this.data["id/dob"]));
+        if (!this.data["id/dob"]) return;
+        return this.data["id/dob"].startDate;
     }
 });

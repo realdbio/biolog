@@ -9,7 +9,6 @@ UI.registerHelper("patient", function() {
     if (Meteor.user()) {
         var patientId = "patient/" + Meteor.user()._id;
         Meteor.call("getEntity", patientId, function(err, foundPatient) {
-            console.log("Patient helper: found: " + JSON.stringify(foundPatient));
             if (err) {
                 console.error(err);
             }
