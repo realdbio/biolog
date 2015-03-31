@@ -300,14 +300,16 @@ Meteor.methods(FactMethods = {
 
         //next update the current data for the subject entity
         var newEntityVals = {};
-        var key = 'data.' + fact.pred;
-        if (fact.obj) key += "." + fact.obj;
+        var key = "data['" + fact.pred + "']";
+        if (fact.obj) key = "data['" + fact.pred + "/" + fact.obj + "']";
+        //setValuePath(newEntityVals, key, fact);
         newEntityVals[key] = fact;
         Entities.update(subjId,
             {
                 $set: newEntityVals,
                 $inc: { used: 1 }
-            }
+            },
+            {validate: false}
         );
 
         //next increment the use count for the object, if any

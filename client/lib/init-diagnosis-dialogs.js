@@ -28,6 +28,7 @@ Meteor.startup(function(){
 
     addDiagnosisDialog.buttons.ok.on('click', function(button){
         addProperty(Session.get("selectedDiagnosis"));
+        searchIsabel();
     });
 
     addDiagnosisDialog.buttons.cancel.on('click', function(button){
@@ -65,6 +66,7 @@ Meteor.startup(function(){
     editDiagnosisDialog.buttons.ok.on('click', function(button){
         console.log("Save condition = " + JSON.stringify(Session.get("selectedDiagnosis")));
         updateProperty(Session.get("selectedDiagnosis"));
+        searchIsabel();
     });
 });
 

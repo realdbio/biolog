@@ -3,7 +3,8 @@ Meteor.methods({
     /* save an entity and associated methods */
 
     getEntity: function(id) {
-        return Entities.findOne(id);
+        var entity = Entities.findOne(id);
+        return entity;
     },
 
     addEntity: function (entity) {

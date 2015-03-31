@@ -29,3 +29,17 @@ updateProperty = function(fact, callback) {
         }
     });
 };
+
+setProperty = function(fact, callback) {
+    console.log("setProperty: " + JSON.stringify(fact));
+    Meteor.call("setProperty", fact, function(response) {
+        if (callback) return callback(response);
+        if (response) {
+            if (response.success) {
+                console.log("Successfully inserted fact and set property.")
+            } else {
+                console.log("Error setting property: " + response.error);
+            }
+        }
+    });
+};

@@ -85,12 +85,12 @@ Meteor.startup(function() {
     patientDemographicsDialog.buttons.ok.on('click', function(button) {
         var pt = Session.get("patient");
         console.log("Saving pt:" + JSON.stringify(pt));
-        var dob = pt.data["id/dob"];
-        var nickname = pt.data["id/nickname"];
-        var sex = pt.data["id/sex"];
-        addProperty(dob);
-        addProperty(nickname);
-        addProperty(sex);
+        var dob = getValuePath(pt, "data['id/dob']");
+        var nickname = getValuePath(pt, "data['id/nickname']");
+        var sex = getValuePath(pt, "data['id/sex']");
+        setProperty(dob);
+        setProperty(nickname);
+        setProperty(sex);
     });
 
 });
@@ -131,7 +131,7 @@ Template.patientDemographics.events({
             pred: "id/nickname",
             text: event.target.value
         };
-        pt.data["id/nickname"] = fact;
+        setValuePath(pt, "data['id/nickname']", fact);
         Session.set("patient", pt);
         //addProperty(fact);
         console.log("Changed: " + JSON.stringify(Session.get("patient")));
@@ -145,7 +145,7 @@ Template.patientDemographics.events({
             startDate: event.target.value,
             endFlag: 1
         };
-        pt.data["id/dob"] = fact;
+        setValuePath(pt, "data['id/dob']", fact);
         Session.set("patient", pt);
         //addProperty(fact);
         console.log("Changed patient: " + JSON.stringify(Session.get("patient")));
@@ -159,7 +159,7 @@ Template.patientDemographics.events({
             text: event.target.value,
             endFlag: 1
         };
-        pt.data["id/sex"] = fact;
+        setValuePath(pt, "data['id/sex']", fact);
         Session.set("patient", pt);
         //addProperty(fact);
         console.log("Changed: " + JSON.stringify(Session.get("patient")));
@@ -176,25 +176,31 @@ Template.patientDemographics.helpers({
     },
 
     femaleChecked: function() {
-        if (!this.data || !this.data["id/sex"]) return;
-        if (this.data["id/sex"].text=="female") return "checked";
+        var sex = getValuePath(this, "data['id/sex']");
+        if (!sex) return;
+        if (sex.text=="female") return "checked";
         return "";
     },
 
     maleChecked: function() {
-        if (!this.data || !this.data["id/sex"]) return;
-        if (this.data["id/sex"].text=="male") return "checked";
+        var sex = getValuePath(this, "data['id/sex']");
+        if (!sex) return;
+        if (sex.text=="male") return "checked";
         return "";
     },
 
     nickname: function() {
-        if (!this.data || !this.data["id/nickname"]) return;
-        return this.data["id/nickname"].text;
+        var nickname = getValuePath(this, "data['id/nickname']");
+        if (!nickname) return;
+        return nickname.text;
     },
 
     dob: function() {
-        console.log("dob: this.data['id/dob']=" + JSON.stringify(this.data["id/dob"]));
-        if (!this.data["id/dob"]) return;
-        return this.data["id/dob"].startDate;
+        var dob = getValuePath(this, "data['id/dob']");
+        if (!dob) return;
+        var dobDate = new Date(String(dob.startDate));
+        //console.log("dob: this=" + JSON.stringify(this));
+        //console.log("dob: dobDate=" + (typeof dobDate) + "; dobDate=" + dobDate);
+        return dobDate.toISOString().substring(0, 10);
     }
 });

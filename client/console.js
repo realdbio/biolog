@@ -9,6 +9,29 @@ Deps.autorun(function () {
 });
 
 
+searchIsabel = function() {
+    var patientDiagnoses = Session.get("patientDiagnoses");
+    var diagnosisList = "";
+    for (var di in patientDiagnoses) {
+        var dx = patientDiagnoses[di];
+        if (diagnosisList.length > 0) diagnosisList += "|";
+        diagnosisList += dx.objName;
+    }
+    var pt = Session.get("patient");
+    var dob = yyyymmdd(getValuePath(pt, "data['id/dob']").startDate);
+    var sex = getValuePath(pt, "data['id/dob']").text;
+    var pregnant = "false";
+    Meteor.call("isabel", dob, sex, pregnant, 12, diagnosisList, function(error, result){
+        if (error) {
+            return console.error("ERROR calling Isabel: " + error);
+        }
+        var contentString = result.content.substring(7, result.content.length - 2);
+        var content = JSON.parse(contentString);
+        console.log("Received RESULT from Isabel: " + JSON.stringify(content, null, "  "));
+        Session.set("isabel", content.Diagnosis_checklist)
+    });
+}
+
 
 Template.console.events({
     'click #biolog-healthInfo-btn': function(event) {
@@ -24,25 +47,8 @@ Template.console.events({
 
     'click #refreshChecklistButton': function(event) {
         console.log("search Isabel...");
-        //dummyPatient();
-        var patientDiagnoses = Session.get("patientDiagnoses");
-        var diagnosisList = "";
-        for (var di in patientDiagnoses) {
-            var dx = patientDiagnoses[di];
-            if (diagnosisList.length > 0) diagnosisList += "|";
-            diagnosisList += dx.objName;
-        }
-        var pt = Session.get("patient");
-        var dob = yyyymmdd(pt.dob);
-        Meteor.call("isabel", dob, pt.sex, pt.pregnant, pt.region, diagnosisList, function(error, result){
-            if (error) {
-                return console.error("ERROR calling Isabel: " + error);
-            }
-            var contentString = result.content.substring(7, result.content.length - 2);
-            var content = JSON.parse(contentString);
-            console.log("Received RESULT from Isabel: " + JSON.stringify(content, null, "  "));
-            Session.set("isabel", content.Diagnosis_checklist)
-        });
+        searchIsabel();
+
     }
 });
 
