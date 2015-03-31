@@ -14,7 +14,7 @@ Biolog.io is built using [Meteor](http://meteor.com).
 Meteor allows Biolog to be built from a single code base.
 This significantly reduces the work of development and maintenance.
 
-
+Biolog seeks to solve a host of problems with modern health care:
 | Problem | Solution |
 | --- | --- |
 | It takes 20 years or more for a medical best practice to find its way in mainstream clinical practice | Best practices added to Biolog.io are immediately deployed. |
