@@ -14,11 +14,11 @@ It is built using [Meteor](http://meteor.com).
 Meteor allows Biolog to be built from a single code base.
 This significantly reduces the work of development and maintenance.
 
-Biolog.io seeks to solve a host of problems with modern health care and with electronic health records (EHRs):
+Biolog seeks to solve a host of problems with modern health care and with electronic health records (EHRs):
 
 | Problem | Solution |
 | --- | --- |
-| It takes 20 years or more for a medical best practice to find its way in mainstream clinical practice | Best practices added to Biolog.io are immediately deployed. |
+| It takes 20 years or more for a medical best practice to find its way in mainstream clinical practice | Best practices added to Biolog.io can be deployed immediately. |
 | Physicians are too busy to run through hundreds of advisories in a brief encounter | Involve the patient!  Keep your information up to date in Biolog.io and the advisories are added automatically. |
 | Decision support built into many EHRs are too verbose to be helpful, and doctors routinely ignore them. | We address this by (1) filtering by priority, (2) distilling advisories into actionable checklists, and (3) taking them out of the 10 minute clinical doctor visit. |
 | EHRs use terms that are not designed for billing and not user-friendly | Biolog.io supports a mix of conventional terms plus more precise medical language. |
