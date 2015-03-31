@@ -14,7 +14,7 @@ Biolog.io is built using [Meteor](http://meteor.com).
 Meteor allows Biolog to be built from a single code base.
 This significantly reduces the work of development and maintenance.
 
-Biolog seeks to solve a host of problems with modern health care:
+Biolog seeks to solve a host of problems with modern health care and with electronic health records (EHRs):
 
 | Problem | Solution |
 | --- | --- |
@@ -27,3 +27,4 @@ Biolog seeks to solve a host of problems with modern health care:
 | Patients cannot contribute | Biolog.io puts the patient at the center of the record.  The patient defines who they trust to be able to view and contribute. |
 1 patient has many EHRs, each of which has a different, limited focus and audience. | Biolog.io has 1 record for a patient
 | Health information captured in most systems is locked away, and will never see the light of research. | A requirement of using Biolog.io is that your anonymized health information will be used for reseach and discovery.  Our core mission is to expand medical knowledge. |
+| EHRs fail to consider tracking data from sensors | Biolog.io integrates sensor data into your health record (pedometers, heart rate monitors, ...) |
