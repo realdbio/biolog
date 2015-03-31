@@ -115,7 +115,7 @@ Meteor.methods(FactMethods = {
 
         var signature = "data['" + fact.pred + "']";
         if (fact.obj) signature += "['" + fact.obj + "']";
-        if (subj[signature]) {
+        if (getValuePath(subj, signature)) {
             var message = "Entity: " + fact.subj + " already has property: " + signature;
             console.error(message);
             return { success: false, error: message};
@@ -149,6 +149,7 @@ Meteor.methods(FactMethods = {
      */
     updateFact: function (fact) {
         // Make sure the user is logged in before inserting a task
+        console.log("Updating fact: " + fact._id);
         if (!Meteor.userId()) {
             var message = "User not authenticated";
             console.error(message);
@@ -158,7 +159,7 @@ Meteor.methods(FactMethods = {
         var existingFact = Facts.findOne(fact._id);
 
         //if previous fact not found, abort
-        if (existingFact) {
+        if (!existingFact) {
             var message = "No such fact to update";
             console.error(message);
             return { success: false, error: message};
@@ -210,7 +211,9 @@ Meteor.methods(FactMethods = {
                 startFlag: fact.startFlag,
                 endDate: fact.endDate,
                 endFlag: fact.endFlag
-            }});
+            }},
+            {validate: false}
+        );
 
 
         //next update the used count for the object, if warranted
@@ -221,6 +224,8 @@ Meteor.methods(FactMethods = {
         if (existingFact.obj && fact.obj != existingFact.obj) {
             Entities.update(existingFact.obj, { $inc: { used: -1 } });
         }
+
+        return {success: true};
     },
 
 
@@ -357,8 +362,10 @@ Meteor.methods(FactMethods = {
             return { success: false, error: message};
         }
 
-        var predSignature = "data." + fact.pred;
+        var predSignature = "data['" + fact.pred + "']";
+        //if (fact.obj) signature += "['" + fact.obj + "']";
 
+        //if (getValuePath(subj, signature)) {
 //        if (subj[signature]) {
 //            var message = "Entity: " + fact.subj + " already has property: " + signature;
 //            console.error(message);
@@ -375,7 +382,8 @@ Meteor.methods(FactMethods = {
 
         newProperty[predSignature] = newObj;
         Entities.update(fact.subj,
-            { $set: newProperty }
+            { $set: newProperty },
+            { validate: false }
         );
 
         return {success: true};

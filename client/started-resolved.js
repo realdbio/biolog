@@ -1,5 +1,7 @@
 
 setStartEndDateControls = function(templateId) {
+    $('#startDate-' + templateId).val('');
+    $('#endDate-' + templateId).val('');
     var diagnosis = Session.get("selectedDiagnosis");
     //$('#startDate-' + templateId).data("DateTimePicker").setDate(diagnosis.startDate);
     //$('#endDate-' + templateId).data("DateTimePicker").setDate(diagnosis.endDate);
