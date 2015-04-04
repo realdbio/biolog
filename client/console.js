@@ -27,7 +27,7 @@ searchIsabel = function() {
         }
         var contentString = result.content.substring(7, result.content.length - 2);
         var content = JSON.parse(contentString);
-        console.log("Received RESULT from Isabel: " + JSON.stringify(content, null, "  "));
+        //console.log("Received RESULT from Isabel: " + JSON.stringify(content, null, "  "));
         Session.set("isabel", content.Diagnosis_checklist)
     });
 }

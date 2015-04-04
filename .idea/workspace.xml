@@ -2,8 +2,23 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bd94fda1-7476-48a0-9c18-24312c02a63a" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/methods/facts.js" afterPath="$PROJECT_DIR$/server/methods/facts.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/private/data/kaiser-cmt-top2500-2014.csv" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/client/diagnoses.js" afterPath="$PROJECT_DIR$/client/dx.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.meteor/.finished-upgraders" afterPath="$PROJECT_DIR$/.meteor/.finished-upgraders" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/util/CsvLoader.js" afterPath="$PROJECT_DIR$/server/util/CsvLoader.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/console.js" afterPath="$PROJECT_DIR$/client/console.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/diagnosis-dialog.html" afterPath="$PROJECT_DIR$/client/diagnosis-dialog.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/diagnosis-dialog.js" afterPath="$PROJECT_DIR$/client/diagnosis-dialog.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/lib/init-diagnosis-dialogs.js" afterPath="$PROJECT_DIR$/client/lib/init-diagnosis-dialogs.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/methods/loadCsv.js" afterPath="$PROJECT_DIR$/server/methods/loadCsv.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/pt.js" afterPath="$PROJECT_DIR$/client/pt.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.meteor/release" afterPath="$PROJECT_DIR$/.meteor/release" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/methods/remote-http.js" afterPath="$PROJECT_DIR$/server/methods/remote-http.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/started-resolved.html" afterPath="$PROJECT_DIR$/client/started-resolved.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/started-resolved.js" afterPath="$PROJECT_DIR$/client/started-resolved.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/util.js" afterPath="$PROJECT_DIR$/lib/util.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.meteor/versions" afterPath="$PROJECT_DIR$/.meteor/versions" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="smartbio.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -27,11 +42,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="console.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="console.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/client/console.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.48096192" vertical-offset="0" max-vertical-offset="1350">
-              <caret line="18" column="5" selection-start-line="18" selection-start-column="5" selection-end-line="18" selection-end-column="5" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="227" max-vertical-offset="1350">
+              <caret line="30" column="21" selection-start-line="30" selection-start-column="21" selection-end-line="30" selection-end-column="21" />
               <folding>
                 <element signature="e#0#36#0" expanded="false" />
               </folding>
@@ -39,72 +54,46 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="diagnoses.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/client/diagnoses.js">
+      <file leaf-file-name="CsvLoader.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/server/util/CsvLoader.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-5.814815" vertical-offset="1193" max-vertical-offset="3150">
-              <caret line="90" column="31" selection-start-line="90" selection-start-column="8" selection-end-line="90" selection-end-column="31" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="45" max-vertical-offset="2220">
+              <caret line="43" column="2" selection-start-line="43" selection-start-column="2" selection-end-line="43" selection-end-column="2" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="diagnoses.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/client/diagnoses.html">
+      <file leaf-file-name="dx.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/client/dx.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="13.25" vertical-offset="588" max-vertical-offset="1050">
-              <caret line="18" column="23" selection-start-line="18" selection-start-column="23" selection-end-line="18" selection-end-column="23" />
+            <state vertical-scroll-proportion="-14.148149" vertical-offset="2078" max-vertical-offset="4260">
+              <caret line="164" column="31" selection-start-line="164" selection-start-column="8" selection-end-line="164" selection-end-column="31" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="diagnosis-dialog.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/client/diagnosis-dialog.html">
+      <file leaf-file-name="remote-http.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/server/methods/remote-http.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-10.416667" vertical-offset="155" max-vertical-offset="795">
-              <caret line="27" column="18" selection-start-line="27" selection-start-column="18" selection-end-line="27" selection-end-column="18" />
-              <folding />
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="480">
+              <caret line="28" column="3" selection-start-line="28" selection-start-column="3" selection-end-line="28" selection-end-column="3" />
+              <folding>
+                <element signature="e#0#36#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="started-resolved.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/client/started-resolved.html">
+      <file leaf-file-name="client-methods.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/client/lib/client-methods.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-5.0" vertical-offset="0" max-vertical-offset="645">
-              <caret line="8" column="94" selection-start-line="8" selection-start-column="84" selection-end-line="8" selection-end-column="94" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="started-resolved.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/client/started-resolved.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-9.193548" vertical-offset="0" max-vertical-offset="1980">
-              <caret line="19" column="2" selection-start-line="19" selection-start-column="2" selection-end-line="19" selection-end-column="2" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="init-diagnosis-dialogs.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/client/lib/init-diagnosis-dialogs.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1170">
-              <caret line="28" column="22" selection-start-line="28" selection-start-column="4" selection-end-line="28" selection-end-column="22" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="facts.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/server/methods/facts.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-14.148149" vertical-offset="5393" max-vertical-offset="5970">
-              <caret line="385" column="31" selection-start-line="385" selection-start-column="31" selection-end-line="385" selection-end-column="31" />
-              <folding />
+            <state vertical-scroll-proportion="0.0" vertical-offset="30" max-vertical-offset="720">
+              <caret line="18" column="5" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="14" />
+              <folding>
+                <element signature="e#0#36#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -112,18 +101,38 @@
       <file leaf-file-name="pt.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/client/pt.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-36.925926" vertical-offset="1883" max-vertical-offset="3165">
-              <caret line="192" column="60" selection-start-line="192" selection-start-column="49" selection-end-line="192" selection-end-column="60" />
+            <state vertical-scroll-proportion="-8.592592" vertical-offset="1073" max-vertical-offset="3165">
+              <caret line="87" column="32" selection-start-line="87" selection-start-column="32" selection-end-line="87" selection-end-column="32" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="aschema.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lib/aschema.js">
+      <file leaf-file-name="diagnosis-dialog.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/client/diagnosis-dialog.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="717" max-vertical-offset="5025">
-              <caret line="72" column="35" selection-start-line="72" selection-start-column="35" selection-end-line="72" selection-end-column="35" />
+            <state vertical-scroll-proportion="-0.14814815" vertical-offset="1961" max-vertical-offset="4320">
+              <caret line="131" column="16" selection-start-line="131" selection-start-column="16" selection-end-line="131" selection-end-column="16" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="diagnosis-dialog.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/client/diagnosis-dialog.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.814433" vertical-offset="805" max-vertical-offset="1290">
+              <caret line="80" column="10" selection-start-line="80" selection-start-column="10" selection-end-line="80" selection-end-column="10" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="packages" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/.meteor/packages">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-6.0" vertical-offset="0" max-vertical-offset="510">
+              <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="31" />
               <folding />
             </state>
           </provider>
@@ -154,19 +163,14 @@
         <option value="$PROJECT_DIR$/.meteor/versions" />
         <option value="$PROJECT_DIR$/.meteor/packages" />
         <option value="$PROJECT_DIR$/server/lib/init-server.js" />
-        <option value="$PROJECT_DIR$/server/util/CsvLoader.js" />
         <option value="$PROJECT_DIR$/lib/init-shared-data.js" />
         <option value="$PROJECT_DIR$/client/layout.html" />
         <option value="$PROJECT_DIR$/client/adminOptions.js" />
         <option value="$PROJECT_DIR$/client/lib/init-speech.js" />
         <option value="$PROJECT_DIR$/packages/ramshackle:nouislider/package.js" />
-        <option value="$PROJECT_DIR$/client/started-resolved.html" />
         <option value="$PROJECT_DIR$/lib/init-temp.js" />
         <option value="$PROJECT_DIR$/client/style/app.css" />
         <option value="$PROJECT_DIR$/client/diagnoses.html" />
-        <option value="$PROJECT_DIR$/client/diagnoses.js" />
-        <option value="$PROJECT_DIR$/lib/util.js" />
-        <option value="$PROJECT_DIR$/server/methods/remote-http.js" />
         <option value="$PROJECT_DIR$/client/rule-client.js" />
         <option value="$PROJECT_DIR$/client/console.html" />
         <option value="$PROJECT_DIR$/client/rule.html" />
@@ -180,14 +184,22 @@
         <option value="$PROJECT_DIR$/server/methods/entities.js" />
         <option value="$PROJECT_DIR$/client/lib/init-helpers.js" />
         <option value="$PROJECT_DIR$/lib/init.js" />
-        <option value="$PROJECT_DIR$/client/pt.js" />
         <option value="$PROJECT_DIR$/client/lib/client-methods.js" />
         <option value="$PROJECT_DIR$/lib/aschema.js" />
-        <option value="$PROJECT_DIR$/client/console.js" />
-        <option value="$PROJECT_DIR$/client/lib/init-diagnosis-dialogs.js" />
         <option value="$PROJECT_DIR$/server/methods/facts.js" />
-        <option value="$PROJECT_DIR$/client/diagnosis-dialog.html" />
+        <option value="$PROJECT_DIR$/server/methods/loadCsv.js" />
+        <option value="$PROJECT_DIR$/server/util/CsvLoader.js" />
         <option value="$PROJECT_DIR$/client/started-resolved.js" />
+        <option value="$PROJECT_DIR$/client/started-resolved.html" />
+        <option value="$PROJECT_DIR$/client/pt.js" />
+        <option value="$PROJECT_DIR$/client/lib/init-diagnosis-dialogs.js" />
+        <option value="$PROJECT_DIR$/client/diagnoses.js" />
+        <option value="$PROJECT_DIR$/client/dx.js" />
+        <option value="$PROJECT_DIR$/server/methods/remote-http.js" />
+        <option value="$PROJECT_DIR$/client/console.js" />
+        <option value="$PROJECT_DIR$/lib/util.js" />
+        <option value="$PROJECT_DIR$/client/diagnosis-dialog.js" />
+        <option value="$PROJECT_DIR$/client/diagnosis-dialog.html" />
       </list>
     </option>
   </component>
@@ -273,25 +285,11 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="server" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="biolog" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="biolog" />
+              <option name="myItemId" value="public" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="server" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="methods" />
+              <option name="myItemId" value="data" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -347,25 +345,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="client" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="biolog" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="biolog" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="client" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="lib" />
+              <option name="myItemId" value=".meteor" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -390,11 +370,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/private/data" />
       <recent name="$PROJECT_DIR$/packages/ramshackle:nouislider" />
       <recent name="$PROJECT_DIR$/client" />
       <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/client/lib" />
-      <recent name="$PROJECT_DIR$/packages/ramshackle:facts" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/client/lib" />
@@ -485,7 +465,7 @@
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25564972" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.20338982" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2521866" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -603,20 +583,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.meteor/packages">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5795981" vertical-offset="0" max-vertical-offset="647">
-          <caret line="25" column="23" selection-start-line="25" selection-start-column="23" selection-end-line="25" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/server/util/CsvLoader.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-6.181818" vertical-offset="590" max-vertical-offset="2100">
-          <caret line="62" column="38" selection-start-line="62" selection-start-column="38" selection-end-line="62" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/client/layout.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="522" max-vertical-offset="945">
@@ -659,13 +625,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/diagnosis-dialog.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1350">
-          <caret line="24" column="37" selection-start-line="24" selection-start-column="34" selection-end-line="24" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/client/style/app.css">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="180" max-vertical-offset="1545">
@@ -673,27 +632,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/server/methods/loadCsv.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="525">
-          <caret line="3" column="16" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/server/methods/rule-methods.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="735">
           <caret line="36" column="59" selection-start-line="36" selection-start-column="55" selection-end-line="36" selection-end-column="59" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/server/methods/remote-http.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="450">
-          <caret line="23" column="24" selection-start-line="23" selection-start-column="24" selection-end-line="23" selection-end-column="24" />
-          <folding>
-            <element signature="e#0#36#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -755,14 +697,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/lib/init-patient.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="135">
-          <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/client/adminOptions.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.63927853" vertical-offset="11" max-vertical-offset="510">
@@ -809,14 +743,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/util.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="224" max-vertical-offset="810">
-          <caret line="46" column="18" selection-start-line="46" selection-start-column="18" selection-end-line="46" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/client/lib/init-helpers.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="915">
@@ -833,28 +759,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/lib/client-methods.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="720">
-          <caret line="38" column="39" selection-start-line="38" selection-start-column="39" selection-end-line="38" selection-end-column="39" />
-          <folding>
-            <element signature="e#0#36#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/lib/aschema.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="717" max-vertical-offset="5025">
           <caret line="72" column="35" selection-start-line="72" selection-start-column="35" selection-end-line="72" selection-end-column="35" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/pt.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-36.925926" vertical-offset="1883" max-vertical-offset="3165">
-          <caret line="192" column="60" selection-start-line="192" selection-start-column="49" selection-end-line="192" selection-end-column="60" />
           <folding />
         </state>
       </provider>
@@ -867,38 +775,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/lib/init-diagnosis-dialogs.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1170">
-          <caret line="28" column="22" selection-start-line="28" selection-start-column="4" selection-end-line="28" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/started-resolved.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-9.193548" vertical-offset="0" max-vertical-offset="1980">
-          <caret line="19" column="2" selection-start-line="19" selection-start-column="2" selection-end-line="19" selection-end-column="2" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/started-resolved.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-5.0" vertical-offset="0" max-vertical-offset="645">
-          <caret line="8" column="94" selection-start-line="8" selection-start-column="84" selection-end-line="8" selection-end-column="94" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/diagnosis-dialog.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-10.416667" vertical-offset="155" max-vertical-offset="795">
-          <caret line="27" column="18" selection-start-line="27" selection-start-column="18" selection-end-line="27" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/client/diagnoses.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="13.25" vertical-offset="588" max-vertical-offset="1050">
@@ -907,21 +783,131 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/diagnoses.js">
+    <entry file="file://$PROJECT_DIR$/server/methods/loadCsv.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-5.814815" vertical-offset="1193" max-vertical-offset="3150">
-          <caret line="90" column="31" selection-start-line="90" selection-start-column="8" selection-end-line="90" selection-end-column="31" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="555">
+          <caret line="29" column="9" selection-start-line="29" selection-start-column="9" selection-end-line="29" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/util/CsvLoader.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="45" max-vertical-offset="2220">
+          <caret line="43" column="2" selection-start-line="43" selection-start-column="2" selection-end-line="43" selection-end-column="2" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/lib/init-patient.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.04411765" vertical-offset="0" max-vertical-offset="680">
+          <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/methods/remote-http.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="480">
+          <caret line="28" column="3" selection-start-line="28" selection-start-column="3" selection-end-line="28" selection-end-column="3" />
+          <folding>
+            <element signature="e#0#36#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/lib/init-diagnosis-dialogs.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.9539078" vertical-offset="671" max-vertical-offset="1170">
+          <caret line="13" column="20" selection-start-line="13" selection-start-column="20" selection-end-line="13" selection-end-column="20" />
+          <folding>
+            <marker date="1428006010000" expanded="true" signature="-1:-1" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/lib/client-methods.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="720">
+          <caret line="18" column="5" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="14" />
+          <folding>
+            <element signature="e#0#36#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/started-resolved.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.29220778" vertical-offset="0" max-vertical-offset="645">
+          <caret line="9" column="47" selection-start-line="0" selection-start-column="4" selection-end-line="37" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/started-resolved.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.032967035" vertical-offset="0" max-vertical-offset="1995">
+          <caret line="1" column="0" selection-start-line="1" selection-start-column="2" selection-end-line="127" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/pt.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-8.592592" vertical-offset="1073" max-vertical-offset="3165">
+          <caret line="87" column="32" selection-start-line="87" selection-start-column="32" selection-end-line="87" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.meteor/packages">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-6.0" vertical-offset="0" max-vertical-offset="510">
+          <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="31" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/client/console.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.48096192" vertical-offset="0" max-vertical-offset="1350">
-          <caret line="18" column="5" selection-start-line="18" selection-start-column="5" selection-end-line="18" selection-end-column="5" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="227" max-vertical-offset="1350">
+          <caret line="30" column="21" selection-start-line="30" selection-start-column="21" selection-end-line="30" selection-end-column="21" />
           <folding>
             <element signature="e#0#36#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/util.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.8041045" vertical-offset="319" max-vertical-offset="915">
+          <caret line="50" column="0" selection-start-line="50" selection-start-column="0" selection-end-line="50" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/dx.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-14.148149" vertical-offset="2078" max-vertical-offset="4260">
+          <caret line="164" column="31" selection-start-line="164" selection-start-column="8" selection-end-line="164" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/diagnosis-dialog.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.14814815" vertical-offset="1961" max-vertical-offset="4320">
+          <caret line="131" column="16" selection-start-line="131" selection-start-column="16" selection-end-line="131" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/diagnosis-dialog.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.814433" vertical-offset="805" max-vertical-offset="1290">
+          <caret line="80" column="10" selection-start-line="80" selection-start-column="10" selection-end-line="80" selection-end-column="10" />
+          <folding />
         </state>
       </provider>
     </entry>

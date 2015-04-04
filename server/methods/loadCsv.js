@@ -7,9 +7,11 @@ Meteor.methods({
         if (!Meteor.userId()) {
             throw new Meteor.Error("not-authorized");
         }
-//        var __dirname = path.resolve('.');
-//        var csvFile = __dirname + "/data/kaiser-cmt-top2500-2014.csv";
-        var csvFile = "../../../../../public/data/kaiser-cmt-top2500-2014.csv";
+        //var __dirname = path.resolve('.');
+        //var csvFile = __dirname + "/data/kaiser-cmt-top2500-2014.csv";
+//        works on localhost:
+//        var csvFile = "../../../../../public/data/kaiser-cmt-top2500-2014.csv";
+        var csvFile = "data/kaiser-cmt-top2500-2014.csv";
         console.log("csvFile=" + csvFile)
         var csvLoader = new CsvLoader(csvFile);
         csvLoader.convertToJson(function(json) {

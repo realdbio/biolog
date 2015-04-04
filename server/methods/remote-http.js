@@ -15,6 +15,8 @@ isabelCallback = function(error, result) {
 Meteor.methods({
     isabel: function(dob, sex, pregnant, region, diagnoses) {
         this.unblock();
+
+        //TODO uncomment when you have internet access
         return HTTP.get(
             "http://www.isabelhealthcare.com/private/emr_diagnosis.jsp?" +
             "searchType=0&specialties=28&action=login&id=40744&password=isabel15" +

@@ -45,3 +45,37 @@
 
 
 
+<template name="startedResolved">
+    <div class="row">
+        <div class="col-sm-6">
+            <h5>When did it start?</h5>
+        </div>
+        <div class="col-sm-6">
+            <h5>Has it resolved?</h5>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="input-group datetimepicker startDatePicker" id="startDate-{{templateId}}">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                <input class="form-control" type="text" id="_startDate-{{templateId}}"/>
+            </div>
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" name="sinceBirth" id="sinceBirth-{{templateId}}" class="sinceBirthCheckbox">Since birth
+                </label>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" name="ongoing" id="ongoing-{{templateId}}" class="ongoingCheckbox">Ongoing
+                </label>
+            </div>
+            <div class="input-group datetimepicker endDatePicker" id="endDate-{{templateId}}">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                <input class="form-control" type="text" id="_endDate-{{templateId}}"/>
+            </div>
+        </div>
+    </div>
+</template>

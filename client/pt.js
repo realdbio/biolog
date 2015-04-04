@@ -84,7 +84,7 @@ Meteor.startup(function() {
 
     patientDemographicsDialog.buttons.ok.on('click', function(button) {
         var pt = Session.get("patient");
-        console.log("Saving pt:" + JSON.stringify(pt));
+        //console.log("Saving pt:" + JSON.stringify(pt));
         var dob = getValuePath(pt, "data['id/dob']");
         var nickname = getValuePath(pt, "data['id/nickname']");
         var sex = getValuePath(pt, "data['id/sex']");

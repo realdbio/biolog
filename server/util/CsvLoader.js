@@ -8,24 +8,32 @@ CsvLoader = function(path) {
 
 // class methods
 CsvLoader.prototype.convertToJson = function(callback) {
-    var fs = Npm.require("fs");
+    //var fs = Npm.require("fs");
     var Converter = Meteor.npmRequire('csvtojson').core.Converter;
     var csvConverter = new Converter({constructResult:true});
 
-    var readStream = fs.createReadStream(this.path);
+    //var readStream = fs.createReadStream(this.path);
 
     //end_parsed will be emitted once parsing finished
     csvConverter.on("end_parsed",function(jsonObj){
         callback(jsonObj); //here is your result json object
     });
 
-    readStream.on('error', function (error) {
-        return console.log("CsvLoader.readStream error: ", error);
-    });
+    //readStream.on('error', function (error) {
+    //    return console.log("CsvLoader.readStream error: ", error);
+    //});
+    //
+    //readStream.on('readable', function() {
+    //    //read from file
+    //    readStream.pipe(csvConverter);
+    //});
 
-    readStream.on('readable', function() {
-        //read from file
-        readStream.pipe(csvConverter);
+    var text = Assets.getText(this.path);
+    csvConverter.fromString(text, function(err, jsonObj){
+        if (err){
+            return console.log("CsvLoader.readStream error: ", err);
+        }
+        console.log(jsonObj);
     });
 
 };
