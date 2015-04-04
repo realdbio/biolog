@@ -307,3 +307,6 @@ Template.startedResolved.events({
 //        console.log(changedElementId + "=" + event.date);
 //    }
 });
+
+
+

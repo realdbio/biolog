@@ -27,3 +27,5 @@ fortawesome:fontawesome
 ramshackle:nouislider
 http
 dandv:jquery-rateit
+d3
+ramshackle:d3-timeline
