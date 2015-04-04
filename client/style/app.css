@@ -96,3 +96,32 @@ select::-moz-focus-inner { /*Remove button padding in FF*/
         line-height:24px;
     }
 }
+
+
+div.faces div.rateit-range
+{
+    background: url(icons/smile64.png);
+    height: 32px;
+}
+
+div.faces div.rateit-hover
+{
+    background: url(icons/frown64.png);
+}
+
+div.faces div.rateit-selected
+{
+    background: url(icons/frown64.png);
+}
+
+/*div.faces div.rateit-reset*/
+/*{*/
+    /*background: url(icons/smile32.png);*/
+    /*width: 32px;*/
+    /*height: 32px;*/
+/*}*/
+
+div.faces div.rateit-reset:hover
+{
+    background: url(icons/smile64.png);
+}

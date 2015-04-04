@@ -1,4 +1,11 @@
 
+getFrowns = function() {
+    var dx = Session.get("selectedDiagnosis");
+    if (!dx || !dx.num) return 0;
+    return dx.num / 2;
+};
+
+
 
 Template.addDiagnosisDialog.created = function () {
     var instance = EasySearch.getComponentInstance(
@@ -96,6 +103,7 @@ Template.startedResolved.rendered = function() {
         format: 'YYYY-MM-DD'
     });
 
+    $('.rateit').rateit();
     //$('.datetimepicker').datetimepicker({
     //    onSelect: function(d,i) {
     //        if(d !== i.lastVal){
@@ -103,6 +111,8 @@ Template.startedResolved.rendered = function() {
     //        }
     //    }
     //});
+
+    $('.rateit').bind(getFrowns);
 };
 
 
@@ -155,6 +165,9 @@ setStartEndDateControls = function(templateId) {
         //$('#endDate-' + templateId).data("DateTimePicker").enable();
         //$('#endDate-' + templateId).data("DatePicker").enable();
     }
+    var frowns = 0;
+    if (diagnosis.num) frowns = String(diagnosis.num / 2);
+    $('#severity-' + templateId).rateit('value', frowns);
 };
 
 
@@ -162,6 +175,10 @@ Template.startedResolved.helpers({
     diagnosis : function() {
 //        console.log("selectedDiagnosis=" + JSON.stringify(Session.get("selectedDiagnosis")));
         return Session.get("selectedDiagnosis");
+    },
+
+    frowns: function() {
+        return getFrowns();
     }
 
 //    getStartDate: function() {
@@ -271,6 +288,15 @@ Template.startedResolved.events({
             }
             return;
         }
+    },
+
+    "click .rateit": function(event, template) {
+        var changedElementId = event.currentTarget.id;
+        var diagnosis = Session.get("selectedDiagnosis");
+        var val = $('#' + changedElementId).rateit('value') * 2;
+        diagnosis.num = val;
+        diagnosis.normVal = val / 10;
+        Session.set("selectedDiagnosis", diagnosis);
     }
 
 
