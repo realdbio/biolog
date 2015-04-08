@@ -125,3 +125,7 @@ div.faces div.rateit-reset:hover
 {
     background: url(icons/smile64.png);
 }
+
+.biolog-timeline {
+    width: 1200px;
+}

@@ -75,12 +75,14 @@ Meteor.startup(function(){
 Deps.autorun(function () {
     if (Session.get("patient") && Session.get("patient")._id) {
         Meteor.subscribe("patientDiagnoses", Session.get("patient")._id);
+
+        Meteor.subscribe("currentPatient");
     }
 });
 
 //Meteor.subscribe("allFacts");
 
-Meteor.subscribe("currentPatient");
+
 
 //Meteor.subscribe("mostUsedDiagnoses");
 //Meteor.subscribe("someDiagnoses");

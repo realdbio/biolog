@@ -14,7 +14,7 @@ UI.registerHelper("patient", function() {
             }
             if (foundPatient) {
                 patient = foundPatient;
-                console.log("found patient");
+                //console.log("found patient");
                 Session.set("patient", patient);
                 ensureDemographics();
                 //setTimeout(function () { ensureDemographics() }, 1000);

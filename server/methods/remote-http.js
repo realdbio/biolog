@@ -16,10 +16,16 @@ Meteor.methods({
     isabel: function(dob, sex, pregnant, region, diagnoses) {
         this.unblock();
 
-        //TODO uncomment when you have internet access
+        var isabelId = Assets.getBinary("config/config.json").isabelId;
+        console.log("Isabel URL: " + "http://www.isabelhealthcare.com/private/emr_diagnosis.jsp?" +
+        "searchType=0&specialties=28&action=login&id=" + isabelId + "&password=" + isabelPassword +
+        "&dob=" + dob + "&sex=" + sex + "&pregnant=" + pregnant + "&region=" + region +
+        "&querytext=" + diagnoses + "&suggest=Suggest+Differential+Diagnosis&web_service=json" +
+        "&flag=sortbyRW_advanced&callback=isabel");
+
         return HTTP.get(
             "http://www.isabelhealthcare.com/private/emr_diagnosis.jsp?" +
-            "searchType=0&specialties=28&action=login&id=40744&password=isabel15" +
+            "searchType=0&specialties=28&action=login&id=40888&password=15abel2015" +
             "&dob=" + dob + "&sex=" + sex + "&pregnant=" + pregnant + "&region=" + region +
             "&querytext=" + diagnoses + "&suggest=Suggest+Differential+Diagnosis&web_service=json" +
             "&flag=sortbyRW_advanced&callback=isabel",

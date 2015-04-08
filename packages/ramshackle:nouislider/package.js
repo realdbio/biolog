@@ -15,6 +15,5 @@ Package.onUse(function(api) {
     api.addFiles('jquery.nouislider.all.min.js', 'client');
     api.addFiles('jquery.nouislider.pips.min.css', 'client');
     api.addFiles('jquery.nouislider.min.css', 'client');
-    console.log("Loaded nouislider");
 });
 

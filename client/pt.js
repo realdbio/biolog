@@ -1,3 +1,19 @@
+getPatientDob = function() {
+    var pt = Session.get("patient");
+    if (!pt) return;
+    var dobObj = getValuePath(pt, "data['id/dob']");
+    if (!dobObj) return;
+    return dobObj.startDate;
+};
+
+getPatientSex = function() {
+    var pt = Session.get("patient");
+    if (!pt) return;
+    var obj = getValuePath(pt, "data['id/sex']");
+    if (!obj) return;
+    return obj.text;
+};
+
 Meteor.startup(function() {
 
     //var selectPatientDialogSpec = {
@@ -98,9 +114,10 @@ Meteor.startup(function() {
 
 ensureDemographics = function() {
     var pt = Session.get("patient");
-    console.log("ensureDemographics: pt=" + JSON.stringify(pt));
+    //console.log("ensureDemographics: pt=" + JSON.stringify(pt));
     if (!pt) return;
-    if (!pt.data || !pt.data["id/dob"] || !pt.data["id/gender"]) {
+
+    if (!getPatientDob() || !getPatientSex()) {
         patientDemographicsDialog.show();
     }
 };
