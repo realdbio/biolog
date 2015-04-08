@@ -23,3 +23,8 @@ EasySearch.config({
     'host' : 'localhost:9200'
 
 });
+
+appConfig = function() {
+    var config = Assets.getText("config/config.json");
+    return JSON.parse(config);
+}

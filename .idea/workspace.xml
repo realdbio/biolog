@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="bd94fda1-7476-48a0-9c18-24312c02a63a" name="Default" comment="" />
+    <list default="true" id="bd94fda1-7476-48a0-9c18-24312c02a63a" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/lib/init-server.js" afterPath="$PROJECT_DIR$/server/lib/init-server.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/methods/remote-http.js" afterPath="$PROJECT_DIR$/server/methods/remote-http.js" />
+    </list>
     <ignored path="smartbio.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -69,8 +72,8 @@
       <file leaf-file-name="config.json" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/private/config/config.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.029411765" vertical-offset="0" max-vertical-offset="510">
-              <caret line="1" column="18" selection-start-line="1" selection-start-column="18" selection-end-line="1" selection-end-column="18" />
+            <state vertical-scroll-proportion="0.0882353" vertical-offset="0" max-vertical-offset="510">
+              <caret line="3" column="1" selection-start-line="3" selection-start-column="1" selection-end-line="3" selection-end-column="1" />
               <folding />
             </state>
           </provider>
@@ -89,11 +92,21 @@
       <file leaf-file-name="remote-http.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/server/methods/remote-http.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="19" max-vertical-offset="570">
-              <caret line="34" column="3" selection-start-line="34" selection-start-column="3" selection-end-line="34" selection-end-column="3" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="4" max-vertical-offset="585">
+              <caret line="19" column="40" selection-start-line="19" selection-start-column="40" selection-end-line="19" selection-end-column="40" />
               <folding>
                 <element signature="e#0#36#0" expanded="false" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="init-server.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/server/lib/init-server.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="525">
+              <caret line="28" column="30" selection-start-line="28" selection-start-column="30" selection-end-line="28" selection-end-column="30" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -118,7 +131,6 @@
         <option value="$PROJECT_DIR$/client/lib/init-obj-dialog.js" />
         <option value="$PROJECT_DIR$/client/imports.html" />
         <option value="$PROJECT_DIR$/.meteor/versions" />
-        <option value="$PROJECT_DIR$/server/lib/init-server.js" />
         <option value="$PROJECT_DIR$/lib/init-shared-data.js" />
         <option value="$PROJECT_DIR$/client/layout.html" />
         <option value="$PROJECT_DIR$/client/adminOptions.js" />
@@ -160,6 +172,7 @@
         <option value="$PROJECT_DIR$/client/console.js" />
         <option value="$PROJECT_DIR$/packages/ramshackle:nouislider/package.js" />
         <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/server/lib/init-server.js" />
         <option value="$PROJECT_DIR$/server/methods/remote-http.js" />
         <option value="$PROJECT_DIR$/private/config/config.json" />
       </list>
@@ -270,6 +283,24 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="methods" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="biolog" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="biolog" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="server" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="lib" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -568,13 +599,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/server/lib/init-server.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="3" max-vertical-offset="450">
-          <caret line="22" column="29" selection-start-line="22" selection-start-column="29" selection-end-line="22" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/lib/init-shared-data.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="184" max-vertical-offset="720">
@@ -857,16 +881,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/server/methods/remote-http.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="19" max-vertical-offset="570">
-          <caret line="34" column="3" selection-start-line="34" selection-start-column="3" selection-end-line="34" selection-end-column="3" />
-          <folding>
-            <element signature="e#0#36#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/client/pt.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-2.8698225" vertical-offset="1590" max-vertical-offset="3420">
@@ -917,10 +931,28 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/server/methods/remote-http.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="4" max-vertical-offset="585">
+          <caret line="19" column="40" selection-start-line="19" selection-start-column="40" selection-end-line="19" selection-end-column="40" />
+          <folding>
+            <element signature="e#0#36#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/lib/init-server.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="525">
+          <caret line="28" column="30" selection-start-line="28" selection-start-column="30" selection-end-line="28" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/private/config/config.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.029411765" vertical-offset="0" max-vertical-offset="510">
-          <caret line="1" column="18" selection-start-line="1" selection-start-column="18" selection-end-line="1" selection-end-column="18" />
+        <state vertical-scroll-proportion="0.0882353" vertical-offset="0" max-vertical-offset="510">
+          <caret line="3" column="1" selection-start-line="3" selection-start-column="1" selection-end-line="3" selection-end-column="1" />
           <folding />
         </state>
       </provider>
