@@ -6,6 +6,25 @@ Meteor.publish("patientDiagnoses", function (patientId) {
     return getPatientDiagnoses(patientId);
 });
 
+Meteor.publish("patientFlags", function (patientId) {
+    return getPatientFlags(patientId);
+});
+
+Meteor.publish("patientQuestions", function (flags) {
+    return getPatientQuestions(flags);
+});
+
+Meteor.publish("patientMeds", function (patientId) {
+    return getPatientMeds(patientId);
+});
+
+//Meteor.publish("patientChecklist", function (patientId) {
+//    return getPatientChecklist(patientId);
+//});
+
+
+
+
 //Meteor.publish("mostUsedConditions", function (count) {
 //    return Entities.find({etypes: "health-condition" }, {sort: [["used","desc"]]}, {limit: 20});
 //});
@@ -27,4 +46,4 @@ EasySearch.config({
 appConfig = function() {
     var config = Assets.getText("config/config.json");
     return JSON.parse(config);
-}
+};

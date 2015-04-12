@@ -52,21 +52,11 @@ Tracker.autorun(function () {
     timelineChart.beginning(timelineDataObj.beginning);
     timelineChart.ending(timelineDataObj.ending);
 
-    if (!timelineDataObj.data) return;
-    var svg = d3.select("#timeline")
-        .append("svg")
-        .attr("width", "800")
-        //.attr("height", "500")
-        .datum(timelineDataObj.data)
-        .call(timelineChart);
-});
+    if (!timelineDataObj.data || !timelineDataObj.data.length) return;
 
-
-Template.timeline.rendered = function() {
-
-
-
-
+    d3.select("#timeline").selectAll("g").remove();
+    d3.select("#timeline").selectAll("svg").remove();
+    //d3.select("#timeline").remove();
 
     timelineChart = d3.timeline()
         .stack()
@@ -76,53 +66,38 @@ Template.timeline.rendered = function() {
             tickInterval: 1,
             tickSize: 5
         })
-        //.rotateTicks(90)
-        //.showToday()
-        //.relativeTime()
-        .margin({left:100, right:0, top:0, bottom:100})
+        .itemHeight(15)
+        .margin({left:100, top: 0, right: 0, bottom: 200})
+        .orient("bottom")
         .width(1200);
 
+    console.log("PLOTTING: " + JSON.stringify(timelineDataObj));
+    var svg = d3.select("#timeline")
+        .append("svg")
+        .attr("width", "800")
+        .datum(timelineDataObj.data)
+        .call(timelineChart);
+
+    //d3.select("#timeline").selectAll("g").remove();
+});
 
 
-
-
-
-
-
-
-
-
-
-
-    //var data = [{
-    //    label: "foo",
-    //    times: [{
-    //        starting_time: 1426478400000,
-    //        ending_time: 1440907200000
-    //    }, {
-    //        starting_time: 1426478400000,
-    //        ending_time: 1438401600000
-    //    }]
-    //},{
-    //    label: "bar",
-    //    times: [{
-    //        starting_time: 1426478400000,
-    //        ending_time: 1451883600000
-    //    },{
-    //        starting_time: 1426478400000,
-    //        ending_time: 1451883600000
-    //    }]
-    //},{
-    //    label: "baz",
-    //    times: [{
-    //        starting_time: 1426478400000,
-    //        ending_time: 1451883600000
-    //    }]
-    //}
-    //];
-
-
-
-
-
+Template.timeline.rendered = function() {
+    timelineChart = d3.timeline()
+        .stack()
+        .tickFormat({
+            format: d3.time.format("%-m/%y"),
+            tickTime: d3.time.months,
+            tickInterval: 1,
+            tickSize: 5
+        })
+        .itemHeight(15)
+        .margin({left:100, top: 0, right: 0, bottom: 200})
+        .orient("bottom")
+        .width(1200);
 };
+
+
+//.rotateTicks(90)
+//.showToday()
+//.relativeTime()

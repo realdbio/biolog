@@ -128,4 +128,13 @@ div.faces div.rateit-reset:hover
 
 .biolog-timeline {
     width: 1200px;
+    margin-bottom: 100px;
+}
+
+#timeline {
+    margin-bottom: 100px;
+}
+
+#timeline svg{
+    margin-bottom: 100px;
 }
