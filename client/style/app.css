@@ -100,18 +100,18 @@ select::-moz-focus-inner { /*Remove button padding in FF*/
 
 div.faces div.rateit-range
 {
-    background: url(icons/smile64.png);
+    background: url(icons/smile32.png);
     height: 32px;
 }
 
 div.faces div.rateit-hover
 {
-    background: url(icons/frown64.png);
+    background: url(icons/frown32.png);
 }
 
 div.faces div.rateit-selected
 {
-    background: url(icons/frown64.png);
+    background: url(icons/frown32.png);
 }
 
 /*div.faces div.rateit-reset*/
@@ -123,7 +123,7 @@ div.faces div.rateit-selected
 
 div.faces div.rateit-reset:hover
 {
-    background: url(icons/smile64.png);
+    background: url(icons/smile32.png);
 }
 
 .biolog-timeline {

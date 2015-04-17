@@ -181,6 +181,11 @@ Template.diagnosisItem.rendered = function() {
 
 
 
+
+
+    $('.rateit').rateit();
+
+
     //'90%': [noonYesterday, 1000],
     //'95%' : [timenow.getTime(), 1000],
     //format: {
@@ -277,5 +282,9 @@ Template.diagnosisItem.helpers({
 
     getEndDate: function() {
         return this.endDate;
+    },
+
+    frowns: function() {
+        return this.num / 2;
     }
-})
+});

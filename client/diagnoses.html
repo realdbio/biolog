@@ -11,6 +11,8 @@
 <template name="diagnosisItem">
     <a href="#" class="list-group-item smartbio-diagnosisbtn">
         {{objName}}
+        <span class="pull-right">{{frowns}}</span>
+        <div class="rateit faces pull-right" data-rateit-starwidth="32" data-rateit-starheight="32" data-rateit-value="{{frowns}}" data-rateit-readonly="true"></div>
     </a>
 </template>
 
@@ -61,5 +63,7 @@
         <button type="button" id="smartbio-fact-{{_id}}" class="btn btn-sm btn-default" title="{{subj}}~{{pred}}~{{obj}},current={{current}},startDate={{startDate}},endDate={{endDate}},startFlag={{startFlag}},endFlag={{endFlag}}">
             <span class="fa fa-medkit"></span> {{text}}
         </button>
+        <span class="rateit faces pull-right" data-rateit-starwidth="32" data-rateit-starheight="32" data-rateit-value="{{frowns}}" data-rateit-readonly>{{frowns}}</span>
+
     </div>
 </template>

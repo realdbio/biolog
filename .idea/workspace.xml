@@ -2,20 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bd94fda1-7476-48a0-9c18-24312c02a63a" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/lib/init-subscribe.js" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/client/lib/init-diagnosis-dialogs.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/client/lib/init-patient.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/client/lib/init-rule-functions.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/client/lib/init-temp.js" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/lib/init.js" afterPath="$PROJECT_DIR$/lib/init-easysearch.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/style/app.css" afterPath="$PROJECT_DIR$/client/style/app.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/aschema.js" afterPath="$PROJECT_DIR$/lib/aschema.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/console.html" afterPath="$PROJECT_DIR$/client/console.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/console.js" afterPath="$PROJECT_DIR$/client/console.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/lib/init-data.js" afterPath="$PROJECT_DIR$/server/lib/init-data.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/lib/init-server.js" afterPath="$PROJECT_DIR$/server/lib/init-server.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/timeline.js" afterPath="$PROJECT_DIR$/client/timeline.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/util.js" afterPath="$PROJECT_DIR$/lib/util.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/diagnoses.html" afterPath="$PROJECT_DIR$/client/diagnoses.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/diagnosis-dialog.html" afterPath="$PROJECT_DIR$/client/diagnosis-dialog.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/dx.js" afterPath="$PROJECT_DIR$/client/dx.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="smartbio.iws" />
@@ -43,7 +33,7 @@
       <file leaf-file-name="console.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/client/console.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="990">
+            <state vertical-scroll-proportion="0.0" vertical-offset="454" max-vertical-offset="990">
               <caret line="8" column="3" selection-start-line="8" selection-start-column="3" selection-end-line="8" selection-end-column="3" />
               <folding>
                 <element signature="e#0#36#0" expanded="false" />
@@ -55,8 +45,58 @@
       <file leaf-file-name="console.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/client/console.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-16.958334" vertical-offset="928" max-vertical-offset="1440">
+            <state vertical-scroll-proportion="-31.875" vertical-offset="570" max-vertical-offset="1440">
               <caret line="89" column="10" selection-start-line="89" selection-start-column="10" selection-end-line="89" selection-end-column="10" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="diagnoses.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/client/diagnoses.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.21843687" vertical-offset="71" max-vertical-offset="1110">
+              <caret line="12" column="19" selection-start-line="12" selection-start-column="19" selection-end-line="12" selection-end-column="19" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="diagnosis-dialog.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/client/diagnosis-dialog.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="4234" max-vertical-offset="4770">
+              <caret line="312" column="0" selection-start-line="312" selection-start-column="0" selection-end-line="312" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="diagnosis-dialog.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/client/diagnosis-dialog.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-3.0784314" vertical-offset="668" max-vertical-offset="1575">
+              <caret line="55" column="155" selection-start-line="55" selection-start-column="151" selection-end-line="55" selection-end-column="155" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="dx.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/client/dx.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-15.518518" vertical-offset="3931" max-vertical-offset="4440">
+              <caret line="290" column="0" selection-start-line="290" selection-start-column="0" selection-end-line="290" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="aschema.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/lib/aschema.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="1770" max-vertical-offset="5535">
+              <caret line="75" column="23" selection-start-line="75" selection-start-column="23" selection-end-line="75" selection-end-column="23" />
               <folding />
             </state>
           </provider>
@@ -65,8 +105,8 @@
       <file leaf-file-name="app.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/client/style/app.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="1579" max-vertical-offset="2175">
-              <caret line="137" column="13" selection-start-line="137" selection-start-column="13" selection-end-line="137" selection-end-column="13" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="1534" max-vertical-offset="2175">
+              <caret line="111" column="3" selection-start-line="111" selection-start-column="0" selection-end-line="111" selection-end-column="3" />
               <folding />
             </state>
           </provider>
@@ -82,61 +122,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="timeline.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="timeline.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/client/timeline.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.8852773" vertical-offset="977" max-vertical-offset="1620">
-              <caret line="96" column="21" selection-start-line="85" selection-start-column="4" selection-end-line="96" selection-end-column="21" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="init-server.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/server/lib/init-server.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-6.111111" vertical-offset="0" max-vertical-offset="810">
-              <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="init-speech.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/client/lib/init-speech.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="930">
-              <caret line="19" column="9" selection-start-line="19" selection-start-column="9" selection-end-line="19" selection-end-column="9" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="init-obj-dialog.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/client/lib/init-obj-dialog.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="660">
-              <caret line="0" column="27" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="27" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="diagnosis-dialog.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/client/diagnosis-dialog.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-13.125" vertical-offset="510" max-vertical-offset="1575">
-              <caret line="55" column="52" selection-start-line="55" selection-start-column="29" selection-end-line="55" selection-end-column="52" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="diagnosis-dialog.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/client/diagnosis-dialog.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="4234" max-vertical-offset="4770">
-              <caret line="288" column="11" selection-start-line="288" selection-start-column="11" selection-end-line="288" selection-end-column="11" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="167" max-vertical-offset="1620">
+              <caret line="97" column="2" selection-start-line="97" selection-start-column="2" selection-end-line="97" selection-end-column="2" />
               <folding />
             </state>
           </provider>
@@ -165,7 +155,6 @@
         <option value="$PROJECT_DIR$/client/adminOptions.js" />
         <option value="$PROJECT_DIR$/client/lib/init-speech.js" />
         <option value="$PROJECT_DIR$/lib/init-temp.js" />
-        <option value="$PROJECT_DIR$/client/diagnoses.html" />
         <option value="$PROJECT_DIR$/client/rule-client.js" />
         <option value="$PROJECT_DIR$/client/rule.html" />
         <option value="$PROJECT_DIR$/client/lib/init-temp.js" />
@@ -185,12 +174,9 @@
         <option value="$PROJECT_DIR$/client/started-resolved.html" />
         <option value="$PROJECT_DIR$/client/lib/init-diagnosis-dialogs.js" />
         <option value="$PROJECT_DIR$/client/diagnoses.js" />
-        <option value="$PROJECT_DIR$/client/diagnosis-dialog.html" />
-        <option value="$PROJECT_DIR$/client/diagnosis-dialog.js" />
         <option value="$PROJECT_DIR$/packages/d3-timeline/d3-timeline.js" />
         <option value="$PROJECT_DIR$/.meteor/packages" />
         <option value="$PROJECT_DIR$/packages/d3-timeline/package.js" />
-        <option value="$PROJECT_DIR$/client/dx.js" />
         <option value="$PROJECT_DIR$/client/lib/init-helpers.js" />
         <option value="$PROJECT_DIR$/client/pt.js" />
         <option value="$PROJECT_DIR$/packages/ramshackle:nouislider/package.js" />
@@ -204,8 +190,12 @@
         <option value="$PROJECT_DIR$/server/lib/init-server.js" />
         <option value="$PROJECT_DIR$/lib/aschema.js" />
         <option value="$PROJECT_DIR$/client/console.html" />
-        <option value="$PROJECT_DIR$/client/style/app.css" />
         <option value="$PROJECT_DIR$/client/timeline.js" />
+        <option value="$PROJECT_DIR$/client/diagnosis-dialog.html" />
+        <option value="$PROJECT_DIR$/client/diagnosis-dialog.js" />
+        <option value="$PROJECT_DIR$/client/dx.js" />
+        <option value="$PROJECT_DIR$/client/style/app.css" />
+        <option value="$PROJECT_DIR$/client/diagnoses.html" />
       </list>
     </option>
   </component>
@@ -360,24 +350,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="client" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="biolog" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="biolog" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="client" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="style" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -586,13 +558,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/adminOptions.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.63927853" vertical-offset="11" max-vertical-offset="510">
-          <caret line="22" column="14" selection-start-line="22" selection-start-column="14" selection-end-line="22" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/client/patient.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-5.5882354" vertical-offset="120" max-vertical-offset="885">
@@ -666,20 +631,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="360">
           <caret line="15" column="4" selection-start-line="15" selection-start-column="4" selection-end-line="15" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/dx.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-65.14815" vertical-offset="131" max-vertical-offset="4290">
-          <caret line="126" column="87" selection-start-line="126" selection-start-column="8" selection-end-line="126" selection-end-column="87" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/diagnoses.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.56312627" vertical-offset="551" max-vertical-offset="1050">
-          <caret line="18" column="23" selection-start-line="18" selection-start-column="23" selection-end-line="18" selection-end-column="23" />
         </state>
       </provider>
     </entry>
@@ -833,14 +784,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/diagnosis-dialog.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-13.125" vertical-offset="510" max-vertical-offset="1575">
-          <caret line="55" column="52" selection-start-line="55" selection-start-column="29" selection-end-line="55" selection-end-column="52" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/server/methods/facts.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="409" max-vertical-offset="5970">
@@ -849,10 +792,42 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/client/layout.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.20641282" vertical-offset="422" max-vertical-offset="945">
+          <caret line="35" column="45" selection-start-line="35" selection-start-column="45" selection-end-line="35" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/timeline.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="167" max-vertical-offset="1620">
+          <caret line="97" column="2" selection-start-line="97" selection-start-column="2" selection-end-line="97" selection-end-column="2" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/adminOptions.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.61567163" vertical-offset="0" max-vertical-offset="536">
+          <caret line="22" column="14" selection-start-line="22" selection-start-column="14" selection-end-line="22" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/lib/aschema.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.06048387" vertical-offset="1095" max-vertical-offset="5535">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1770" max-vertical-offset="5535">
           <caret line="75" column="23" selection-start-line="75" selection-start-column="23" selection-end-line="75" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/diagnosis-dialog.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-3.0784314" vertical-offset="668" max-vertical-offset="1575">
+          <caret line="55" column="155" selection-start-line="55" selection-start-column="151" selection-end-line="55" selection-end-column="155" />
           <folding />
         </state>
       </provider>
@@ -860,7 +835,7 @@
     <entry file="file://$PROJECT_DIR$/client/diagnosis-dialog.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="4234" max-vertical-offset="4770">
-          <caret line="288" column="11" selection-start-line="288" selection-start-column="11" selection-end-line="288" selection-end-column="11" />
+          <caret line="312" column="0" selection-start-line="312" selection-start-column="0" selection-end-line="312" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -875,17 +850,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/layout.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.20641282" vertical-offset="422" max-vertical-offset="945">
-          <caret line="35" column="45" selection-start-line="35" selection-start-column="45" selection-end-line="35" selection-end-column="45" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/client/console.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-16.958334" vertical-offset="928" max-vertical-offset="1440">
+        <state vertical-scroll-proportion="-31.875" vertical-offset="570" max-vertical-offset="1440">
           <caret line="89" column="10" selection-start-line="89" selection-start-column="10" selection-end-line="89" selection-end-column="10" />
           <folding />
         </state>
@@ -893,16 +860,24 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/client/style/app.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1579" max-vertical-offset="2175">
-          <caret line="137" column="13" selection-start-line="137" selection-start-column="13" selection-end-line="137" selection-end-column="13" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="1534" max-vertical-offset="2175">
+          <caret line="111" column="3" selection-start-line="111" selection-start-column="0" selection-end-line="111" selection-end-column="3" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/timeline.js">
+    <entry file="file://$PROJECT_DIR$/client/dx.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.8852773" vertical-offset="977" max-vertical-offset="1620">
-          <caret line="96" column="21" selection-start-line="85" selection-start-column="4" selection-end-line="96" selection-end-column="21" />
+        <state vertical-scroll-proportion="-15.518518" vertical-offset="3931" max-vertical-offset="4440">
+          <caret line="290" column="0" selection-start-line="290" selection-start-column="0" selection-end-line="290" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/diagnoses.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.21843687" vertical-offset="71" max-vertical-offset="1110">
+          <caret line="12" column="19" selection-start-line="12" selection-start-column="19" selection-end-line="12" selection-end-column="19" />
           <folding />
         </state>
       </provider>
