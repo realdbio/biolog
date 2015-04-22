@@ -126,6 +126,49 @@ div.faces div.rateit-reset:hover
     background: url(icons/smile32.png);
 }
 
+
+
+
+
+
+
+
+
+div.faces-sm div.rateit-range
+{
+    background: url(icons/smile16.png);
+    height: 32px;
+}
+
+div.faces-sm div.rateit-hover
+{
+    background: url(icons/frown16.png);
+}
+
+div.faces-sm div.rateit-selected
+{
+    background: url(icons/frown16.png);
+}
+
+/*div.faces div.rateit-reset*/
+/*{*/
+/*background: url(icons/smile32.png);*/
+/*width: 32px;*/
+/*height: 32px;*/
+/*}*/
+
+div.faces-sm div.rateit-reset:hover
+{
+    background: url(icons/smile16.png);
+}
+
+
+
+
+
+
+
+
 .biolog-timeline {
     width: 1200px;
     margin-bottom: 100px;

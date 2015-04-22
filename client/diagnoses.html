@@ -10,9 +10,11 @@
 
 <template name="diagnosisItem">
     <a href="#" class="list-group-item smartbio-diagnosisbtn">
+        <div class="pull-right">
+            <div class="rateit faces-sm" data-rateit-starwidth="16" data-rateit-starheight="16" data-rateit-value="{{frowns}}" data-rateit-readonly="true"></div>
+        </div>
         {{objName}}
-        <span class="pull-right">{{frowns}}</span>
-        <div class="rateit faces pull-right" data-rateit-starwidth="32" data-rateit-starheight="32" data-rateit-value="{{frowns}}" data-rateit-readonly="true"></div>
+        <!--<div class="pull-right"></div>-->
     </a>
 </template>
 
