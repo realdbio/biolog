@@ -1,7 +1,8 @@
-biolog
+biolog - legacy repo
 ========
 Real-Time Health Intelligence
 
+*Note - this is a legacy version of Biolog*
 Biolog.io is a free and open source personal health record (PHR), accessible anywhere.
 It combines these features
 * Personal Health Record - a log of your personal health information
