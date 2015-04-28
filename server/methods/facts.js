@@ -9,6 +9,24 @@ var slimFact = function(fact) {
     return slimmed;
 };
 
+/**
+ * To add or change any new facts, we use these functions in the server code facts.js.
+ addFact
+ addProperty
+ updateFact
+ updateProperty
+ setFact
+ setProperty
+ In this js file, we distinguish between the ~Fact methods and the ~Property methods.
+ The ~Fact methods simply add or update a fact in the database.
+ The ~Property methods do 2 things: (1) add the fact by calling the corresponding ~Fact method, and (2) update that value in the owning entity.
+ So use the ~Fact method to store a fact, which is either not tied to an entity in particular, or if we would never want to apply rules to that fact.
+ Use the ~Property method to store a fact that applies to an entity and that fact is an inherent property of that entity.  And we might apply rules to it.
+
+ Use the add~ method to add without concern for past facts or properties with the same subject entity and same predicate.
+ Use the set~ method to invalidate any past facts or properties that have the same subject entity and predicate.
+ Use the update~ method to overwrite any past facts or properties that have the same subject entity and predicate, without invalidating.
+ */
 
 var FactMethods;
 Meteor.methods(FactMethods = {
