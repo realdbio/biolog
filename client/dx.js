@@ -152,6 +152,7 @@ Template.allFacts.helpers({
 
 Template.addDiagnosisButton.events({
     'click #addDiagnosisButton': function(event, template) {
+        console.log("clicked addDiagnosisButton");
         event.preventDefault();
         var patient = Session.get("patient");
         var diagnosis = {
